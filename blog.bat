@@ -4,9 +4,13 @@ chcp 65001
 cls  
 
 rem 检测输入标题，判断标题
-set title= %1
 
-if "%1"=="" (
+for %%i in (%*) do (
+set title=!title! %%i
+)
+
+
+if title=="" (
     set title="起个好名字好不"
 )
 
