@@ -79,6 +79,9 @@ export default {
 </script>
 
 <style lang="stylus">
+
+@require '../styles/sake.styl'
+
 .home
   padding $navbarHeight 2rem 0
   max-width 960px

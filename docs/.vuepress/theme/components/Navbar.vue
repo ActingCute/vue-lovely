@@ -23,6 +23,16 @@
         />
       </div>
     </header>
+    <div class="lovely-portrait-box" v-bind:style="{ top: lovelyPortraitBox + 'px'}">
+      <div class="lovely-portrait" v-bind:style="{ height: lovelyPortraitBox/2.5 + 'px'}">
+        <img
+          v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}"
+          class="shake shake-opacity"
+          src="../static/img/aimi.jpg"
+        >
+        <p class="lovely-description">{{ $site.description }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,16 +49,19 @@ export default {
     return {
       linksWrapMaxWidth: null,
       screenWidth: document.documentElement.clientWidth,
-      headerHeight:"0"
+      headerHeight: "0",
+      lovelyPortraitBox: "0"
     };
   },
 
   mounted() {
     var _this = this;
-    _this.headerHeight = Number(document.documentElement.clientWidth)/3
+    _this.headerHeight = Number(document.documentElement.clientWidth) / 3;
+    _this.lovelyPortraitBox = _this.headerHeight / 1.4;
     window.onresize = function() {
-      _this.headerHeight = Number(document.documentElement.clientWidth)/3; //窗口宽度
-      console.log(_this.screenWidth)
+      _this.headerHeight = Number(document.documentElement.clientWidth) / 3; //窗口宽度
+      _this.lovelyPortraitBox = _this.headerHeight / 1.4;
+      console.log(_this.screenWidth);
     };
     const MOBILE_DESKTOP_BREAKPOINT = 719; // refer to config.styl
     const NAVBAR_VERTICAL_PADDING =
@@ -140,6 +153,47 @@ $navbar-horizontal-padding = 1.5rem;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+@media (min-width: 800px) {
+  .lovely-portrait-box {
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    .lovely-portrait {
+      width: 70%;
+      text-align: center;
+      margin: auto;
+      padding: 40px 0;
+      padding-bottom: 40px;
+      font-size: 16px;
+      opacity: 0.98;
+      background: rgba(230, 244, 249, 0.8);
+      z-index: 1;
+      animation: b 1s ease-out;
+      position: relative;
+      border-radius: 5px;
+
+      img {
+        margin: auto;
+        border-radius: 50%;
+      }
+
+      .lovely-description {
+        color: blue;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 20px 0 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .lovely-portrait {
+    display: none;
+  }
 }
 
 @media (max-width: $MQMobile) {
