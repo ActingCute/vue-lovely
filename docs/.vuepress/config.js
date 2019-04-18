@@ -1,5 +1,5 @@
 module.exports = {
-    title: '萌萌哒小可爱',
+    title: 'Hello World',
     description: '这是谁的小鹿？真厉害!',
     themeConfig: {
         sidebarDepth: 4, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
