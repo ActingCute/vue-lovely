@@ -90,6 +90,8 @@ $navbar-vertical-padding = 0.7rem
 $navbar-horizontal-padding = 1.5rem
 
 .navbar
+  margin 0 auto
+  text-align center
   padding $navbar-vertical-padding $navbar-horizontal-padding
   line-height $navbarHeight - 1.4rem
   a, span, img
@@ -105,13 +107,10 @@ $navbar-horizontal-padding = 1.5rem
     color $textColor
     position relative
   .links
-    padding-left 1.5rem
+    display inline-block
     box-sizing border-box
-    background-color white
     white-space nowrap
     font-size 0.9rem
-    position absolute
-    right $navbar-horizontal-padding
     top $navbar-vertical-padding
     display flex
     .search-box
