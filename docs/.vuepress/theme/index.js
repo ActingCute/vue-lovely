@@ -38,6 +38,9 @@ module.exports = (options, ctx) => ({
       defaultTitle: {
         '/zh/': '警告'
       }
+    }],
+    ['@vuepress/blog',{
+      postsDir:"Blog"
     }]
   ]
 })

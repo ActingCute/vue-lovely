@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       linksWrapMaxWidth: null,
-      screenWidth: document.documentElement.clientWidth,
+      screenWidth: "100%",
       headerHeight: "0",
       lovelyPortraitBox: "0"
     };

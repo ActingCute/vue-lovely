@@ -56,7 +56,6 @@
         </span>
       </p>
     </div>
-
     <slot name="bottom"/>
   </main>
 </template>
