@@ -1,28 +1,30 @@
 <template>
   <div class="header-box" v-bind:style="{ minHeight: headerHeight + 'px' }">
-    <header class="navbar">
-      <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
+    <transition name="slide-fade">
+      <header class="navbar" v-if="ScrollUp">
+        <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')"/>
 
-      <router-link :to="$localePath" class="home-link">
-        <img
-          class="logo"
-          v-if="$site.themeConfig.logo"
-          :src="$withBase($site.themeConfig.logo)"
-          :alt="$siteTitle"
-        >
-      </router-link>
+        <router-link :to="$localePath" class="home-link">
+          <img
+            class="logo"
+            v-if="$site.themeConfig.logo"
+            :src="$withBase($site.themeConfig.logo)"
+            :alt="$siteTitle"
+          >
+        </router-link>
 
-      <div class="links">
-        <NavLinks class="can-hide"/>
-      </div>
+        <div class="links">
+          <NavLinks class="can-hide"/>
+        </div>
 
-      <div class="lovely-search">
-        <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia"/>
-        <SearchBox
-          v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
-        />
-      </div>
-    </header>
+        <div class="lovely-search">
+          <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia"/>
+          <SearchBox
+            v-else-if="$site.themeConfig.search !== false && $page.frontmatter.search !== false"
+          />
+        </div>
+      </header>
+    </transition>
     <div class="lovely-portrait-box" v-bind:style="{ top: lovelyPortraitBox + 'px'}">
       <div class="lovely-portrait" v-bind:style="{ height: lovelyPortraitBox/2.5 + 'px'}">
         <img
@@ -50,7 +52,10 @@ export default {
       linksWrapMaxWidth: null,
       screenWidth: "100%",
       headerHeight: "0",
-      lovelyPortraitBox: "0"
+      lovelyPortraitBox: "0",
+      show: true,
+      oldScrollTop: 0,
+      ScrollUp: false
     };
   },
   mounted() {
@@ -78,6 +83,8 @@ export default {
     };
     handleLinksWrapWidth();
     window.addEventListener("resize", handleLinksWrapWidth, false);
+    this.oldScrollTop = document.documentElement.scrollTop;
+    window.addEventListener("scroll", this.handleScroll, false);
   },
 
   computed: {
@@ -89,6 +96,18 @@ export default {
 
     isAlgoliaSearch() {
       return this.algolia && this.algolia.apiKey && this.algolia.indexName;
+    }
+  },
+  methods: {
+    handleScroll() {
+      if (
+        Number(document.documentElement.scrollTop) > Number(this.oldScrollTop)
+      ) {
+        this.ScrollUp = false;
+      } else {
+        this.ScrollUp = true;
+      }
+      this.oldScrollTop = document.documentElement.scrollTop;
     }
   }
 };
@@ -104,6 +123,18 @@ function css(el, property) {
 <style lang="stylus">
 $navbar-vertical-padding = 0.7rem;
 $navbar-horizontal-padding = 1.5rem;
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateY(-150px);
+  opacity: 0;
+}
 
 .navbar {
   text-align: center;

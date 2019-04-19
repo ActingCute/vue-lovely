@@ -93,6 +93,7 @@ export default {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });
+    window.addEventListener("scroll", this.handleScroll, false);
   },
 
   methods: {

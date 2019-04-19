@@ -20,7 +20,6 @@ export default {
 
   computed: {
     data() {
-      this.init();
       return this.$page.frontmatter;
     },
 
@@ -30,12 +29,6 @@ export default {
         text: this.data.actionText
       };
     }
-  },
-  methods: {
-    init() {
-      console.log("this.$site", this.$site);
-      console.log("this.$page", this.$page);
-    }
   }
 };
 </script>
@@ -43,8 +36,19 @@ export default {
 <style lang="stylus">
 @require '../styles/sake.styl';
 
+@media (max-width: 540px) {
+  .home {
+    padding: 0;
+  }
+}
+
+@media (min-width: 541px) {
+  .home {
+    padding: $navbarHeight 2rem 0;
+  }
+}
+
 .home {
-  padding: $navbarHeight 2rem 0;
   max-width: 960px;
   margin: 0px auto;
   display: block;
