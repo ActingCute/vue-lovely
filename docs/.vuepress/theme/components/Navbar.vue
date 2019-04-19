@@ -53,7 +53,6 @@ export default {
       lovelyPortraitBox: "0"
     };
   },
-
   mounted() {
     var _this = this;
     _this.headerHeight = Number(document.documentElement.clientWidth) / 3;
