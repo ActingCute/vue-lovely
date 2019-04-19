@@ -1,15 +1,16 @@
 <template>
-  <div>
-    
-  </div>
+  <div></div>
 </template>
 
 <script>
 import { GoAnchor } from "../util";
 export default {
   name: "foot",
-  mounted:function(){
-    GoAnchor("actingcute_anchor");
+  watch: {
+    $route(to, from) {
+      //阅读更更多  
+      GoAnchor("actingcute_anchor");
+    }
   }
 };
 </script>

@@ -247,8 +247,10 @@ function resolveItem(item, pages, base, groupDepth = 1) {
 export function GoAnchor(selector) {
   try {
     setTimeout(function () {
-      let top = document.getElementById(selector).offsetTop
-      document.documentElement.scrollTop = top
+      if (document.getElementById(selector)) {
+        let top = document.getElementById(selector).offsetTop
+        document.documentElement.scrollTop = top
+      }
     }, 100);
   } catch (error) {
     console.error(error)
