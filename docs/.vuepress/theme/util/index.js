@@ -243,6 +243,7 @@ function resolveItem(item, pages, base, groupDepth = 1) {
   }
 }
 
+//博客
 //查看更多 有点垃圾
 export function GoAnchor(selector) {
   try {
@@ -254,5 +255,57 @@ export function GoAnchor(selector) {
     }, 100);
   } catch (error) {
     console.error(error)
+  }
+}
+
+export function GetPostTag(t) {
+  console.log(t);
+  if (t) {
+    return t.length > 0 ? t[0].name : "未知事件";
+  }
+  return "未知事件";
+}
+
+export function GetPostTime(d) {
+  try {
+    let pds = d.split(",")[0];
+    let ymd = pds.split("/");
+    let ymdhtml =
+      '<div class="post-month">' +
+      ymd[0] +
+      '月</div><div class="post-day">' +
+      ymd[1] +
+      "</div>";
+    return ymdhtml;
+  } catch (error) {
+    console.log(error);
+    return "<div>忘了时间</div>";
+  }
+}
+
+export function GetPostDate(d) {
+  try {
+    var date = new Date(d);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = getNewDate(date.getMonth() + 1);
+    var day = getNewDate(date.getDate());
+    var hours = getNewDate(date.getHours());
+    var minutes = getNewDate(date.getMinutes());
+    var seconds = getNewDate(date.getSeconds());
+    //统一格式为两位数
+    function getNewDate(date) {
+      if (date <= 9) {
+        date = "0" + date;
+      }
+      return date;
+    }
+
+    var currentDate = date.getFullYear() + seperator1 + month + seperator1 + day
+      + " " + hours + seperator2 + minutes + seperator2 + seconds;
+    return currentDate;
+  } catch (error) {
+    console.error(error);
+    return "忘了时间";
   }
 }
