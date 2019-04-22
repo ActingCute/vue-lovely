@@ -18,3 +18,9 @@ const (
 	EXIST_FAILED            //10010 存在操作失败项
 	TEXT_TOO_LOANG          //10011 文本太长了
 )
+
+type RestfulReturn struct {
+	Result  Status       `json:"Result"`
+	Message string      `json:"Message"`
+	Data    interface{} `json:"Data"`
+}

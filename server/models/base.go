@@ -153,3 +153,9 @@ func GetAppConfBool(name string) bool {
 	}
 	return isok
 }
+
+func Insert(data interface{}) error {
+	_, err := db.Omit("delete_time").Insert(data)
+	helper.Error(err)
+	return err
+}

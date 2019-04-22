@@ -8,7 +8,7 @@
 
 # dev
 
-    bee run
+    bee run -downdoc=true -gendoc=true
 
 # build
 
