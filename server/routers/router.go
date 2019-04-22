@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"lovely/controllers"
+	"server/controllers"
 	"github.com/astaxie/beego"
 )
 

@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"lovely/models"
-	helper "lovely/helper"
+	"server/models"
+	helper "server/helper"
 	"strings"
 	"encoding/json"
 )

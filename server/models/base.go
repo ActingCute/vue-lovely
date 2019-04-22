@@ -1,7 +1,7 @@
 package models
 
 import (
-	helper "lovely/helper"
+	helper "server/helper"
 	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"

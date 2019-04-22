@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"lovely/models"
+	"server/models"
 	"github.com/astaxie/beego"
-	"lovely/helper"
+	"server/helper"
 )
 
 // Operations about Comment

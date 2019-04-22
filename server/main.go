@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "lovely/routers"
-	helper "lovely/helper"
+	_ "server/routers"
+	helper "server/helper"
 	"github.com/astaxie/beego"
 	"os"
 	"fmt"
