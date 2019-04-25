@@ -2,6 +2,7 @@ module.exports = {
     title: 'Hello World',
     description: '这是谁的小鹿？真厉害!',
     themeConfig: {
+        sidebar: 'auto',
         sidebarDepth: 4, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。
         lastUpdated: '更新于',// 文档更新时间：每个文件git最后提交的时间,
         // 顶部导航栏

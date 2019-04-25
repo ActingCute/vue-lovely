@@ -16,9 +16,6 @@ body
   font-size 16px
   color $textColor
 
-.page
-  padding-left $sidebarWidth
-
 .navbar
   position fixed
   z-index 20
@@ -43,12 +40,8 @@ body
   font-size 16px
   background-color #fff
   width $sidebarWidth
-  position fixed
   z-index 10
-  margin 0
-  top $navbarHeight
-  left 0
-  bottom 0
+  right 0
   box-sizing border-box
   border-right 1px solid $borderColor
   overflow-y auto
@@ -218,7 +211,6 @@ th, td
 
 
 .post-badge 
-  z-index 1000
   position: absolute
   left: -16px
   top: 105px
@@ -239,8 +231,8 @@ th, td
 
 .blog-box 
   padding-top: 6rem
-  max-width: 960px
   margin: 0px auto
+  max-width 1200px
 
   article 
     position: relative
@@ -276,3 +268,13 @@ th, td
 
   .last-updated
     text-align: center
+
+.lovely-sidebar
+  display: inline-block    
+  float: right 
+
+.post
+  display: inline-block    
+
+.post-type-normal
+  max-width 700px

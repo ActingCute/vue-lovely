@@ -1,10 +1,16 @@
 <template>
   <div class="blog-box">
     <!-- 过滤后宫,留言板 这些 -->
+    <div class="lovely-sidebar" id="Sidebar">
+      <Sidebar :items="sidebarItems">
+        <slot name="sidebar-top" slot="top"/>
+        <slot name="sidebar-bottom" slot="bottom"/>
+      </Sidebar>
+    </div>
+
     <article class="blog post-type-normal">
       <main class="page">
         <slot name="top"/>
-
         <div class="post-date">
           <span v-html="GetPostTime(lastUpdated)"></span>
         </div>
@@ -63,8 +69,12 @@ import {
   GetPostTime,
   GetPostDate
 } from "../util";
+import Sidebar from "@theme/components/Sidebar.vue";
 
 export default {
+  components: {
+    Sidebar
+  },
   props: ["sidebarItems"],
 
   computed: {
@@ -140,7 +150,12 @@ export default {
       );
     }
   },
-
+  
+  mounted: function() {
+    if (document.getElementById("Sidebar")){
+      window.addEventListener("scroll", this.SetSidebarPostion, false);
+    }
+  },
   methods: {
     GetPostTag(t) {
       return GetPostTag(t);
@@ -150,6 +165,26 @@ export default {
     },
     GetPostDate(t) {
       return GetPostDate(t);
+    },
+    SetSidebarPostion() {
+      let topScroll = document.documentElement.scrollTop; //滚动的距离,距离顶部的距离
+      let bignav = document.getElementById("Sidebar"); //获取到导航栏id
+      if (topScroll > 500) {
+        //当滚动距离大于250px时执行下面的东西
+        bignav.style.position = "fixed";
+        bignav.style.zIndex = "9999";
+        bignav.style.top = "0";
+        bignav.style.right= "0";
+      } else {
+        //当滚动距离小于250的时候执行下面的内容，也就是让导航栏恢复原状
+        bignav.style.position = "static";
+      }
+    },
+    getElementToPageTop(el) {
+      if (el.parentElement) {
+        return this.getElementToPageTop(el.parentElement) + el.offsetTop;
+      }
+      return el.offsetTop;
     },
     createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
       const bitbucket = /bitbucket.org/;
@@ -279,4 +314,8 @@ function flatten(items, res) {
     }
   }
 }
+
+.blog-box{
+    position :relative
+  }
 </style>

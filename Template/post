@@ -4,6 +4,7 @@ lang: en-US
 meta:
   - name: lovely
     content: what?
+sidebar: auto    
 ---
 
 
