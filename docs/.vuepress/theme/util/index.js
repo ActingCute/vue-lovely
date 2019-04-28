@@ -246,6 +246,10 @@ function resolveItem(item, pages, base, groupDepth = 1) {
 //博客
 //查看更多 有点垃圾
 export function GoAnchor(selector) {
+  if (location.href.indexOf('#') != -1){
+    //若是点了标签，不要再执行了
+    return
+  }
   try {
     setTimeout(function () {
       if (document.getElementById(selector)) {
