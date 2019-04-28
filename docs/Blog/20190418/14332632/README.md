@@ -4,7 +4,7 @@ lang: en-US
 meta:
   - name:  Hello World
     content: what?
-sidebar: auto    
+sidebar: auto
 ---
 
 
