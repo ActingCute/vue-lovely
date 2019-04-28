@@ -137,6 +137,7 @@ $navbar-horizontal-padding = 1.5rem;
 }
 
 .navbar {
+  z-index :1000;
   text-align: center;
   margin: 0 auto;
   width: 100%;
@@ -219,6 +220,8 @@ $navbar-horizontal-padding = 1.5rem;
     }
   }
 }
+
+
 
 @media (max-width: 900px) {
   .lovely-portrait {
