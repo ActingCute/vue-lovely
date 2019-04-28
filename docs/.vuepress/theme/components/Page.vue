@@ -48,7 +48,6 @@
             <router-link :to="prevs.previous.regularPath">{{prevs.previous.title}}</router-link>
           </div>
           <div class="next" v-if="prevs.next">
-            
             <router-link :to="prevs.next.regularPath">{{prevs.next.title}}</router-link>>
           </div>
         </div>
@@ -184,15 +183,23 @@ export default {
           item.regularPath != "/"
       );
 
+      let len = post_arr.length;
+      if (len == 0) {
+        return;
+      }
+
       //查找当前页面位置
       let index = post_arr.findIndex((value, index, arr) => {
         return value.regularPath == this.page.regularPath;
       });
 
+      if (index == -1) {
+        return;
+      }
+
       console.log("post_arr -- ", post_arr, index, index + 1 == len);
 
       //判断是否存在上一页，下一页
-      let len = post_arr.length;
 
       let is_no_next = index + 1 == len;
       let is_no_previous = index == 0;
@@ -389,6 +396,13 @@ function flatten(items, res) {
 
   .next {
     float: right;
+  }
+
+  a {
+    position: relative;
+    font-size: 14px;
+    color: #555;
+    border-bottom: none;
   }
 }
 </style>
