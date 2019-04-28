@@ -54,6 +54,7 @@
         <slot name="bottom"/>
       </main>
     </article>
+    <comment></comment>
   </div>
 </template>
 
@@ -67,11 +68,14 @@ import {
   GetPostDate,
   SetSidebarPostion
 } from "../util";
+
 import Sidebar from "@theme/components/Sidebar.vue";
+import Comment from "@theme/components/Comment.vue";
 
 export default {
   components: {
-    Sidebar
+    Sidebar,
+    Comment
   },
   props: ["sidebarItems"],
 
@@ -209,7 +213,6 @@ export default {
         return;
       }
 
-      console.log("post_arr -- ", post_arr, index, index + 1 == len);
 
       //判断是否存在上一页，下一页
 
