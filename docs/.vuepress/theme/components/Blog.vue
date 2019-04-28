@@ -1,7 +1,15 @@
 <template>
   <div class="blog-box">
     <!-- 过滤后宫,留言板 这些 -->
-    <article v-for="(data,index) in datas" class="blog post-type-normal" v-if="IsBlog(data.path)">
+    <div class="lovely-sidebar" id="Sidebar">
+      <aside class="sidebar" style="display:inline-block">
+        <div>
+          <me></me>
+        </div>
+      </aside>
+    </div>
+
+    <article id="lovely_blog" v-for="(data,index) in datas" class="blog post-type-normal" v-if="IsBlog(data.path)">
       <div class="post-date">
         <span v-html="GetPostTime(data.lastUpdated)"></span>
       </div>
@@ -33,9 +41,17 @@
 </template>
 
 <script>
-import { GetPostTag, GetPostTime, GetPostDate } from "../util";
+import {
+  GetPostTag,
+  GetPostTime,
+  GetPostDate,
+  SetSidebarPostion
+} from "../util";
+import Me from "@theme/components/Me.vue";
+
 export default {
   name: "blog",
+  components: { Me },
   computed: {
     datas() {
       return this.$site.pages;
@@ -48,6 +64,11 @@ export default {
         return this.$site.themeConfig.lastUpdated;
       }
       return "Last Updated";
+    }
+  },
+  mounted: function() {
+    if (document.getElementById("Sidebar")) {
+      window.addEventListener("scroll", SetSidebarPostion, false);
     }
   },
   methods: {

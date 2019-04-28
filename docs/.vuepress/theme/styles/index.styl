@@ -3,6 +3,7 @@
 @require './arrow'
 @require './wrapper'
 @require './toc'
+@import "https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css";
 
 html, body
   padding 0
@@ -278,3 +279,150 @@ th, td
 
 .post-type-normal
   max-width 700px
+
+//图标
+.links-of-author-item .fa {
+    font-size: 16px;
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 42px;
+    color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.1);
+    transition: all .3s ease-in-out;
+    font-style: normal;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+}  
+
+.links-of-author-item .fa:hover{
+  background-color: blue;
+  }
+
+.links-of-author-item a {
+    display: block;
+    text-decoration: none;
+    overflow: visible;
+}
+
+.links-of-author-item a {
+    max-width: 216px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.sidebar-nav {
+  padding: 20px;
+}
+
+.sidebar-nav .sidebar-nav-active {
+  color: #fc6423;
+  border-bottom-color: #fc6423;
+}
+
+.sidebar-nav li {
+  display: inline-block;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  font-size: 14px;
+  color: #555;
+}
+
+.sidebar-nav-overview {
+  margin-left: 10px;
+}
+
+.sidebar-inner {
+  position: relative;
+  padding: 20px 10px;
+  color: #999;
+  text-align: center;
+}
+
+.sidebar {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  a {
+    display: inline-block;
+  }
+
+  .nav-links {
+    display: none;
+    border-bottom: 1px solid $borderColor;
+    padding: 0.5rem 0 0.75rem 0;
+
+    a {
+      font-weight: 600;
+    }
+
+    .nav-item, .repo-link {
+      display: block;
+      line-height: 1.25rem;
+      font-size: 1.1em;
+      padding: 0.5rem 0 0.5rem 1.5rem;
+    }
+  }
+
+  & > .sidebar-links {
+    padding: 1.5rem 0;
+
+    & > li > a.sidebar-link {
+      font-size: 1.1em;
+      line-height: 1.7;
+      font-weight: bold;
+    }
+
+    & > li:not(:first-child) {
+      margin-top: 0.75rem;
+    }
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .sidebar {
+    .nav-links {
+      display: block;
+
+      .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after {
+        top: calc(1rem - 2px);
+      }
+    }
+
+    & > .sidebar-links {
+      padding: 1rem 0;
+    }
+  }
+}
+
+.sidebar_bt {
+  cursor: pointer;
+  display: inline-block;
+  width: 50px;
+  padding: 10px;
+  border-bottom: 1px #eee solid;
+}
+
+// 导航切换
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}

@@ -67,7 +67,8 @@
     endingSlashRE,
     GetPostTag,
     GetPostTime,
-    GetPostDate
+    GetPostDate,
+    SetSidebarPostion
   } from "../util";
   import Sidebar from "@theme/components/Sidebar.vue";
 
@@ -153,7 +154,7 @@
 
     mounted: function () {
       if (document.getElementById("Sidebar")) {
-        window.addEventListener("scroll", this.SetSidebarPostion, false);
+        window.addEventListener("scroll", SetSidebarPostion, false);
       }
     },
     methods: {
@@ -165,20 +166,6 @@
       },
       GetPostDate(t) {
         return GetPostDate(t);
-      },
-      SetSidebarPostion() {
-        let topScroll = document.documentElement.scrollTop; //滚动的距离,距离顶部的距离
-        let bignav = document.getElementById("Sidebar"); //获取到导航栏id
-        if (bignav) {
-          if (topScroll > 500) {
-            let w = document.getElementById('lovely_blog').offsetWidth
-            bignav.style.marginTop = topScroll - 550 + 'px'
-            bignav.style.marginLeft = 25 + 'px'
-          } else {
-            bignav.style.marginTop = 0
-            bignav.style.position = "static";
-          }
-        }
       },
       getElementToPageTop(el) {
         if (el.parentElement) {

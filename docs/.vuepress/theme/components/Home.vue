@@ -49,7 +49,6 @@ export default {
 }
 
 .home {
-  max-width: 960px;
   margin: 0px auto;
   display: block;
 

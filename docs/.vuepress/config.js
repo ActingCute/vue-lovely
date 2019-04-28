@@ -1,3 +1,11 @@
+//TODO  不知道怎么自定义
+const me = [
+    // link：指向链接也可以是外网链接
+    { text: 'GitHub', link: 'https://github.com/ActingCute' },
+    { text: 'weibo', link: 'https://weibo.com/97787360' }
+]
+
+
 module.exports = {
     title: 'Hello World',
     description: '这是谁的小鹿？真厉害!',
@@ -14,16 +22,13 @@ module.exports = {
             // 多项，下拉形式
             {
                 text: '捉住我',
-                items: [
-                    // link：指向链接也可以是外网链接
-                    { text: 'GitHub', link: 'https://github.com/ActingCute' },
-                    { text: 'weibo', link: 'https://weibo.com/97787360' }
-                ]
+                items: me
             },
             { text: '归档', link: '/History/' },
             { text: '后宫', link: '/Harem/' },
             { text: '留言板', link: '/Message/' }
         ],
-        
-    }
+        me:me
+    },
+    me:me
 } 

@@ -1,3 +1,4 @@
+
 <template>
   <div
     class="theme-container"
@@ -113,5 +114,4 @@ export default {
   }
 };
 </script>
-
 <style src="prismjs/themes/prism-tomorrow.css"></style>
