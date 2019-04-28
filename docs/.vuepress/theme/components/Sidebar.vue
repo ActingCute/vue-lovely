@@ -1,22 +1,35 @@
 <template>
   <aside class="sidebar">
-    <NavLinks/>
-    <slot name="top"/>
-    <SidebarLinks :depth="0" :items="items"/>
-    <slot name="bottom"/>
+    <div class="sidebar_bt" @click="is_me=true">me</div>
+    <div class="sidebar_bt" @click="is_me=false">nav</div>
+    <div v-show="is_me">
+        <me></me>
+    </div>
+    <div v-show="!is_me">
+      <NavLinks/>
+      <slot name="top"/>
+      <SidebarLinks :depth="0" :items="items"/>
+      <slot name="bottom"/>
+    </div>
   </aside>
 </template>
 
 <script>
 import SidebarLinks from '@theme/components/SidebarLinks.vue'
 import NavLinks from '@theme/components/NavLinks.vue'
+import Me from '@theme/components/Me.vue'
 
 export default {
   name: 'Sidebar',
 
-  components: { SidebarLinks, NavLinks },
+  components: { SidebarLinks, NavLinks,Me },
 
-  props: ['items']
+  props: ['items'],
+  data(){
+    return{
+      is_me:false
+    }
+  }
 }
 </script>
 
@@ -56,4 +69,11 @@ export default {
         top calc(1rem - 2px)
     & > .sidebar-links
       padding 1rem 0
+
+.sidebar_bt
+    cursor pointer
+    display inline-block
+    width 50px
+    padding 10px
+    border-bottom 1px #eee solid     
 </style>
