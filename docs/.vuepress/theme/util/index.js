@@ -328,3 +328,18 @@ export function SetSidebarPostion() {
     }
   }
 }
+
+export function IsBlog(url) {
+  let keep_url = ["/Message/", "/History/", "/Harem/"];
+  for (let i = 0; i < keep_url.length; i++) {
+    let is_keep = url.indexOf(keep_url[i]) != -1;
+    if (is_keep) {
+      return false;
+    }
+  }
+  //HOME
+  if (url == "/") {
+    return false;
+  }
+  return true;
+}

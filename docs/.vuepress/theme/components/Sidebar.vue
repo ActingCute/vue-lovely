@@ -1,7 +1,8 @@
 <template>
   <aside class="sidebar">
     <div class="sidebar-inner">
-      <ul class="sidebar-nav motion-element">
+      <div v-show="!is_blog">小可爱</div>
+      <ul class="sidebar-nav motion-element" v-show="is_blog">
         <li
           @click="is_me=false"
           v-bind:class="{ 'sidebar-nav-active': !is_me }"
@@ -17,10 +18,10 @@
       </ul>
     </div>
 
-    <div v-show="is_me">
+    <div v-show="is_me || !is_blog">
       <me></me>
     </div>
-    <div v-show="!is_me">
+    <div v-show="!is_me && is_blog" >
       <NavLinks/>
       <slot name="top"/>
       <SidebarLinks :depth="0" :items="items"/>
@@ -34,6 +35,8 @@ import SidebarLinks from "@theme/components/SidebarLinks.vue";
 import NavLinks from "@theme/components/NavLinks.vue";
 import Me from "@theme/components/Me.vue";
 
+import { IsBlog } from "../util";
+
 export default {
   name: "Sidebar",
 
@@ -42,8 +45,20 @@ export default {
   props: ["items"],
   data() {
     return {
-      is_me: false
+      is_me: false,
+      is_blog: true
     };
+  },
+  computed: {
+    page() {
+      return this.$page;
+    }
+  },
+  mounted: function() {
+    this.$router.afterEach(() => {
+      this.is_blog = IsBlog(this.page.regularPath);
+    });
+    this.is_blog = IsBlog(this.page.regularPath);
   }
 };
 </script>

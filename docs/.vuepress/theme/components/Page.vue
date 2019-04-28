@@ -156,6 +156,10 @@ export default {
   },
   mounted() {
     this.$router.afterEach(() => {
+      this.prevs = {
+        previous: null,
+        next: null
+      };
       this.FormatPrev();
     });
     if (document.getElementById("Sidebar")) {
@@ -185,6 +189,10 @@ export default {
 
       let len = post_arr.length;
       if (len == 0) {
+        this.prevs = {
+          previous: null,
+          next: null
+        };
         return;
       }
 
@@ -194,6 +202,10 @@ export default {
       });
 
       if (index == -1) {
+        this.prevs = {
+          previous: null,
+          next: null
+        };
         return;
       }
 

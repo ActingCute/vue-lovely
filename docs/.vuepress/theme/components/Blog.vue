@@ -3,13 +3,21 @@
     <!-- 过滤后宫,留言板 这些 -->
     <div class="lovely-sidebar" id="Sidebar">
       <aside class="sidebar" style="display:inline-block">
+        <div class="sidebar-inner">
+          <div>小可爱</div>
+        </div>
         <div>
           <me></me>
         </div>
       </aside>
     </div>
 
-    <article id="lovely_blog" v-for="(data,index) in datas" class="blog post-type-normal" v-if="IsBlog(data.path)">
+    <article
+      id="lovely_blog"
+      v-for="(data,index) in datas"
+      class="blog post-type-normal"
+      v-if="IsBlog(data.path)"
+    >
       <div class="post-date">
         <span v-html="GetPostTime(data.lastUpdated)"></span>
       </div>
@@ -45,7 +53,8 @@ import {
   GetPostTag,
   GetPostTime,
   GetPostDate,
-  SetSidebarPostion
+  SetSidebarPostion,
+  IsBlog
 } from "../util";
 import Me from "@theme/components/Me.vue";
 
@@ -82,18 +91,7 @@ export default {
       return GetPostDate(t);
     },
     IsBlog(url) {
-      let keep_url = ["/Message/", "/History/", "/Harem/"];
-      for (let i = 0; i < keep_url.length; i++) {
-        let is_keep = url.indexOf(keep_url[i]) != -1;
-        if (is_keep) {
-          return false;
-        }
-      }
-      //HOME
-      if (url == "/") {
-        return false;
-      }
-      return true;
+      return IsBlog(url);
     }
   }
 };
