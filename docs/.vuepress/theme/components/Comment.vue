@@ -70,7 +70,7 @@
         CommentGet({
           url
         }).then(response => {
-          console.log(response)
+          console.log(this.Code)
         })
       }
     }

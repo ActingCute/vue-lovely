@@ -15,7 +15,7 @@ service.interceptors.request.use(config => {
 })
 
 service.interceptors.response.use(response => {
-    return response
+    return response.data
   },
   error => {
     console.error('err' + error) // for debug
