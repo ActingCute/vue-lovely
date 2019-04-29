@@ -413,3 +413,7 @@ export function GetStringSub(t, l) {
 export function GetNowDate() {
   return UnixToDate((new Date()).getTime() / 1000, false)
 }
+
+//博客数据处理
+
+//根据标签获取

@@ -99,7 +99,7 @@ export default {
       return "Last Updated";
     },
     pages() {
-      return this.$site.pages;
+      return this.$store.getters.blog_data;
     },
     page() {
       return this.$page;
@@ -182,14 +182,7 @@ export default {
   methods: {
     FormatPrev() {
       //过滤不需要页面
-      let post_arr = this.pages.filter(
-        item =>
-          item.regularPath != "/History/" &&
-          item.regularPath != "/Harem/" &&
-          item.regularPath != "/Message/" &&
-          item.regularPath != "/Home/" &&
-          item.regularPath != "/"
-      );
+      let post_arr = this.pages;
 
       let len = post_arr.length;
       if (len == 0) {

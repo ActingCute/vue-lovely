@@ -63,7 +63,7 @@ export default {
   components: { Me },
   computed: {
     datas() {
-      return this.$site.pages;
+      return this.$store.getters.blog_data;
     },
     lastUpdatedText() {
       if (typeof this.$themeLocaleConfig.lastUpdated === "string") {

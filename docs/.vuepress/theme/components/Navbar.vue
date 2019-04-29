@@ -59,6 +59,7 @@ export default {
     };
   },
   mounted() {
+    this.init()
     var _this = this;
     _this.headerHeight = Number(document.documentElement.clientWidth) / 3;
     _this.lovelyPortraitBox = _this.headerHeight / 1.4;
@@ -108,6 +109,17 @@ export default {
         this.ScrollUp = true;
       }
       this.oldScrollTop = document.documentElement.scrollTop;
+    },
+    init() {
+      let post_arr = this.$site.pages.filter(
+        item =>
+          item.regularPath != "/History/" &&
+          item.regularPath != "/Harem/" &&
+          item.regularPath != "/Message/" &&
+          item.regularPath != "/Home/" &&
+          item.regularPath != "/"
+      );
+      this.$store.dispatch("SetBlogData", post_arr);
     }
   }
 };
@@ -125,19 +137,20 @@ $navbar-vertical-padding = 0.7rem;
 $navbar-horizontal-padding = 1.5rem;
 
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
+
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
+
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-150px);
   opacity: 0;
 }
 
 .navbar {
-  z-index :1000;
+  z-index: 1000;
   text-align: center;
   margin: 0 auto;
   width: 100%;
@@ -220,8 +233,6 @@ $navbar-horizontal-padding = 1.5rem;
     }
   }
 }
-
-
 
 @media (max-width: 900px) {
   .lovely-portrait {
