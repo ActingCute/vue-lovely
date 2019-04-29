@@ -1,52 +1,25 @@
 <template>
   <section class="comments">
     <h1>Comments</h1>
-    <article class="comment">
+    <article class="comment" v-for="(item,index) in comment_data">
       <div class="meta">
-        <img src="/assets/coolboy.jpg" class="avatar">
+        <img :src="GetLeiMu(item.user.id)" class="avatar">
         <h3>
-          <a href="#" class="author">John Doe</a>
+          <a href="#" class="author">{{item.user.name}}</a>
         </h3>
         <a href="#" class="date">
-          <time datetime="2015-01-01">Jan 1, 2015 at 9:18 AM</time>
+          <time datetime="2015-01-01">{{item.comment.update_time}}</time>
         </a>
       </div>
       <div class="content">
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        <p>
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-          tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-          semper. Aenean ultricies mi vitae
-          est. Mauris placerat eleifend leo.
-        </p>
-      </div>
-    </article>
-    <article class="comment">
-      <div class="meta">
-        <img src="/assets/coolgirl.jpg" class="avatar">
-        <h3>
-          <a href="#" class="author">Jane Doe</a>
-        </h3>
-        <a href="#" class="date">
-          <time datetime="2015-01-01">Jan 1, 2015 at 10:24 AM</time>
-        </a>
-      </div>
-      <div class="content">
-        <p>
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-          tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-          semper. Aenean ultricies mi vitae
-          est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi,
-          condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-          ipsum rutrum orci,
-          sagittis tempus lacus enim ac dui.
-        </p>
+        <p>{{item}}</p>
       </div>
     </article>
   </section>
 </template>
 
 <script>
+  import {GetLeiMu} from '../util'
   import {
     CommentGet
   } from '../util/api'
@@ -58,19 +31,32 @@
     name: "comment",
     data() {
       return {
+        comment_data:[]
       }
     },
     mounted: function () {
-        this.CommentGet()
+      this.CommentGet()
     },
     methods: {
       //获取当前页评论
+      GetLeiMu(id){
+        return GetLeiMu(id)
+      },
       CommentGet() {
+        console.log("leimu -- ",GetLeiMu(100))
         let url = GetUrl()
         CommentGet({
           url
         }).then(response => {
-          console.log(this.Code)
+          let code = response.Result
+          switch (code) {
+            case this.Code.SUCCESS:
+              this.comment_data = response.Data
+              break
+            default:
+              this.Msg("code:" + code + " 获取评论失败",2)
+          }
+          console.log(response)
         })
       }
     }

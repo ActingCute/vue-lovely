@@ -1,3 +1,7 @@
+import {
+  Message
+} from 'element-ui';
+
 export const hashRE = /#.*$/
 export const extRE = /\.(md|html)$/
 export const endingSlashRE = /\/$/
@@ -355,4 +359,33 @@ export function GetUrl() {
   }
   console.log("pn --- ", pn)
   return pn
+}
+
+//获取当前页面
+export function Msg(msg, t) {
+  let msg_type = "success"
+  switch (t) {
+    case 1:
+      msg_type = "warning"
+      break
+    case 2:
+      msg_type = "error"
+      break
+  }
+  Message({
+    showClose: false,
+    message: msg,
+    type: msg_type
+  })
+}
+
+//获取用户头像
+export function GetLeiMu(id) {
+  console.log("id -- ", id)
+  if (id < 10) {
+    return require('../static/img/leimu' + id + '.jpg')
+  } else {
+    id -= 10
+    return GetLeiMu(id)
+  }
 }

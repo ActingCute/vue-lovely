@@ -7,14 +7,13 @@ import store from './theme/store'
 import storage from './theme/storage'
 
 import Code from './theme/util/api'
-
 import {
-    Message
-} from 'element-ui';
+    Msg
+} from './theme/util'
 
-Vue.prototype.Message = Message;
 Vue.prototype.Storage = storage;
 Vue.prototype.Code = Code;
+Vue.prototype.Msg = Msg;
 
 export default ({
     Vue
