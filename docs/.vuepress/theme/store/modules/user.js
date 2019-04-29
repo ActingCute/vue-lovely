@@ -1,7 +1,7 @@
 let user = {
   state: {
     user_data: {
-      id: "",
+      uid: "",
       name: "",
       email: "",
       website: ""

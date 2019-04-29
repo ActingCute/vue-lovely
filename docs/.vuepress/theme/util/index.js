@@ -267,7 +267,7 @@ export function GoAnchor(selector) {
 }
 
 export function GetPostTag(t) {
-  console.log(t);
+  //console.log(t);
   if (t) {
     return t.length > 0 ? t[0].name : "未知事件";
   }
@@ -381,7 +381,10 @@ export function Msg(msg, t) {
 
 //获取用户头像
 export function GetLeiMu(id) {
-  console.log("id -- ", id)
+  //console.log("id -- ", id)
+  if (id) {} else {
+    return require('../static/img/leimu0.jpg')
+  }
   if (id < 10) {
     return require('../static/img/leimu' + id + '.jpg')
   } else {
@@ -400,9 +403,9 @@ export function FormatGoTime(t) {
 //剪切字符
 export function GetStringSub(t, l) {
   if (t.length > l) {
-      return t.substring(0, l) + "..."
+    return t.substring(0, l) + "..."
   } else {
-      return t
+    return t
   }
 }
 

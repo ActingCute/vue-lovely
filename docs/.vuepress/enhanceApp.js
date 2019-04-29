@@ -10,18 +10,16 @@ import storage from './theme/storage'
 
 import {Code} from './theme/api'
 import {
-    Msg
+    Msg,
+    FormatGoTime
 } from './theme/util'
-
-import {QiniuUploadImagesForBase64} from './theme/api/qiniu'
-
 
 
 Vue.prototype.$store = store;
 Vue.prototype.Storage = storage;
 Vue.prototype.Code = Code;
 Vue.prototype.Msg = Msg;
-Vue.prototype.QiniuUploadImagesForBase64 = QiniuUploadImagesForBase64;
+Vue.prototype.FormatGoTime = FormatGoTime;
 
 export default ({
     Vue
