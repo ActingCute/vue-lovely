@@ -17,6 +17,7 @@ import {QiniuUploadImagesForBase64} from './theme/api/qiniu'
 
 
 
+Vue.prototype.$store = store;
 Vue.prototype.Storage = storage;
 Vue.prototype.Code = Code;
 Vue.prototype.Msg = Msg;
@@ -26,6 +27,5 @@ export default ({
     Vue
 }) => {
     Vue.use(mavonEditor);
-    Vue.use(store);
     Vue.use(ElementUI);
 }
