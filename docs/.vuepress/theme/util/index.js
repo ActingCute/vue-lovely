@@ -389,3 +389,24 @@ export function GetLeiMu(id) {
     return GetLeiMu(id)
   }
 }
+
+//格式化go的时间
+export function FormatGoTime(t) {
+  var dateee = new Date(t).toJSON();
+  var date = new Date(+new Date(dateee) + 3600000 * 8).toISOString().replace(/T/g, ' ').replace(/.[\d]{3}Z/, '')
+  return date
+}
+
+//剪切字符
+export function GetStringSub(t, l) {
+  if (t.length > l) {
+      return t.substring(0, l) + "..."
+  } else {
+      return t
+  }
+}
+
+//获取当前时间
+export function GetNowDate() {
+  return UnixToDate((new Date()).getTime() / 1000, false)
+}

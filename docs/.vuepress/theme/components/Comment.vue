@@ -12,38 +12,42 @@
         </a>
       </div>
       <div class="content">
-        <p>{{item}}</p>
+        <span v-html="item.comment.content"></span>
       </div>
     </article>
+
+    <mavon-editor ref="lovely_markdown" @imgAdd="ImgAdd" v-model="new_comment" />
   </section>
 </template>
 
 <script>
-  import {GetLeiMu} from '../util'
   import {
-    CommentGet
-  } from '../util/api'
-  import {
+    GetLeiMu,
     GetUrl
   } from '../util'
+  import {
+    CommentGet
+  } from '../api/comment'
 
   export default {
     name: "comment",
     data() {
       return {
-        comment_data:[]
+        comment_data: [],
+        new_comment: ""
       }
     },
     mounted: function () {
+      this.new_comment = "## 很认真的想了想\n### 可是不知道说啥"
       this.CommentGet()
     },
     methods: {
       //获取当前页评论
-      GetLeiMu(id){
+      GetLeiMu(id) {
         return GetLeiMu(id)
       },
       CommentGet() {
-        console.log("leimu -- ",GetLeiMu(100))
+        console.log("leimu -- ", GetLeiMu(100))
         let url = GetUrl()
         CommentGet({
           url
@@ -54,11 +58,29 @@
               this.comment_data = response.Data
               break
             default:
-              this.Msg("code:" + code + " 获取评论失败",2)
+              this.Msg("code:" + code + " 获取评论失败", 2)
           }
           console.log(response)
         })
-      }
+      },
+      ImgAdd(pos, $file){
+            this.QiniuUploadImagesForBase64($file)
+            // 第一步.将图片上传到服务器.
+            console.log("$file --- ",$file)
+            return
+           var formdata = new FormData();
+           formdata.append('image', $file);
+           axios({
+               url: 'server url',
+               method: 'post',
+               data: formdata,
+               headers: { 'Content-Type': 'multipart/form-data' },
+           }).then((url) => {
+               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+               // $vm.$img2Url 详情见本页末尾
+               mavonEditor.$img2Url(pos, url);
+           })
+        }
     }
   }
 </script>
