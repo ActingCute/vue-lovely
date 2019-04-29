@@ -76,6 +76,9 @@ export default {
     }
   },
   mounted: function() {
+    //test Storage
+    this.Storage.setItem("key","lovely")
+    console.log(this.Storage.getItem("key"))
     if (document.getElementById("Sidebar")) {
       window.addEventListener("scroll", SetSidebarPostion, false);
     }

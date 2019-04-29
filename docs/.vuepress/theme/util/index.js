@@ -343,3 +343,16 @@ export function IsBlog(url) {
   }
   return true;
 }
+
+//获取当前页面
+export function GetUrl() {
+  let pn = location.pathname
+  if (pn.indexOf("#") != -1) {
+    let pns = pn.splic('#')
+    if (pns.length > 0) {
+      pn = pns[0]
+    }
+  }
+  console.log("pn --- ", pn)
+  return pn
+}
