@@ -7,6 +7,7 @@ const me = [
 
 
 module.exports = {
+    port:1314,
     title: 'Hello World',
     description: '这是谁的小鹿？真厉害!',
     themeConfig: {

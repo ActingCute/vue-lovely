@@ -3,7 +3,9 @@ title:  蕾姆
 lang: en-US
 meta:
   - name:  蕾姆
-    content: what?
+    content: what? 蕾姆
+  - name:  re0
+    content: 蕾姆 蕾姆       
 sidebar: auto    
 ---
 ## Hello

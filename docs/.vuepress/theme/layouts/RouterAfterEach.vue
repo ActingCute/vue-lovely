@@ -7,7 +7,8 @@
     import {
         GetUrl,
         IsBlog,
-        GoAnchor
+        GoAnchor,
+        GetPostTags
     } from '../util'
 
     export default {
@@ -41,7 +42,26 @@
                     item.regularPath != "/"
                 );
                 this.$store.dispatch("SetBlogData", post_arr);
+                //标签 SetBlogTagData
+                let tags = []
+                post_arr.forEach(post => {
+                    console.log("post --", post)
+                    let page_tags = GetPostTags(post.frontmatter.meta)
+                    page_tags.forEach(pt => {
+                        let tag = tags.find(t => t.name == pt)
+                        if (tag) {
+                            tag.num++
+                        } else {
+                            let t = {
+                                name: pt,
+                                num: 1
+                            }
+                            tags.push(t)
+                        }
+                    })
 
+                });
+                this.$store.dispatch("SetBlogTagData", tags);
             },
             SetUrl(url) {
                 if (url) {} else {

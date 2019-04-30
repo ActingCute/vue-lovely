@@ -274,6 +274,22 @@ export function GetPostTag(t) {
   return "未知事件";
 }
 
+export function GetPostTags(t) {
+  //console.log(t);
+  if (t) {
+    if (t.length > 0) {
+      let tags = []
+      for (let i in t) {
+        tags.push(t[i].name)
+      }
+      return tags
+    } else {
+      return ["未知事件"];
+    }
+  }
+  return ["未知事件"];
+}
+
 export function GetPostTime(d) {
   try {
     let pds = d.split(",")[0];
@@ -324,11 +340,11 @@ export function SetSidebarPostion() {
   if (w < 795) {
     bignav.style.display = "none"
     return
-  }else{
+  } else {
     bignav.style.display = "block"
   }
   let topScroll = document.documentElement.scrollTop; //滚动的距离,距离顶部的距离
-  
+
   if (bignav) {
     if (topScroll > 500) {
       let w = document.getElementById('lovely_blog').offsetWidth
