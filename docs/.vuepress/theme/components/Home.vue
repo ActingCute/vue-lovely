@@ -51,6 +51,7 @@ export default {
 .home {
   margin: 0px auto;
   display: block;
+  min-height: 600px;
 
   .hero {
     text-align: center;

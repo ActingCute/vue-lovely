@@ -13,6 +13,7 @@
     </div>
 
     <article
+      v-show="datas.length > 0"
       id="lovely_blog"
       v-for="(data,index) in datas"
       class="blog post-type-normal"
@@ -45,6 +46,11 @@
         </div>
       </div>
     </article>
+
+    <div v-show="datas.length < 1">
+        <img width="100px" src="../static/img/leimu6.jpg" />
+        <span>蕾姆说。。。啥都没有，要不去发表东东？</span>
+    </div>
   </div>
 </template>
 
@@ -77,8 +83,8 @@ export default {
   },
   mounted: function() {
     //test Storage
-    this.Storage.setItem("key","lovely")
-    console.log(this.Storage.getItem("key"))
+    this.Storage.setItem("key", "lovely");
+    console.log(this.Storage.getItem("key"));
     if (document.getElementById("Sidebar")) {
       window.addEventListener("scroll", SetSidebarPostion, false);
     }
