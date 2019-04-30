@@ -21,6 +21,7 @@ export const Service = {
     //TODO count
     CountGet: "/v1/count/get",
     CountAdd: "/v1/count/add",
+    CountAddAndGet: "/v1/count/add_get",
 
     //TODO qiniu
     QiniuGetToken: '/v1/qiniu/uptoken_key'

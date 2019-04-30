@@ -319,6 +319,10 @@ export function GetPostDate(d) {
 }
 
 export function SetSidebarPostion() {
+  let w = Number(document.documentElement.clientWidth)
+  if (w < 795) {
+    return
+  }
   let topScroll = document.documentElement.scrollTop; //滚动的距离,距离顶部的距离
   let bignav = document.getElementById("Sidebar"); //获取到导航栏id
   if (bignav) {

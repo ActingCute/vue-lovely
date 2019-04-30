@@ -9,9 +9,18 @@ export function CountGet(data) {
         data
     })
 }
+
 export function CountAdd(data) {
     return request({
         url: Service.CountAdd,
+        method: 'POST',
+        data
+    })
+}
+
+export function CountAddAndGet(data) {
+    return request({
+        url: Service.CountAddAndGet,
         method: 'POST',
         data
     })

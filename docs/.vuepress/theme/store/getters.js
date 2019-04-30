@@ -3,6 +3,7 @@ const getters = {
   qiniu_data: state => state.qiniu.qiniu_data,
   blog_data: state => state.blog.blog_data,
   web_data: state => state.web.web_data,
-  comment_data: state => state.comment.comment_data
+  comment_data: state => state.comment.comment_data,
+  count_data: state => state.count.count_data
 }
 export default getters

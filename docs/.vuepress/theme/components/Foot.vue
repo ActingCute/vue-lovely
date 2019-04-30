@@ -11,7 +11,9 @@
       </transition>
     </div>
     <div class="lovely-foot-content-box">
-      <div class="lovely-foot-content"></div>
+      <div class="lovely-foot-content">
+        ssss
+      </div>
     </div>
   </div>
 </template>

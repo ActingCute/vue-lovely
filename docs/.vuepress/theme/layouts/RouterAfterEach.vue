@@ -52,6 +52,8 @@
                     //除了首页，其他地方应该获取评论
                     this.$store.dispatch("SetCommentData", url);
                 }
+                //获取浏览数
+                this.$store.dispatch("SetCountData", url);
             }
         }
     }

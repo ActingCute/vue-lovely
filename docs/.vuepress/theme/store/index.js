@@ -6,6 +6,7 @@ import qiniu from './modules/qiniu'
 import blog from './modules/blog'
 import web from './modules/web'
 import comment from './modules/comment'
+import count from './modules/count'
 
 import getters from './getters'
 
@@ -17,7 +18,8 @@ const store = new Vuex.Store({
     qiniu,
     blog,
     web,
-    comment
+    comment,
+    count
   },
   getters
 })
