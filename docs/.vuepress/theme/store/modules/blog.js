@@ -1,7 +1,8 @@
 let blog = {
     state: {
         blog_data: [],
-        tag_data: []
+        tag_data: [],
+        history_data: []
     },
 
     mutations: {
@@ -12,6 +13,10 @@ let blog = {
         SET_BLOG_TAG_DATA: (state, blog_tag_data) => {
             console.log("设置blog tag data ", blog_tag_data)
             state.tag_data = blog_tag_data
+        },
+        SET_BLOG_HISTORY_DATA: (state, blog_history_data) => {
+            console.log("设置blog history data ", blog_history_data)
+            state.history_data = blog_history_data
         }
     },
 
@@ -25,6 +30,11 @@ let blog = {
             commit
         }, blog_tag_data) {
             commit('SET_BLOG_TAG_DATA', blog_tag_data)
+        },
+        SetBlogHostoryData({
+            commit
+        }, blog_history_data) {
+            commit('SET_BLOG_HISTORY_DATA', blog_history_data)
         }
     }
 }

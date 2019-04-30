@@ -8,7 +8,8 @@
         GetUrl,
         IsBlog,
         GoAnchor,
-        GetPostTags
+        GetPostTags,
+        GetPostDate
     } from '../util'
 
     export default {
@@ -32,7 +33,7 @@
         },
         methods: {
             init() {
-                //博客数据
+                //数据
                 let post_arr = this.$site.pages.filter(
                     item =>
                     item.regularPath != "/History/" &&
@@ -42,10 +43,12 @@
                     item.regularPath != "/"
                 );
                 this.$store.dispatch("SetBlogData", post_arr);
-                //标签 SetBlogTagData
+
                 let tags = []
+                let historys = []
                 post_arr.forEach(post => {
                     console.log("post --", post)
+                    //标签
                     let page_tags = GetPostTags(post.frontmatter.meta)
                     page_tags.forEach(pt => {
                         let tag = tags.find(t => t.name == pt)
@@ -59,9 +62,23 @@
                             tags.push(t)
                         }
                     })
-
+                    //归档数据
+                    let last_time = GetPostDate(post.lastUpdated)
+                    let Y = last_time.split("-")[0]
+                    console.log("last_time ---", last_time, Y)
+                    let history = historys.find(h => h.year == Y)
+                    if (history) {
+                        history.post.push(post)
+                    } else {
+                        let history = {
+                            year: Y,
+                            post: [post]
+                        }
+                        historys.push(history)
+                    }
                 });
                 this.$store.dispatch("SetBlogTagData", tags);
+                this.$store.dispatch("SetBlogHostoryData", historys);
             },
             SetUrl(url) {
                 if (url) {} else {
