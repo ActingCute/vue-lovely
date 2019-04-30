@@ -747,6 +747,7 @@
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3",
     "vue-loader": "^15.7.0",
+    "vue-no-ssr": "^1.1.1",
     "vue-router": "^3.0.6",
     "vue-server-renderer": "^2.6.10",
     "vue-style-loader": "^4.1.2",

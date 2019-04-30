@@ -6,6 +6,10 @@ import {
     Code
 } from '../../api/index';
 
+import {
+    Msg
+} from '../../util'
+
 let count = {
     state: {
         count_data: {
@@ -39,7 +43,7 @@ let count = {
                         commit('SET_COUNT_DATA', response.Data)
                         break;
                     default:
-                        this.Msg("code:" + code + " 获取浏览数失败", 2);
+                        Msg("code:" + code + " 获取浏览数失败", 2);
                 }
             })
         }

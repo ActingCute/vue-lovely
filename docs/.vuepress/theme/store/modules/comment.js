@@ -6,6 +6,10 @@ import {
     Code
 } from '../../api/index';
 
+import {
+    Msg
+} from '../../util'
+
 let comment = {
     state: {
         comment_data: []
@@ -32,7 +36,7 @@ let comment = {
                         commit('SET_COMMENT_DATA', response.Data)
                         break;
                     default:
-                        this.Msg("code:" + code + " 获取评论失败", 2);
+                        Msg("code:" + code + " 获取评论失败", 2);
                 }
             })
         }

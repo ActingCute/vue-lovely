@@ -386,8 +386,8 @@ export function GetUrl() {
 }
 
 //获取当前页面
-export function Msg(msg, t) {
-  let msg_type = "success"
+let msg_type = "success"
+  export function Msg(msg, t) {
   switch (t) {
     case 1:
       msg_type = "warning"

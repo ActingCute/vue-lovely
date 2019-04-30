@@ -21,7 +21,9 @@
 
     <h1>开始你的表演吧</h1>
 
-    <mavon-editor ref="lovely_markdown" @imgAdd="QiniuUploadImagesForBase64" v-model="new_comment" />
+    <no-ssr>
+      <mavon-editor ref="lovely_markdown" @imgAdd="QiniuUploadImagesForBase64" v-model="new_comment" />
+    </no-ssr>
 
     <div>
       <p>嗨呀咕~</p>
@@ -43,6 +45,7 @@
 
 <script>
   import Axios from "axios";
+  import NoSsr from 'vue-no-ssr'
 
   import {
     GetLeiMu
@@ -57,6 +60,9 @@
 
   export default {
     name: "comment",
+    components:{
+      NoSsr
+    },
     data() {
       return {
         new_url: false,
