@@ -6,21 +6,26 @@
     //处理一些路由跳转的逻辑
     import {
         GetUrl,
-        IsBlog
+        IsBlog,
+        GoAnchor
     } from '../util'
 
     export default {
         name: "router_after_each",
+        watch: {
+            $route(to, from) {
+                this.init()
+                this.SetUrl(to.path)
+                //阅读更更多
+                GoAnchor("actingcute_anchor");
+            }
+        },
         computed: {
             url() {
                 return this.$store.getters.web_data.url;
             }
         },
         mounted: function () {
-            this.$router.afterEach((r) => {
-                this.init()
-                this.SetUrl(r.path)
-            });
             this.init()
             this.SetUrl()
         },

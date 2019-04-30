@@ -8,7 +8,14 @@ import {
 
 let count = {
     state: {
-        count_data: []
+        count_data: {
+            page_count: {
+                count: 1
+            },
+            web_count: {
+                count: 1
+            }
+        }
     },
 
     mutations: {

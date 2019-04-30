@@ -320,11 +320,15 @@ export function GetPostDate(d) {
 
 export function SetSidebarPostion() {
   let w = Number(document.documentElement.clientWidth)
+  let bignav = document.getElementById("Sidebar"); //获取到导航栏id
   if (w < 795) {
+    bignav.style.display = "none"
     return
+  }else{
+    bignav.style.display = "block"
   }
   let topScroll = document.documentElement.scrollTop; //滚动的距离,距离顶部的距离
-  let bignav = document.getElementById("Sidebar"); //获取到导航栏id
+  
   if (bignav) {
     if (topScroll > 500) {
       let w = document.getElementById('lovely_blog').offsetWidth
