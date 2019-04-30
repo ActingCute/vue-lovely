@@ -6,6 +6,7 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
+    <RouterAfterEach></RouterAfterEach>
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
     <Home v-if="$page.frontmatter.home"/>
     <Page v-else :sidebar-items="sidebarItems">
@@ -22,11 +23,12 @@ import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
 import Foot from "@theme/components/Foot.vue";
+import RouterAfterEach from "./RouterAfterEach.vue";
 
 import { resolveSidebarItems } from "../util";
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, Foot },
+  components: { Home, Page, Sidebar, Navbar, Foot ,RouterAfterEach},
 
   data() {
     return {

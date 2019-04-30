@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import user from './modules/user'
 import qiniu from './modules/qiniu'
 import blog from './modules/blog'
+import web from './modules/web'
+import comment from './modules/comment'
 
 import getters from './getters'
 
@@ -13,7 +15,9 @@ const store = new Vuex.Store({
   modules: {
     user,
     qiniu,
-    blog
+    blog,
+    web,
+    comment
   },
   getters
 })
