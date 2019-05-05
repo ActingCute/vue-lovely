@@ -7,6 +7,8 @@ import blog from './modules/blog'
 import web from './modules/web'
 import comment from './modules/comment'
 import count from './modules/count'
+import gist from './modules/gist'
+
 
 import getters from './getters'
 
@@ -19,7 +21,8 @@ const store = new Vuex.Store({
     blog,
     web,
     comment,
-    count
+    count,
+    gist
   },
   getters
 })

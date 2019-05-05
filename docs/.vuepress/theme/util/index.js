@@ -2,6 +2,8 @@ import {
   Message
 } from 'element-ui';
 
+import store from '../store'
+
 export const hashRE = /#.*$/
 export const extRE = /\.(md|html)$/
 export const endingSlashRE = /\/$/
@@ -387,7 +389,7 @@ export function GetUrl() {
 
 //获取当前页面
 let msg_type = "success"
-  export function Msg(msg, t) {
+export function Msg(msg, t) {
   switch (t) {
     case 1:
       msg_type = "warning"
@@ -437,7 +439,3 @@ export function GetStringSub(t, l) {
 export function GetNowDate() {
   return UnixToDate((new Date()).getTime() / 1000, false)
 }
-
-//博客数据处理
-
-//根据标签获取

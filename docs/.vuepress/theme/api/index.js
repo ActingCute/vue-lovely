@@ -24,5 +24,10 @@ export const Service = {
     CountAddAndGet: "/v1/count/add_get",
 
     //TODO qiniu
-    QiniuGetToken: '/v1/qiniu/uptoken_key'
+    QiniuGetToken: '/v1/qiniu/uptoken_key',
+
+    //TODO gist
+    GistCreated:'/gists',
+    Gist:'/gists/',
+    GistGetToken:'/users/:name/gists',
 }
