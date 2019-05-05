@@ -57,7 +57,6 @@ let gist = {
                             //初始化数据
                             GistCreated().then(c_response => {
                                 if (c_response.id) {
-                                    this.GetGistData()
                                     commit('SET_GIST_TOKEN_DATA', c_response.id)
                                     commit('SET_GIST_TWITTER_DATA', data.id)
                                 }
