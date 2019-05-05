@@ -3,434 +3,505 @@
     <!-- 过滤后宫,留言板 这些 -->
     <div class="lovely-sidebar" id="Sidebar">
       <Sidebar :items="sidebarItems">
-        <slot name="sidebar-top" slot="top" />
-        <slot name="sidebar-bottom" slot="bottom" />
+        <slot name="sidebar-top" slot="top"/>
+        <slot name="sidebar-bottom" slot="bottom"/>
       </Sidebar>
     </div>
 
-    <article class="blog post-type-normal" id="lovely_blog">
-      <main class="page">
-        <slot name="top" />
-        <div class="post-date">
-          <span v-html="GetPostTime(lastUpdated)"></span>
-        </div>
-        <div class="post-badge">
-          <span>
-            <a href="#">
-              <span v-text="GetPostTag(meta)"></span>
-            </a>
-          </span>
-        </div>
-        <h1 class="lovely-title">{{title}}</h1>
-
-        <div class="page_tag_box">
-          <div class="last-updated page_tag" v-if="lastUpdated">
-            <span class="post-time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+    <div id="lovely_blog">
+      <div class="post_box" v-if="!is_twitter">
+        <article class="blog post-type-normal">
+          <main class="page">
+            <slot name="top"/>
+            <div class="post-date">
+              <span v-html="GetPostTime(lastUpdated)"></span>
+            </div>
+            <div class="post-badge">
+              <span>
+                <a href="#">
+                  <span v-text="GetPostTag(meta)"></span>
+                </a>
               </span>
-              <span class="post-meta-item-text">{{lastUpdatedText}}</span>
-              <span v-text="GetPostDate(lastUpdated)"></span>
-            </span>
-          </div>
+            </div>
+            <h1 class="lovely-title">{{title}}</h1>
 
-          <div class="page_count page_tag">
-            <span>阅读量:</span>
-            <span v-text="page_count.count" />
-          </div>
-        </div>
+            <div class="page_tag_box">
+              <div class="last-updated page_tag" v-if="lastUpdated">
+                <span class="post-time">
+                  <span class="post-meta-item-icon">
+                    <i class="fa fa-calendar-o"></i>
+                  </span>
+                  <span class="post-meta-item-text">{{lastUpdatedText}}</span>
+                  <span v-text="GetPostDate(lastUpdated)"></span>
+                </span>
+              </div>
 
+              <div class="page_count page_tag">
+                <span>阅读量:</span>
+                <span v-text="page_count.count"/>
+              </div>
+            </div>
 
+            <Content/>
 
-        <Content />
+            <footer class="page-edit">
+              <div class="edit-link" v-if="editLink">
+                <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
+                <OutboundLink/>
+              </div>
+            </footer>
 
-        <footer class="page-edit">
-          <div class="edit-link" v-if="editLink">
-            <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
-            <OutboundLink />
-          </div>
-        </footer>
+            <div class="page-nav">
+              <div class="previous" v-if="prevs.previous">
+                <
+                <router-link :to="prevs.previous.regularPath">{{prevs.previous.title}}</router-link>
+              </div>
+              <div class="next" v-if="prevs.next">
+                <router-link :to="prevs.next.regularPath">{{prevs.next.title}}</router-link>>
+              </div>
+            </div>
+            <slot name="bottom"/>
+          </main>
+        </article>
+        <comment></comment>
+      </div>
 
-        <div class="page-nav">
-          <div class="previous" v-if="prevs.previous">
-            < <router-link :to="prevs.previous.regularPath">{{prevs.previous.title}}</router-link>
-          </div>
-          <div class="next" v-if="prevs.next">
-            <router-link :to="prevs.next.regularPath">{{prevs.next.title}}</router-link>>
-          </div>
-        </div>
-        <slot name="bottom" />
-      </main>
-    </article>
-    <comment></comment>
+      <div v-else class="twitter_box">
+        <article class="blog post-type-normal">
+          <main class="page">
+            <Content/>
+          </main>
+        </article>
+
+        <transition
+          name="fade"
+          enter-active-class="animated pulse"
+          leave-active-class="animated pulse"
+        >
+          <article
+            class="blog post-type-normal twitter"
+            v-for="(item, index) in twitter_data"
+            :key="'twitter_'+index"
+          >
+            <main class="page">
+              <slot name="top"/>
+              <div class="post-date">
+                <span v-html="GetPostTime(item.time)"></span>
+              </div>
+              <div class="twitter_content" v-text="item.content"/>
+            </main>
+            <div class="twitter_time" v-text="GetDate(item.time)"/>
+          </article>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import {
-    resolvePage,
-    outboundRE,
-    endingSlashRE,
-    GetPostTag,
-    GetPostTime,
-    GetPostDate,
-    SetSidebarPostion
-  } from "../util";
+import {
+  resolvePage,
+  outboundRE,
+  endingSlashRE,
+  GetPostTag,
+  GetPostTime,
+  GetPostDate,
+  SetSidebarPostion,
+  IsTwitter,
+  GetUrl,
+  GetDate
+} from "../util";
 
-  import Sidebar from "@theme/components/Sidebar.vue";
-  import Comment from "@theme/components/Comment.vue";
+import Sidebar from "@theme/components/Sidebar.vue";
+import Comment from "@theme/components/Comment.vue";
 
-  export default {
-    components: {
-      Sidebar,
-      Comment
+export default {
+  components: {
+    Sidebar,
+    Comment
+  },
+  props: ["sidebarItems"],
+  watch: {
+    $route(to, from) {
+      this.prevs = {
+        previous: null,
+        next: null
+      };
+
+      this.is_twitter = IsTwitter(to.path);
+      if (this.is_twitter) {
+        this.$store.dispatch("GistInit");
+      } else {
+        this.FormatPrev();
+      }
+    }
+  },
+  computed: {
+    twitter_data() {
+      return this.$store.getters.gist_twitter_data;
     },
-    props: ["sidebarItems"],
+    page_count() {
+      return this.$store.getters.count_data.page_count;
+    },
+    lastUpdated() {
+      return this.$page.lastUpdated;
+    },
+    title() {
+      return this.$page.title;
+    },
+    meta() {
+      return this.$page.frontmatter.meta;
+    },
+    lastUpdatedText() {
+      if (typeof this.$themeLocaleConfig.lastUpdated === "string") {
+        return this.$themeLocaleConfig.lastUpdated;
+      }
+      if (typeof this.$site.themeConfig.lastUpdated === "string") {
+        return this.$site.themeConfig.lastUpdated;
+      }
+      return "Last Updated";
+    },
+    pages() {
+      return this.$store.getters.blog_data;
+    },
+    page() {
+      return this.$page;
+    },
+    prev() {
+      const prev = this.$page.frontmatter.prev;
+      console.log("prev --- ", this.$page);
+      if (prev === false) {
+        return;
+      } else if (prev) {
+        return resolvePage(this.$site.pages, prev, this.$route.path);
+      } else {
+        return resolvePrev(this.$page, this.sidebarItems);
+      }
+    },
 
-    computed: {
-      page_count() {
-        return this.$store.getters.count_data.page_count;
-      },
-      lastUpdated() {
-        return this.$page.lastUpdated;
-      },
-      title() {
-        return this.$page.title;
-      },
-      meta() {
-        return this.$page.frontmatter.meta;
-      },
-      lastUpdatedText() {
-        if (typeof this.$themeLocaleConfig.lastUpdated === "string") {
-          return this.$themeLocaleConfig.lastUpdated;
-        }
-        if (typeof this.$site.themeConfig.lastUpdated === "string") {
-          return this.$site.themeConfig.lastUpdated;
-        }
-        return "Last Updated";
-      },
-      pages() {
-        return this.$store.getters.blog_data;
-      },
-      page() {
-        return this.$page;
-      },
-      prev() {
-        const prev = this.$page.frontmatter.prev;
-        console.log("prev --- ", this.$page);
-        if (prev === false) {
-          return;
-        } else if (prev) {
-          return resolvePage(this.$site.pages, prev, this.$route.path);
-        } else {
-          return resolvePrev(this.$page, this.sidebarItems);
-        }
-      },
+    next() {
+      const next = this.$page.frontmatter.next;
+      if (next === false) {
+        return;
+      } else if (next) {
+        return resolvePage(this.$site.pages, next, this.$route.path);
+      } else {
+        return resolveNext(this.$page, this.sidebarItems);
+      }
+    },
 
-      next() {
-        const next = this.$page.frontmatter.next;
-        if (next === false) {
-          return;
-        } else if (next) {
-          return resolvePage(this.$site.pages, next, this.$route.path);
-        } else {
-          return resolveNext(this.$page, this.sidebarItems);
-        }
-      },
+    editLink() {
+      if (this.$page.frontmatter.editLink === false) {
+        return;
+      }
+      const {
+        repo,
+        editLinks,
+        docsDir = "",
+        docsBranch = "master",
+        docsRepo = repo
+      } = this.$site.themeConfig;
 
-      editLink() {
-        if (this.$page.frontmatter.editLink === false) {
-          return;
-        }
-        const {
+      if (docsRepo && editLinks && this.$page.relativePath) {
+        return this.createEditLink(
           repo,
-          editLinks,
-          docsDir = "",
-          docsBranch = "master",
-          docsRepo = repo
-        } = this.$site.themeConfig;
-
-        if (docsRepo && editLinks && this.$page.relativePath) {
-          return this.createEditLink(
-            repo,
-            docsRepo,
-            docsDir,
-            docsBranch,
-            this.$page.relativePath
-          );
-        }
-      },
-
-      editLinkText() {
-        return (
-          this.$themeLocaleConfig.editLinkText ||
-          this.$site.themeConfig.editLinkText ||
-          `Edit this page`
+          docsRepo,
+          docsDir,
+          docsBranch,
+          this.$page.relativePath
         );
       }
     },
-    mounted() {
-      this.$router.afterEach(() => {
+
+    editLinkText() {
+      return (
+        this.$themeLocaleConfig.editLinkText ||
+        this.$site.themeConfig.editLinkText ||
+        `Edit this page`
+      );
+    }
+  },
+  mounted() {
+    this.is_twitter = IsTwitter(GetUrl());
+    if (this.is_twitter) {
+      this.$store.dispatch("GistInit");
+    } else {
+      this.FormatPrev();
+    }
+    if (document.getElementById("Sidebar")) {
+      window.addEventListener("scroll", SetSidebarPostion, false);
+    }
+  },
+  data() {
+    return {
+      is_twitter: false,
+      prevs: {
+        previous: null,
+        next: null
+      }
+    };
+  },
+  methods: {
+    handleClick: function() {
+      this.show = this.show === true ? false : true;
+    },
+
+    FormatPrev() {
+      //过滤不需要页面
+      let post_arr = this.pages;
+
+      let len = post_arr.length;
+      if (len == 0) {
         this.prevs = {
           previous: null,
           next: null
         };
-        this.FormatPrev();
-      });
-      if (document.getElementById("Sidebar")) {
-        window.addEventListener("scroll", SetSidebarPostion, false);
+        return;
       }
-      this.FormatPrev();
-    },
-    data() {
-      return {
-        prevs: {
+
+      //查找当前页面位置
+      let index = post_arr.findIndex((value, index, arr) => {
+        return value.regularPath == this.page.regularPath;
+      });
+
+      if (index == -1) {
+        this.prevs = {
           previous: null,
           next: null
-        }
-      };
+        };
+        return;
+      }
+
+      //判断是否存在上一页，下一页
+
+      let is_no_next = index + 1 == len;
+      let is_no_previous = index == 0;
+
+      //没有上一页下一页
+      if (is_no_next && is_no_previous) {
+        console.log("没有上一页下一页");
+        return;
+      }
+
+      //只有上一页
+      if (!is_no_previous && is_no_next) {
+        console.log("只有上一页");
+        this.prevs = {
+          previous: post_arr[index - 1],
+          next: null
+        };
+        return;
+      }
+
+      //只有下一页
+      if (is_no_previous && !is_no_next) {
+        console.log("只有下一页");
+        this.prevs = {
+          previous: null,
+          next: post_arr[index + 1]
+        };
+        return;
+      }
+
+      //两页都有
+      if (!is_no_previous && !is_no_next) {
+        console.log("两页都有");
+        this.prevs = {
+          previous: post_arr[index - 1],
+          next: post_arr[index + 1]
+        };
+        return;
+      }
     },
-    methods: {
-      FormatPrev() {
-        //过滤不需要页面
-        let post_arr = this.pages;
-
-        let len = post_arr.length;
-        if (len == 0) {
-          this.prevs = {
-            previous: null,
-            next: null
-          };
-          return;
-        }
-
-        //查找当前页面位置
-        let index = post_arr.findIndex((value, index, arr) => {
-          return value.regularPath == this.page.regularPath;
-        });
-
-        if (index == -1) {
-          this.prevs = {
-            previous: null,
-            next: null
-          };
-          return;
-        }
-
-
-        //判断是否存在上一页，下一页
-
-        let is_no_next = index + 1 == len;
-        let is_no_previous = index == 0;
-
-        //没有上一页下一页
-        if (is_no_next && is_no_previous) {
-          console.log("没有上一页下一页");
-          return;
-        }
-
-        //只有上一页
-        if (!is_no_previous && is_no_next) {
-          console.log("只有上一页");
-          this.prevs = {
-            previous: post_arr[index - 1],
-            next: null
-          };
-          return;
-        }
-
-        //只有下一页
-        if (is_no_previous && !is_no_next) {
-          console.log("只有下一页");
-          this.prevs = {
-            previous: null,
-            next: post_arr[index + 1]
-          };
-          return;
-        }
-
-        //两页都有
-        if (!is_no_previous && !is_no_next) {
-          console.log("两页都有");
-          this.prevs = {
-            previous: post_arr[index - 1],
-            next: post_arr[index + 1]
-          };
-          return;
-        }
-      },
-      GetPostTag(t) {
-        return GetPostTag(t);
-      },
-      GetPostTime(t) {
-        return GetPostTime(t);
-      },
-      GetPostDate(t) {
-        return GetPostDate(t);
-      },
-      getElementToPageTop(el) {
-        if (el.parentElement) {
-          return this.getElementToPageTop(el.parentElement) + el.offsetTop;
-        }
-        return el.offsetTop;
-      },
-      createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
-        const bitbucket = /bitbucket.org/;
-        if (bitbucket.test(repo)) {
-          const base = outboundRE.test(docsRepo) ? docsRepo : repo;
-          return (
-            base.replace(endingSlashRE, "") +
-            `/src` +
-            `/${docsBranch}/` +
-            (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
-            path +
-            `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-          );
-        }
-
-        const base = outboundRE.test(docsRepo) ?
-          docsRepo :
-          `https://github.com/${docsRepo}`;
+    GetPostTag(t) {
+      return GetPostTag(t);
+    },
+    GetDate(d) {
+      return GetDate(d);
+    },
+    GetPostTime(t) {
+      return GetPostTime(t);
+    },
+    GetPostDate(t) {
+      return GetPostDate(t);
+    },
+    getElementToPageTop(el) {
+      if (el.parentElement) {
+        return this.getElementToPageTop(el.parentElement) + el.offsetTop;
+      }
+      return el.offsetTop;
+    },
+    createEditLink(repo, docsRepo, docsDir, docsBranch, path) {
+      const bitbucket = /bitbucket.org/;
+      if (bitbucket.test(repo)) {
+        const base = outboundRE.test(docsRepo) ? docsRepo : repo;
         return (
           base.replace(endingSlashRE, "") +
-          `/edit` +
+          `/src` +
           `/${docsBranch}/` +
           (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
-          path
+          path +
+          `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
         );
       }
-    }
-  };
 
-  function resolvePrev(page, items) {
-    return find(page, items, -1);
-  }
-
-  function resolveNext(page, items) {
-    return find(page, items, 1);
-  }
-
-  function find(page, items, offset) {
-    const res = [];
-    flatten(items, res);
-    for (let i = 0; i < res.length; i++) {
-      const cur = res[i];
-      if (cur.type === "page" && cur.path === decodeURIComponent(page.path)) {
-        return res[i + offset];
-      }
+      const base = outboundRE.test(docsRepo)
+        ? docsRepo
+        : `https://github.com/${docsRepo}`;
+      return (
+        base.replace(endingSlashRE, "") +
+        `/edit` +
+        `/${docsBranch}/` +
+        (docsDir ? docsDir.replace(endingSlashRE, "") + "/" : "") +
+        path
+      );
     }
   }
+};
 
-  function flatten(items, res) {
-    for (let i = 0, l = items.length; i < l; i++) {
-      if (items[i].type === "group") {
-        flatten(items[i].children || [], res);
-      } else {
-        res.push(items[i]);
-      }
+function resolvePrev(page, items) {
+  return find(page, items, -1);
+}
+
+function resolveNext(page, items) {
+  return find(page, items, 1);
+}
+
+function find(page, items, offset) {
+  const res = [];
+  flatten(items, res);
+  for (let i = 0; i < res.length; i++) {
+    const cur = res[i];
+    if (cur.type === "page" && cur.path === decodeURIComponent(page.path)) {
+      return res[i + offset];
     }
   }
+}
+
+function flatten(items, res) {
+  for (let i = 0, l = items.length; i < l; i++) {
+    if (items[i].type === "group") {
+      flatten(items[i].children || [], res);
+    } else {
+      res.push(items[i]);
+    }
+  }
+}
 </script>
 
 <style lang="stylus">
-  @require '../styles/wrapper.styl';
+@require '../styles/wrapper.styl';
 
-  .page {
-    padding-bottom: 2rem;
-    display: block;
+.page {
+  padding-bottom: 2rem;
+  display: block;
+}
+
+.page-edit {
+  @extend $wrapper;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+
+  .edit-link {
+    display: inline-block;
+
+    a {
+      color: lighten($textColor, 25%);
+      margin-right: 0.25rem;
+    }
   }
 
-  .page-edit {
-    @extend $wrapper;
+  .last-updated {
+    float: right;
+    font-size: 0.9em;
+
+    .prefix {
+      font-weight: 500;
+      color: lighten($textColor, 25%);
+    }
+
+    .time {
+      font-weight: 400;
+      color: #aaa;
+    }
+  }
+}
+
+.page-nav {
+  @extend $wrapper;
+  padding-top: 1rem;
+  padding-bottom: 0;
+
+  .inner {
+    min-height: 2rem;
+    margin-top: 0;
+    border-top: 1px solid $borderColor;
     padding-top: 1rem;
-    padding-bottom: 1rem;
-    overflow: auto;
+    overflow: auto; // clear float
+  }
 
+  .next {
+    float: right;
+  }
+}
+
+@media (max-width: $MQMobile) {
+  .page-edit {
     .edit-link {
-      display: inline-block;
-
-      a {
-        color: lighten($textColor, 25%);
-        margin-right: 0.25rem;
-      }
+      margin-bottom: 0.5rem;
     }
 
     .last-updated {
-      float: right;
-      font-size: 0.9em;
-
-      .prefix {
-        font-weight: 500;
-        color: lighten($textColor, 25%);
-      }
-
-      .time {
-        font-weight: 400;
-        color: #aaa;
-      }
+      font-size: 0.8em;
+      float: none;
+      text-align: left;
     }
   }
+}
 
-  .page-nav {
-    @extend $wrapper;
-    padding-top: 1rem;
-    padding-bottom: 0;
+.blog-box {
+  position: relative;
+  min-height: 500px;
+}
 
-    .inner {
-      min-height: 2rem;
-      margin-top: 0;
-      border-top: 1px solid $borderColor;
-      padding-top: 1rem;
-      overflow: auto; // clear float
-    }
-
-    .next {
-      float: right;
-    }
+// 上一页下一页
+.page-nav {
+  .previous {
+    float: left;
   }
 
-  @media (max-width: $MQMobile) {
-    .page-edit {
-      .edit-link {
-        margin-bottom: 0.5rem;
-      }
-
-      .last-updated {
-        font-size: 0.8em;
-        float: none;
-        text-align: left;
-      }
-    }
+  .next {
+    float: right;
   }
 
-  .blog-box {
+  a {
     position: relative;
+    font-size: 14px;
+    color: #555;
+    border-bottom: none;
+  }
+}
+
+.page_tag_box {
+  width: 100%;
+  text-align: center;
+
+  .page_tag {
+    display: inline-block;
+  }
+}
+
+.twitter {
+  .twitter_time {
+    font-size: 15px;
+    float: right;
+    color: #999999;
   }
 
-  // 上一页下一页
-  .page-nav {
-    .previous {
-      float: left;
-    }
-
-    .next {
-      float: right;
-    }
-
-    a {
-      position: relative;
-      font-size: 14px;
-      color: #555;
-      border-bottom: none;
-    }
+  .twitter_content {
+    color: #000;
+    padding: 10px;
   }
-
-  .page_tag_box {
-    width: 100%;
-    text-align: center;
-
-    .page_tag {
-      display: inline-block;
-    }
-  }
+}
 </style>

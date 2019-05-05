@@ -40,6 +40,7 @@
                     item.regularPath != "/Harem/" &&
                     item.regularPath != "/Message/" &&
                     item.regularPath != "/Home/" &&
+                    item.regularPath != "/Twitter/"&&
                     item.regularPath != "/"
                 );
                 this.$store.dispatch("SetBlogData", post_arr);

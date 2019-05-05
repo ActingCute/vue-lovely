@@ -6,6 +6,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
 
+import './theme/styles/animate.css';
+
 import store from './theme/store'
 import storage from './theme/storage'
 

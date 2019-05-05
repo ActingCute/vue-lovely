@@ -19,6 +19,7 @@ module.exports = {
             // 这里的'/' 指的是 docs文件夹路径
             // [以 '/' 结尾的默认指向该路径下README.md文件]
             { text: '首页', link: '/' },
+            { text: '心情', link: '/Twitter/' },
             // 多项，下拉形式
             {
                 text: '捉住我',

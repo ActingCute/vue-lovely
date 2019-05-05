@@ -293,47 +293,61 @@ export function GetPostTags(t) {
 }
 
 export function GetPostTime(d) {
-  try {
-    let pds = d.split(",")[0];
-    let ymd = pds.split("/");
-    let ymdhtml =
-      '<div class="post-month">' +
-      ymd[0] +
-      '月</div><div class="post-day">' +
-      ymd[1] +
-      "</div>";
-    return ymdhtml;
-  } catch (error) {
-    console.log(error);
+  if (d) {
+    let new_d = GetDate(d)
+    try {
+      let pds = new_d.split(" ")[0];
+      let ymd = pds.split("-");
+      let ymdhtml =
+        '<div class="post-month">' +
+        ymd[1] +
+        '月</div><div class="post-day">' +
+        ymd[2] +
+        "</div>";
+      return ymdhtml;
+    } catch (error) {
+      console.log(error);
+      return "<div>忘了时间</div>";
+    }
+  } else {
     return "<div>忘了时间</div>";
   }
 }
 
 export function GetPostDate(d) {
-  try {
-    var date = new Date(d);
-    var seperator1 = "-";
-    var seperator2 = ":";
-    var month = getNewDate(date.getMonth() + 1);
-    var day = getNewDate(date.getDate());
-    var hours = getNewDate(date.getHours());
-    var minutes = getNewDate(date.getMinutes());
-    var seconds = getNewDate(date.getSeconds());
-    //统一格式为两位数
-    function getNewDate(date) {
-      if (date <= 9) {
-        date = "0" + date;
-      }
-      return date;
+  if (d) {
+    try {
+      return GetDate(d)
+    } catch (error) {
+      console.error(error);
+      return "忘了时间";
     }
-
-    var currentDate = date.getFullYear() + seperator1 + month + seperator1 + day +
-      " " + hours + seperator2 + minutes + seperator2 + seconds;
-    return currentDate;
-  } catch (error) {
-    console.error(error);
+  } else {
     return "忘了时间";
   }
+
+}
+
+export function GetDate(d){
+  var date = new Date(d);
+  var seperator1 = "-";
+  var seperator2 = ":";
+  var month = getNewDate(date.getMonth() + 1);
+  var day = getNewDate(date.getDate());
+  var hours = getNewDate(date.getHours());
+  var minutes = getNewDate(date.getMinutes());
+  var seconds = getNewDate(date.getSeconds());
+  //统一格式为两位数
+  function getNewDate(date) {
+    if (date <= 9) {
+      date = "0" + date;
+    }
+    return date;
+  }
+
+  var currentDate = date.getFullYear() + seperator1 + month + seperator1 + day +
+    " " + hours + seperator2 + minutes + seperator2 + seconds;
+  return currentDate;
 }
 
 export function SetSidebarPostion() {
@@ -360,7 +374,7 @@ export function SetSidebarPostion() {
 }
 
 export function IsBlog(url) {
-  let keep_url = ["/Message/", "/History/", "/Harem/"];
+  let keep_url = ["/Message/", "/History/", "/Harem/", "/Twitter/"];
   for (let i = 0; i < keep_url.length; i++) {
     let is_keep = url.indexOf(keep_url[i]) != -1;
     if (is_keep) {
@@ -372,6 +386,18 @@ export function IsBlog(url) {
     return false;
   }
   return true;
+}
+
+//不需要评论的页面
+export function IsTwitter(url) {
+  let keep_url = ["/Twitter/"];
+  for (let i = 0; i < keep_url.length; i++) {
+    let is_keep = url.indexOf(keep_url[i]) != -1;
+    if (is_keep) {
+      return true;
+    }
+  }
+  return false;
 }
 
 //获取当前页面
@@ -408,7 +434,7 @@ export function Msg(msg, t) {
 //获取用户头像
 export function GetLeiMu(id) {
   //console.log("id -- ", id)
-  if (id) {} else {
+  if (id) { } else {
     return require('../static/img/leimu0.jpg')
   }
   if (id < 10) {
