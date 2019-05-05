@@ -2,6 +2,8 @@ import {
   Message
 } from 'element-ui';
 
+import Base64 from './md5'
+
 import store from '../store'
 
 export const hashRE = /#.*$/
@@ -328,7 +330,7 @@ export function GetPostDate(d) {
 
 }
 
-export function GetDate(d){
+export function GetDate(d) {
   var date = new Date(d);
   var seperator1 = "-";
   var seperator2 = ":";
@@ -351,6 +353,11 @@ export function GetDate(d){
 }
 
 export function SetSidebarPostion() {
+  if (document.getElementById('lovely_blog')){
+
+  }else{
+    return
+  }
   let w = Number(document.documentElement.clientWidth)
   let bignav = document.getElementById("Sidebar"); //获取到导航栏id
   if (w < 795) {
@@ -463,5 +470,5 @@ export function GetStringSub(t, l) {
 
 //获取当前时间
 export function GetNowDate() {
-  return UnixToDate((new Date()).getTime() / 1000, false)
+  return GetDate((new Date()).getTime())
 }

@@ -47,7 +47,7 @@ export function GistModify(data) {
     if (token) {
         return gist({
             url: Service.Gist + token,
-            method: 'GET',
+            method: 'PATCH',
             data
         })
     } else {

@@ -12,44 +12,46 @@
       </aside>
     </div>
 
-    <article
-      v-show="datas.length > 0"
-      id="lovely_blog"
-      v-for="(data,index) in datas"
-      class="blog post-type-normal"
-      v-if="IsBlog(data.path)"
-    >
-      <div class="post-date">
-        <span v-html="GetPostTime(data.lastUpdated)"></span>
-      </div>
-      <div class="post-badge">
-        <span>
-          <a href="#">
-            <span v-text="GetPostTag(data.frontmatter.meta)"></span>
-          </a>
-        </span>
-      </div>
-      <h1 class="lovely-title">{{data.title}}</h1>
-      <div class="last-updated" v-if="data.lastUpdated">
-        <span class="post-time">
-          <span class="post-meta-item-icon">
-            <i class="fa fa-calendar-o"></i>
-          </span>
-          <span class="post-meta-item-text">{{lastUpdatedText}}</span>
-          <span v-text="GetPostDate(data.lastUpdated)"></span>
-        </span>
-      </div>
-      <div class="lovely-content-box" v-if="data.excerpt">
-        <div class="lovely-content" v-html="data.excerpt"></div>
-        <div class="post-button text-center">
-          <router-link class="btn" :to="data.path">我要看全部啦 »</router-link>
+    <transition name="fade" enter-active-class="animated pulse" leave-active-class="animated pulse">
+      <article
+        v-show="datas.length > 0"
+        id="lovely_blog"
+        v-for="(data,index) in datas"
+        class="blog post-type-normal"
+        v-if="IsBlog(data.path)"
+      >
+        <div class="post-date">
+          <span v-html="GetPostTime(data.lastUpdated)"></span>
         </div>
-      </div>
-    </article>
+        <div class="post-badge">
+          <span>
+            <a href="#">
+              <span v-text="GetPostTag(data.frontmatter.meta)"></span>
+            </a>
+          </span>
+        </div>
+        <h1 class="lovely-title">{{data.title}}</h1>
+        <div class="last-updated" v-if="data.lastUpdated">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">{{lastUpdatedText}}</span>
+            <span v-text="GetPostDate(data.lastUpdated)"></span>
+          </span>
+        </div>
+        <div class="lovely-content-box" v-if="data.excerpt">
+          <div class="lovely-content" v-html="data.excerpt"></div>
+          <div class="post-button text-center">
+            <router-link class="btn" :to="data.path">我要看全部啦 »</router-link>
+          </div>
+        </div>
+      </article>
+    </transition>
 
     <div v-show="datas.length < 1">
-        <img width="100px" src="../static/img/leimu6.jpg" />
-        <span>蕾姆说。。。啥都没有，要不去发表东东？</span>
+      <img width="100px" src="../static/img/leimu6.jpg">
+      <span>蕾姆说。。。啥都没有，要不去发表东东？</span>
     </div>
   </div>
 </template>

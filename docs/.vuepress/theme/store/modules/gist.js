@@ -25,6 +25,10 @@ let gist = {
                 }
             })
         },
+        SET_GIST_LOC_TWITTER_DATA: (state, gist_twitter_data) => {
+            state.gist_data.twitter = []
+            state.gist_data.twitter = gist_twitter_data
+        },
         SET_GIST_TOKEN_DATA: (state, gist_token_data) => {
             console.log("设置gist token data ", gist_token_data)
             state.gist_data.token = gist_token_data

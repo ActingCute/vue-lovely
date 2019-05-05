@@ -8,8 +8,9 @@
       </Sidebar>
     </div>
 
-    <div id="lovely_blog">
-      <div class="post_box" v-if="!is_twitter">
+    <div>
+      
+      <div id="lovely_blog" class="post_box" v-if="!is_twitter">
         <article class="blog post-type-normal">
           <main class="page">
             <slot name="top"/>
@@ -66,33 +67,8 @@
         <comment></comment>
       </div>
 
-      <div v-else class="twitter_box">
-        <article class="blog post-type-normal">
-          <main class="page">
-            <Content/>
-          </main>
-        </article>
-
-        <transition
-          name="fade"
-          enter-active-class="animated pulse"
-          leave-active-class="animated pulse"
-        >
-          <article
-            class="blog post-type-normal twitter"
-            v-for="(item, index) in twitter_data"
-            :key="'twitter_'+index"
-          >
-            <main class="page">
-              <slot name="top"/>
-              <div class="post-date">
-                <span v-html="GetPostTime(item.time)"></span>
-              </div>
-              <div class="twitter_content" v-text="item.content"/>
-            </main>
-            <div class="twitter_time" v-text="GetDate(item.time)"/>
-          </article>
-        </transition>
+      <div  v-else class="twitter_box">
+          <Twitter></Twitter>
       </div>
     </div>
   </div>
@@ -112,13 +88,19 @@ import {
   GetDate
 } from "../util";
 
+import { Getmd5 } from "../util/md5";
+
 import Sidebar from "@theme/components/Sidebar.vue";
 import Comment from "@theme/components/Comment.vue";
+import Twitter from "@theme/components/Twitter.vue";
+
+import Gist from "../util/config";
 
 export default {
   components: {
     Sidebar,
-    Comment
+    Comment,
+    Twitter
   },
   props: ["sidebarItems"],
   watch: {
@@ -137,9 +119,6 @@ export default {
     }
   },
   computed: {
-    twitter_data() {
-      return this.$store.getters.gist_twitter_data;
-    },
     page_count() {
       return this.$store.getters.count_data.page_count;
     },
@@ -229,23 +208,29 @@ export default {
       this.FormatPrev();
     }
     if (document.getElementById("Sidebar")) {
-      window.addEventListener("scroll", SetSidebarPostion, false);
+      if (document.getElementById("lovely_blog")){
+        window.addEventListener("scroll", SetSidebarPostion, false);
+      }
     }
   },
   data() {
     return {
+      twitter_form: {
+        content: ""
+      },
+      is_own_page: false,
       is_twitter: false,
       prevs: {
         previous: null,
         next: null
+      },
+      form: {
+        name: "",
+        pass: ""
       }
     };
   },
   methods: {
-    handleClick: function() {
-      this.show = this.show === true ? false : true;
-    },
-
     FormatPrev() {
       //过滤不需要页面
       let post_arr = this.pages;
@@ -502,6 +487,15 @@ function flatten(items, res) {
   .twitter_content {
     color: #000;
     padding: 10px;
+  }
+}
+
+.twitter_form {
+  margin: 0 auto;
+  max-width: 620px;
+
+  .bnt {
+    float: right;
   }
 }
 </style>

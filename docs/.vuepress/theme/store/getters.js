@@ -1,5 +1,6 @@
 const getters = {
   user_data: state => state.user.user_data,
+  is_login: state => state.user.is_login,
   qiniu_data: state => state.qiniu.qiniu_data,
   blog_data: state => state.blog.blog_data,
   blog_tag_data: state => state.blog.tag_data,
@@ -8,6 +9,7 @@ const getters = {
   comment_data: state => state.comment.comment_data,
   count_data: state => state.count.count_data,
   gist_token_data: state => state.gist.gist_data.token,
-  gist_twitter_data: state => state.gist.gist_data.twitter
+  gist_twitter_data: state => state.gist.gist_data.twitter,
+  is_twitter: state => state.web.is_twitter
 }
 export default getters
