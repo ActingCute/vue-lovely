@@ -38,7 +38,7 @@
 
     <transition-group name="fade" enter-active-class="animated pulse" leave-active-class="animated pulse">
       <article
-        class="blog post-type-normal twitter"
+        class="blog post-type-normal twitter twitter_content_box"
         v-for="(item, index) in twitter_data"
         :key="'twitter_'+index"
       >
@@ -48,8 +48,9 @@
             <span v-html="GetPostTime(item.time)"></span>
           </div>
           <div class="twitter_content" v-text="item.content"/>
+          <div class="twitter_time" v-text="GetDate(item.time)"/>
         </main>
-        <div class="twitter_time" v-text="GetDate(item.time)"/>
+        
       </article>
     </transition-group>
   </div>
@@ -147,3 +148,10 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scope="this api replaced by slot-scope in 2.5.0+">
+  .twitter_content_box{
+    padding: 1rem
+  }
+</style>
+
