@@ -22,13 +22,14 @@ import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
+import MbSidebar from "@theme/components/MbSidebar.vue";
 import Foot from "@theme/components/Foot.vue";
 import RouterAfterEach from "./RouterAfterEach.vue";
 
 import { resolveSidebarItems } from "../util";
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, Foot ,RouterAfterEach},
+  components: { Home, Page, Sidebar, Navbar, Foot ,RouterAfterEach,MbSidebar},
 
   data() {
     return {
