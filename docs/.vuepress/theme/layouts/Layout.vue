@@ -7,17 +7,23 @@
     @touchend="onTouchEnd"
   >
     <RouterAfterEach></RouterAfterEach>
+
+    <div v-if="is_mb">
+      <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
+      <Sidebar :items="sidebarItems">
+        <slot name="sidebar-top" slot="top"/>
+        <slot name="sidebar-bottom" slot="bottom"/>
+      </Sidebar>
+    </div>
+
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
+
     <Home v-if="$page.frontmatter.home"/>
+
     <Page v-else :sidebar-items="sidebarItems">
       <slot name="page-top" slot="top"/>
       <slot name="page-bottom" slot="bottom"/>
     </Page>
-
-    <MbSidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
-      <slot name="sidebar-top" slot="top"/>
-      <slot name="sidebar-bottom" slot="bottom"/>
-    </MbSidebar>
 
     <foot></foot>
   </div>
@@ -28,14 +34,13 @@ import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
-import MbSidebar from "@theme/components/MbSidebar.vue";
 import Foot from "@theme/components/Foot.vue";
 import RouterAfterEach from "./RouterAfterEach.vue";
 
 import { resolveSidebarItems } from "../util";
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, Foot, RouterAfterEach, MbSidebar },
+  components: { Home, Page, Sidebar, Navbar, Foot, RouterAfterEach },
 
   data() {
     return {
@@ -44,6 +49,9 @@ export default {
   },
 
   computed: {
+    is_mb() {
+      return this.$store.getters.is_mb;
+    },
     shouldShowNavbar() {
       const { themeConfig } = this.$site;
       const { frontmatter } = this.$page;

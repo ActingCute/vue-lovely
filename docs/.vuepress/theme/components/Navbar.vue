@@ -71,7 +71,9 @@
         parseInt(css(this.$el, "paddingLeft")) +
         parseInt(css(this.$el, "paddingRight"));
       const handleLinksWrapWidth = () => {
-        if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
+        let is_mb = document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT
+        this.$store.dispatch('SetIsMb',is_mb)
+        if (is_mb) {
           this.linksWrapMaxWidth = null;
           document.getElementById('Sidebar').style.display = "none"
         } else {
@@ -84,6 +86,7 @@
       };
       handleLinksWrapWidth();
       window.addEventListener("resize", handleLinksWrapWidth, false);
+
       this.oldScrollTop = document.documentElement.scrollTop;
       window.addEventListener("scroll", this.handleScroll, false);
     },

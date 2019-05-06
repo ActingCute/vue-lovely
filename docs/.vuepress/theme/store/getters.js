@@ -10,6 +10,7 @@ const getters = {
   count_data: state => state.count.count_data,
   gist_token_data: state => state.gist.gist_data.token,
   gist_twitter_data: state => state.gist.gist_data.twitter,
-  is_twitter: state => state.web.is_twitter
+  is_twitter: state => state.web.is_twitter,
+  is_mb: state => state.web.is_mb
 }
 export default getters

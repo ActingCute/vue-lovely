@@ -29,8 +29,9 @@ body
   border-bottom 1px solid $borderColor
 
 .sidebar-mask
+  z-index 2000
+  background: rgba(40,42,44,0.6)
   position fixed
-  z-index 9
   top 0
   left 0
   width 100vw
@@ -398,6 +399,10 @@ th, td
   }
     
   .sidebar {
+    position: fixed;
+    left :0px;
+    z-index: 2500;
+    height 100%;
     .nav-links {
       display: block;
 

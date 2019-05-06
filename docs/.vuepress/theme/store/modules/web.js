@@ -3,7 +3,8 @@ let web = {
     web_data: {
       url: ""
     },
-    is_twitter: false
+    is_twitter: false,
+    is_mb: false
   },
 
   mutations: {
@@ -14,6 +15,10 @@ let web = {
     SET_IS_TWITTER: (state, is_twitter) => {
       console.log("设置 is_twitter ", is_twitter)
       state.is_twitter = is_twitter
+    },
+    SET_IS_MB: (state, is_mb) => {
+      console.log("设置 is_mb ", is_mb)
+      state.is_mb = is_mb
     }
   },
 
@@ -27,6 +32,11 @@ let web = {
       commit
     }, is_twitter) {
       commit('SET_IS_TWITTER', is_twitter)
+    },
+    SetIsMb({
+      commit
+    }, is_mb) {
+      commit('SET_IS_MB', is_mb)
     }
   }
 }
