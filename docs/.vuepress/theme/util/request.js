@@ -1,9 +1,11 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
+import {GetConfig} from "./index"
 
+const c = GetConfig()
 
 const service = axios.create({
-  baseURL: "http://127.0.0.1:9527", // api的base_url
+  baseURL: c.base_url, // api的base_url
   timeout: 5000 // request timeout
 })
 

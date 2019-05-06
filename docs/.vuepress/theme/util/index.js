@@ -353,9 +353,8 @@ export function GetDate(d) {
 }
 
 export function SetSidebarPostion() {
-  if (document.getElementById('lovely_blog')){
-
-  }else{
+  if (document.getElementById('lovely_blog')) {
+  } else {
     return
   }
   let w = Number(document.documentElement.clientWidth)
@@ -471,4 +470,29 @@ export function GetStringSub(t, l) {
 //获取当前时间
 export function GetNowDate() {
   return GetDate((new Date()).getTime())
+}
+
+//获取当前配置
+export function GetConfig() {
+  console.log("GetConfig : ", process.env.NODE_ENV)
+  let config = {
+    base_url: "http://127.0.0.1:9527"
+  }
+  let is_dev = true
+  if (process.env.NODE_ENV) {
+    if (process.env.NODE_ENV != "development") {
+      is_dev = false
+    }
+  } else {
+    is_dev = false
+  }
+  if (!is_dev) {
+    config = {
+      base_url: location.origin
+    }
+  }
+
+  console.log("GetConfig : ", config)
+
+  return config
 }

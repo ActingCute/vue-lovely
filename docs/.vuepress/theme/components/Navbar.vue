@@ -73,7 +73,9 @@
       const handleLinksWrapWidth = () => {
         if (document.documentElement.clientWidth < MOBILE_DESKTOP_BREAKPOINT) {
           this.linksWrapMaxWidth = null;
+          document.getElementById('Sidebar').style.display = "none"
         } else {
+          document.getElementById('Sidebar').style.display = "block"
           this.linksWrapMaxWidth =
             this.$el.offsetWidth -
             NAVBAR_VERTICAL_PADDING -
