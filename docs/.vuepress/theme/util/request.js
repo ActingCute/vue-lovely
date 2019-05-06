@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
 
+
 const service = axios.create({
   baseURL: "http://127.0.0.1:9527", // api的base_url
   timeout: 5000 // request timeout
@@ -16,7 +17,7 @@ service.interceptors.request.use(config => {
 
 service.interceptors.response.use(response => {
     return response.data
-  },
+  }, 
   error => {
     console.error('err' + error) // for debug
     Message({

@@ -42,6 +42,7 @@ module.exports = (options, ctx) => ({
         '/zh/': '警告'
       }
     }]
+    // [element-ui, {ssr: false}]
   ],
   markdown: {
     config: md => {

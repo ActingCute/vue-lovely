@@ -1,0 +1,3 @@
+var TTT = {
+    test:"ok"
+}
