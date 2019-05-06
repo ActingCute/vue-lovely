@@ -13,6 +13,12 @@
       <slot name="page-top" slot="top"/>
       <slot name="page-bottom" slot="bottom"/>
     </Page>
+
+    <MbSidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
+      <slot name="sidebar-top" slot="top"/>
+      <slot name="sidebar-bottom" slot="bottom"/>
+    </MbSidebar>
+
     <foot></foot>
   </div>
 </template>
@@ -29,7 +35,7 @@ import RouterAfterEach from "./RouterAfterEach.vue";
 import { resolveSidebarItems } from "../util";
 
 export default {
-  components: { Home, Page, Sidebar, Navbar, Foot ,RouterAfterEach,MbSidebar},
+  components: { Home, Page, Sidebar, Navbar, Foot, RouterAfterEach, MbSidebar },
 
   data() {
     return {
