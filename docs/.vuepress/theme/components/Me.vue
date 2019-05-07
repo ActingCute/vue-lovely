@@ -26,12 +26,12 @@ export default {
         {
           text: "GitHub",
           link: "https://github.com/ActingCute",
-          class: "fa fa-fw fa-github"
+          class: "iconfont lovelyweibo-copy"
         },
         {
           text: "WeiBo",
           link: "https://weibo.com/97787360",
-          class: "fa fa-fw fa-weibo"
+          class: "iconfont lovelygithub"
         }
       ]
     };
@@ -54,6 +54,9 @@ export default {
     margin: 5px 0 8px;
     font-weight: 700;
     color: #555;
+  }
+  .lovely_ico{
+    font-size :1rem;  
   }
 }
 </style>

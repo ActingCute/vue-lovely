@@ -8,6 +8,8 @@ import 'mavon-editor/dist/css/index.css';
 
 import './theme/styles/animate.css';
 
+import './theme/static/lovely_ico/iconfont.css'
+
 import store from './theme/store'
 import storage from './theme/storage'
 
@@ -16,7 +18,6 @@ import {
     Msg,
     FormatGoTime
 } from './theme/util'
-
 
 Vue.prototype.$store = store;
 Vue.prototype.Storage = storage;
