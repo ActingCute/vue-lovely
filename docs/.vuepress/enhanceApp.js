@@ -1,12 +1,11 @@
 // .vuepress/enhanceApp.js
 import Vue from 'vue'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+
+import { Input,Form,FormItem,Button,Loading } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css'
 
 import mavonEditor from 'mavon-editor';
 import 'mavon-editor/dist/css/index.css';
-
-import './theme/styles/animate.css';
 
 import './theme/static/lovely_ico/iconfont.css'
 
@@ -28,6 +27,10 @@ Vue.prototype.FormatGoTime = FormatGoTime;
 export default ({
     Vue
 }) => {
-    Vue.use(ElementUI);
+    Vue.use(Input);
+    Vue.use(Form);
+    Vue.use(FormItem);
+    Vue.use(Button);
+    Vue.use(Loading);
     Vue.use(mavonEditor);
 }

@@ -188,7 +188,7 @@
   }
 
   .header-box {
-    background-image: url('http://blog.deskmate.cc/head.jpg');
+    background-image: url('http://blog.deskmate.cc/head.jpg?imageView2/0/format/jpg/interlace/1/q/75|watermark/2/text/QEFjdGluZ0N1dGXphbE=/font/5a6L5L2T/fontsize/500/fill/I0VGRUZFRg==/dissolve/60/gravity/SouthEast/dx/10/dy/10|imageslim');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

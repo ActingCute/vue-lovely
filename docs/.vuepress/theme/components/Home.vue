@@ -12,6 +12,7 @@
 </template>
 
 <script>
+
 import NavLink from "@theme/components/NavLink.vue";
 import Blog from "./Blog";
 
