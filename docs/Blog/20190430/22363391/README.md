@@ -7,6 +7,16 @@ meta:
   - name:  ActingCute酱
     content: what?
 ---
+
+<no-Ssr>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js'></script>
+/<no-Ssr>
+<!-- <script>
+  let head = document.head || document.getElementsByTagName('head')[0];
+    let newScript = document.createElement("script");
+    newScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js';
+    head.appendChild(newScript);
+</script> -->
 ### em~ 来个霸气点开场
 
 >逆了苍天，踏破碧波黄泉
@@ -60,3 +70,21 @@ meta:
 身为开发人员，请用 Google Chrome，不要让我鼻屎你
 
 <font color=gray size=2>em~ 去看看怎么优化了，好慢好慢!再期待我更新呗~</font>
+
+## 视频播放器 Dplayer
+
+正在搞，看看下面的效果：哇诸葛亮好厉害啊~
+
+<div id="dplayer"></div>
+<script>
+  new DPlayer({
+      container: document.getElementById("dplayer"),
+      screenshot: true,
+      video: {
+        url: "http://blog.deskmate.cc/666a.mp4"
+      },
+      subtitle: {
+        url: "webvtt.vtt"
+      }
+    });
+</script>

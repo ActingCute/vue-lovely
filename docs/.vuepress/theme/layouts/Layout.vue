@@ -24,7 +24,6 @@
       <slot name="page-top" slot="top"/>
       <slot name="page-bottom" slot="bottom"/>
     </Page>
-
     <foot></foot>
   </div>
 </template>
@@ -37,7 +36,7 @@ import Sidebar from "@theme/components/Sidebar.vue";
 import Foot from "@theme/components/Foot.vue";
 import RouterAfterEach from "./RouterAfterEach.vue";
 
-import { resolveSidebarItems } from "../util";
+import { resolveSidebarItems, addScript } from "../util";
 
 export default {
   components: { Home, Page, Sidebar, Navbar, Foot, RouterAfterEach },
@@ -97,8 +96,10 @@ export default {
       ];
     }
   },
-
   mounted() {
+    // addScript([
+    //   "https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js"
+    // ]);
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });

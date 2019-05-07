@@ -497,3 +497,12 @@ export function GetConfig() {
 
   return config
 }
+
+export function addScript(urls) {
+  let head = document.head || document.getElementsByTagName('head')[0];
+  urls.forEach(url => {
+    let newScript = document.createElement("script");
+    newScript.src = url;
+    head.appendChild(newScript);
+  })
+}

@@ -12,7 +12,7 @@
       </aside>
     </div>
 
-    <transition name="fade" enter-active-class="animated pulse" leave-active-class="animated pulse">
+      
       <article
         v-show="datas.length > 0"
         id="lovely_blog"
@@ -47,7 +47,7 @@
           </div>
         </div>
       </article>
-    </transition>
+
 
     <div v-show="datas.length < 1">
       <img width="100px" src="../static/img/leimu6.jpg">

@@ -15,9 +15,11 @@ if title=="" (
 )
 
 
-rem win10和win7系统时间格式不一致，所以这里提取纯数字
+rem win10和win7系统时间格式不一致，若果出错，打开下面两句
+rem reg add "HKEY_CURRENT_USER\Control Panel\International" /v sShortDate /t REG_SZ /d yyyyMMdd /f
+rem reg add "HKEY_CURRENT_USER\Control Panel\International" /v sDate  /t  REG_SZ  /d / /f
 set str=%date%
-  
+
 set str_a=!str!
 set str_b=!str!
 for /l %%a in (0,1,9) do set str_a=!str_a:%%a=!
@@ -41,6 +43,9 @@ goto loop
 
 :creat
 rem 创建目录
+echo %~dp0docs\Blog\%nt%
+exit
+
 set folder=%~dp0docs\Blog\%nt%
 set folder=%folder:/=%
 set folder=%folder: =%
