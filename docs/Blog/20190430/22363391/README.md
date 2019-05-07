@@ -32,7 +32,7 @@ meta:
 
 [传送门](http://www.haibarai.com "要不要跳转去看看呢?")
 
-#### 简介
+## 简介
 
 简单介绍下本垃圾博客,大概是以下标签：
 
@@ -47,12 +47,16 @@ meta:
 <font color=gray size=2>em~ 我回来了,不知道写啥好,好饿</font>
 
 
-#### 阅读数
+## 阅读数
 
 自己搭了服务器，不想用人家的 [传送门](https://github.com/ActingCute/lovely_server/ "要不要跳转去看看呢?")
 
-#### 心情
+## 心情
 
 用了gist，咋滴，追下潮流不行，就是经常timeout有点恶心
+
+## 浏览器支持
+
+身为开发人员，请用 Google Chrome，不要让我鼻屎你
 
 <font color=gray size=2>em~ 去看看怎么优化了，好慢好慢!再期待我更新呗~</font>
