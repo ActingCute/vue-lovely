@@ -10,3 +10,4 @@ SQL/model/*
 *.zip
 docs/.vuepress/html/*
 docs/.vuepress/dist/*
+docs/.vuepress/theme/util/config.js
