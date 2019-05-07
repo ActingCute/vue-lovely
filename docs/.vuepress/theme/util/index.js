@@ -441,10 +441,10 @@ export function Msg(msg, t) {
 export function GetLeiMu(id) {
   //console.log("id -- ", id)
   if (id) { } else {
-    return require('../static/img/leimu0.jpg')
+    return 'http://blog.deskmate.cc/leimu0.jpg'
   }
   if (id < 10) {
-    return require('../static/img/leimu' + id + '.jpg')
+    return 'http://blog.deskmate.cc/leimu' + id + '.jpg'
   } else {
     id -= 10
     return GetLeiMu(id)

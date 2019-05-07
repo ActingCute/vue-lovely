@@ -486,7 +486,8 @@ function flatten(items, res) {
 
   .twitter_content {
     color: #000;
-    padding: 10px;
+    margin: 10px;
+    padding-left :30px;
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="lovely_me_box">
-    <img src="../static/img/me.png">
+    <img src="http://blog.deskmate.cc/me.png">
     <p class="site-description motion-element" itemprop="description">你能抓到我么？</p>
     <div
       style="display:inline-block;width:50px"

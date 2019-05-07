@@ -21,7 +21,7 @@
     <div class="lovely-portrait-box" v-bind:style="{ top: lovelyPortraitBox + 'px'}">
       <div class="lovely-portrait" v-bind:style="{ height: lovelyPortraitBox/2.5 + 'px'}">
         <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="shake shake-opacity"
-          src="../static/img/aimi.jpg">
+          src="http://blog.deskmate.cc/aimi.jpg">
         <p class="lovely-description">{{ $site.description }}</p>
       </div>
     </div>
@@ -188,7 +188,7 @@
   }
 
   .header-box {
-    background-image: url('../static/img/head.jpg');
+    background-image: url('http://blog.deskmate.cc/head.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

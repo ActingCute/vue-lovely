@@ -3,7 +3,7 @@
     <div class="lovely-foot">
       <transition name="bounce">
         <img v-if="show" v-bind:style="{marginTop:(lovelyPortraitBox)/9+ 'px', height: lovelyPortraitBox + 'px'}"
-          class="lovely-foot-img" src="../static/img/foot.png">
+          class="lovely-foot-img" src="http://blog.deskmate.cc/foot.png">
       </transition>
     </div>
     <div class="lovely-foot-content-box">
