@@ -48,7 +48,7 @@
             <span v-html="GetPostTime(item.time)"></span>
           </div>
           <div class="twitter_content" v-text="item.content"/>
-          <div class="twitter_time" v-text="item.time"/>
+          <div class="twitter_time" v-text="GetDate(item.time)"/>
         </main>
         
       </article>

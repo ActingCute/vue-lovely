@@ -331,6 +331,7 @@ export function GetPostDate(d) {
 }
 
 export function GetDate(d) {
+  d = d.replace(new RegExp(/-/gm), "/");
   var date = new Date(d);
   var seperator1 = "-";
   var seperator2 = ":";
