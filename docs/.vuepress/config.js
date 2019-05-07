@@ -12,10 +12,10 @@ const me = [
 ]
 
 module.exports = {
-    dest:"html",
+    dest:"dist/html",
     port: 1314,
-    title: 'Hello World',
-    description: '这是谁的小鹿？真厉害!',
+    title: 'ActingCute',
+    description: '别在来不及的时候后悔!',
     themeConfig: {
         sidebar: 'auto',
         sidebarDepth: 4, // e'b将同时提取markdown中h2 和 h3 标题，显示在侧边栏上。

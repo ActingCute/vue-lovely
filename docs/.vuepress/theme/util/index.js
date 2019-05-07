@@ -488,7 +488,7 @@ export function GetConfig() {
   }
   if (!is_dev) {
     config = {
-      base_url: location.origin
+      base_url: "http://www.haibarai.com"
     }
   }
 
