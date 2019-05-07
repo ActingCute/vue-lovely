@@ -6,7 +6,7 @@ const c = GetConfig()
 
 const service = axios.create({
   baseURL: c.base_url, // api的base_url
-  timeout: 5000 // request timeout
+  timeout: 50000 // request timeout
 })
 
 service.interceptors.request.use(config => {

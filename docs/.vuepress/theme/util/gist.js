@@ -9,7 +9,7 @@ import store from 'vuex'
 
 const gist = axios.create({
     baseURL: "https://api.github.com/", // api的base_url
-    timeout: 5000 // request timeout
+    timeout: 50000 // request timeout
 })
 
 gist.interceptors.request.use(config => {
