@@ -97,9 +97,9 @@ export default {
     }
   },
   mounted() {
-    // addScript([
-    //   "https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js"
-    // ]);
+    addScript([
+      "https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js"
+    ]);
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });

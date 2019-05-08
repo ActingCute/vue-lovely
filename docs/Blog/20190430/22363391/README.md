@@ -8,15 +8,6 @@ meta:
     content: what?
 ---
 
-<no-Ssr>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js'></script>
-/<no-Ssr>
-<!-- <script>
-  let head = document.head || document.getElementsByTagName('head')[0];
-    let newScript = document.createElement("script");
-    newScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js';
-    head.appendChild(newScript);
-</script> -->
 ### em~ 来个霸气点开场
 
 >逆了苍天，踏破碧波黄泉
