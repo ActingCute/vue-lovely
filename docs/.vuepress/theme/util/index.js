@@ -489,7 +489,7 @@ export function GetConfig() {
   }
   if (!is_dev) {
     config = {
-      base_url: "http://www.haibarai.com"
+      base_url: "https://www.haibarai.com"
     }
   }
 
