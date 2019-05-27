@@ -47,6 +47,7 @@ export default {
           item.regularPath != "/Message/" &&
           item.regularPath != "/Home/" &&
           item.regularPath != "/Twitter/" &&
+          item.regularPath != "/Commits/" &&
           item.regularPath != "/"
       );
       this.$store.dispatch("SetBlogData", post_arr);

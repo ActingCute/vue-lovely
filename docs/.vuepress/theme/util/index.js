@@ -381,7 +381,7 @@ export function SetSidebarPostion() {
 }
 
 export function IsBlog(url) {
-  let keep_url = ["/Message/", "/History/", "/Harem/", "/Twitter/"];
+  let keep_url = ["/Message/", "/History/", "/Harem/", "/Twitter/", "/Commits/"];
   for (let i = 0; i < keep_url.length; i++) {
     let is_keep = url.indexOf(keep_url[i]) != -1;
     if (is_keep) {
@@ -398,6 +398,18 @@ export function IsBlog(url) {
 //不需要评论的页面
 export function IsTwitter(url) {
   let keep_url = ["/Twitter/"];
+  for (let i = 0; i < keep_url.length; i++) {
+    let is_keep = url.indexOf(keep_url[i]) != -1;
+    if (is_keep) {
+      return true;
+    }
+  }
+  return false;
+}
+
+//Commits
+export function IsCommits(url) {
+  let keep_url = ["/Commits/"];
   for (let i = 0; i < keep_url.length; i++) {
     let is_keep = url.indexOf(keep_url[i]) != -1;
     if (is_keep) {
@@ -505,4 +517,16 @@ export function addScript(urls) {
     newScript.src = url;
     head.appendChild(newScript);
   })
+}
+
+//获取url参数
+export function GetParam(paramName) {
+  let paramValue = "",
+    isFound = !1;
+  if (location.search.indexOf("?") == 0 && location.search.indexOf("=") > 1) {
+    let arrSource = unescape(location.search).substring(1, location.search.length).split("&"),
+      i = 0;
+    while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+  }
+  return paramValue == "" && (paramValue = null), paramValue
 }

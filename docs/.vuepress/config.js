@@ -49,6 +49,10 @@ module.exports = {
             {
                 text: '留言板',
                 link: '/Message/'
+            },
+            {
+                text: '不要打开',
+                link: '/Commits/'
             }
         ],
         me: me

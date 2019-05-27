@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {Message} from 'element-ui'
-import {GetConfig} from "./index"
+import { Message } from 'element-ui'
+import { GetConfig } from "./index"
 
 const c = GetConfig()
 
@@ -18,8 +18,8 @@ service.interceptors.request.use(config => {
 })
 
 service.interceptors.response.use(response => {
-    return response.data
-  }, 
+  return response.data
+},
   error => {
     console.error('err' + error) // for debug
     Message({

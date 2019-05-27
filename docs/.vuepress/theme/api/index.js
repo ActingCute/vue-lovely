@@ -27,7 +27,10 @@ export const Service = {
     QiniuGetToken: '/v1/qiniu/uptoken_key',
 
     //TODO gist
-    GistCreated:'/gists',
-    Gist:'/gists/',
-    GistGetToken:'/users/:name/gists',
+    GistCreated: '/gists',
+    Gist: '/gists/',
+    GistGetToken: '/users/:name/gists',
+
+    //TODO commits
+    CommitsGet: 'https://api.github.com/repos/ActingCute/vue-lovely/commits',
 }

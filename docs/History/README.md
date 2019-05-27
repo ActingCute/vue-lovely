@@ -14,7 +14,7 @@
 
 <div class="blog_history_post" :key="'post_'+index" v-for="(post,index) in history.post">
 
-* <router-link :to="post.regularPath">{{post.title}}</router-link>
+* <a :href="post.regularPath" v-text="post.title"/>
 
 </div>
 

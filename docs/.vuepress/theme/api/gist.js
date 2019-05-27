@@ -1,8 +1,7 @@
 //gist
 import gist from '../util/gist'
-import {
-    Service
-} from './index'
+import request from '../util/request'
+import { Service } from './index'
 
 import Gist from '../util/config'
 
@@ -73,4 +72,12 @@ export function GistGetData() {
             }, 500);
         });
     }
+}
+
+export function CommitsGet(data) {
+    return request({
+        url: Service.CommitsGet,
+        method: 'GET',
+        params:data
+    })
 }

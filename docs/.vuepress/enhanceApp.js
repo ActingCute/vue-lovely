@@ -1,7 +1,7 @@
 // .vuepress/enhanceApp.js
 import Vue from 'vue'
 
-import { Input,Form,FormItem,Button,Loading } from 'element-ui';
+import { Input,Form,FormItem,Button,Loading,Tag,Card } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 
 import mavonEditor from 'mavon-editor';
@@ -32,5 +32,7 @@ export default ({
     Vue.use(FormItem);
     Vue.use(Button);
     Vue.use(Loading);
+    Vue.use(Tag);
+    Vue.use(Card);
     Vue.use(mavonEditor);
 }

@@ -96,10 +96,12 @@ export default {
       ];
     }
   },
-  mounted() {
-    addScript([
+  created(){
+        addScript([
       "https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js"
     ]);
+  },
+  mounted() {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
     });

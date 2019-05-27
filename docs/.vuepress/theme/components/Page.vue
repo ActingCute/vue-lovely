@@ -9,7 +9,6 @@
     </div>
 
     <div>
-      
       <div id="lovely_blog" class="post_box" v-if="!is_twitter">
         <article class="blog post-type-normal">
           <main class="page">
@@ -64,11 +63,17 @@
             <slot name="bottom"/>
           </main>
         </article>
+
+        <div v-if="is_commits">
+          <Commits :data="commits_data"/>
+        </div>
+
         <comment></comment>
+
       </div>
 
-      <div  v-else class="twitter_box">
-          <Twitter></Twitter>
+      <div v-else class="twitter_box">
+        <Twitter></Twitter>
       </div>
     </div>
   </div>
@@ -84,8 +89,10 @@ import {
   GetPostDate,
   SetSidebarPostion,
   IsTwitter,
+  IsCommits,
   GetUrl,
-  GetDate
+  GetDate,
+  GetParam
 } from "../util";
 
 import { Getmd5 } from "../util/md5";
@@ -93,6 +100,7 @@ import { Getmd5 } from "../util/md5";
 import Sidebar from "@theme/components/Sidebar.vue";
 import Comment from "@theme/components/Comment.vue";
 import Twitter from "@theme/components/Twitter.vue";
+import Commits from "@theme/components/Commits.vue";
 
 import Gist from "../util/config";
 
@@ -100,7 +108,8 @@ export default {
   components: {
     Sidebar,
     Comment,
-    Twitter
+    Twitter,
+    Commits
   },
   props: ["sidebarItems"],
   watch: {
@@ -109,16 +118,17 @@ export default {
         previous: null,
         next: null
       };
-
-      this.is_twitter = IsTwitter(to.path);
-      if (this.is_twitter) {
-        this.$store.dispatch("GistInit");
-      } else {
-        this.FormatPrev();
-      }
+      this.init(to.path);
     }
   },
   computed: {
+    commits_data() {
+      if (this.is_commits) {
+        return this.$store.getters.commits;
+      } else {
+        return [];
+      }
+    },
     page_count() {
       return this.$store.getters.count_data.page_count;
     },
@@ -201,17 +211,7 @@ export default {
     }
   },
   mounted() {
-    this.is_twitter = IsTwitter(GetUrl());
-    if (this.is_twitter) {
-      this.$store.dispatch("GistInit");
-    } else {
-      this.FormatPrev();
-    }
-    if (document.getElementById("Sidebar")) {
-      if (document.getElementById("lovely_blog")){
-        window.addEventListener("scroll", SetSidebarPostion, false);
-      }
-    }
+    this.init(GetUrl());
   },
   data() {
     return {
@@ -220,6 +220,7 @@ export default {
       },
       is_own_page: false,
       is_twitter: false,
+      is_commits: false,
       prevs: {
         previous: null,
         next: null
@@ -231,6 +232,23 @@ export default {
     };
   },
   methods: {
+    init(url) {
+      console.log("this.page -", this.p);
+      this.is_twitter = IsTwitter(url);
+      this.is_commits = IsCommits(url);
+      if (this.is_twitter) {
+        this.$store.dispatch("GistInit");
+      } else if (this.is_commits) {
+        this.$store.dispatch("GetCommitsData", { page: 1, per_page: 30 });
+      } else {
+        this.FormatPrev();
+      }
+      if (document.getElementById("Sidebar")) {
+        if (document.getElementById("lovely_blog")) {
+          window.addEventListener("scroll", SetSidebarPostion, false);
+        }
+      }
+    },
     FormatPrev() {
       //过滤不需要页面
       let post_arr = this.pages;
@@ -487,7 +505,7 @@ function flatten(items, res) {
   .twitter_content {
     color: #000;
     margin: 10px;
-    padding-left :30px;
+    padding-left: 30px;
   }
 }
 
