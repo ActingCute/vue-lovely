@@ -34,6 +34,9 @@ let count = {
         SetCountData({
             commit
         }, url) {
+            if (!commit('NEDD_UPDATE', url)){
+                return
+            }
             CountAddAndGet({
                 url
             }).then(response => {

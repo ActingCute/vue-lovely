@@ -1,5 +1,5 @@
 <template>
-  <div class="commits">
+  <div class="commits" v-if="is_commits">
     <transition-group
       name="fade"
       enter-active-class="animated pulse"
@@ -8,7 +8,7 @@
       <article
         class="blog post-type-normal twitter twitter_content_box"
         :key="'commits_'+index"
-        v-for="(d,index) in data"
+        v-for="(d,index) in commits_data"
       >
         <main class="page">
           <a :href="d.html_url" class="twitter_content" v-text="d.commit.message"/>
@@ -24,25 +24,40 @@
 </template>
 
 <script>
-import { GetPostTime, GetDate, FormatGoTime } from "../util";
+import { GetPostTime, GetDate, FormatGoTime, GetUrl, IsCommits } from "../util";
 
 export default {
   name: "commits",
-  props: {
-    data: {
-      type: Array,
-      default: []
+  watch: {
+    $route(to, from) {
+        this.is_commits = IsCommits(GetUrl());
+        this.More();
     }
   },
   data() {
     return {
-      p: 1
+      p: 0,
+      is_commits: false
     };
   },
   computed: {
-      has_commit(){
-          return this.$store.getters.has_commits
+    need_get_data() {
+      return this.$store.getters.need_get_data;
+    },
+    has_commit() {
+      return this.$store.getters.has_commits;
+    },
+    commits_data() {
+      if (this.is_commits) {
+        return this.$store.getters.commits;
+      } else {
+        return [];
       }
+    }
+  },
+  mounted() {
+    this.is_commits = IsCommits(GetUrl());
+    this.More();
   },
   methods: {
     GetPostTime(d) {
@@ -55,6 +70,9 @@ export default {
       return FormatGoTime(d);
     },
     More() {
+      if (!this.is_commits) {
+        return;
+      }
       this.p++;
       this.$store.dispatch("GetCommitsData", { page: this.p, per_page: 30 });
     }

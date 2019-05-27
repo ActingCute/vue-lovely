@@ -27,6 +27,9 @@ let comment = {
         SetCommentData({
             commit
         }, url) {
+            if (!commit('NEDD_UPDATE', url)){
+                return
+            }
             CommentGet({
                 url
             }).then(response => {

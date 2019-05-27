@@ -64,12 +64,9 @@
           </main>
         </article>
 
-        <div v-if="is_commits">
-          <Commits :data="commits_data"/>
-        </div>
+        <Commits />
 
         <comment></comment>
-
       </div>
 
       <div v-else class="twitter_box">
@@ -118,16 +115,14 @@ export default {
         previous: null,
         next: null
       };
-      this.init(to.path);
+      if (this.need_get_data) {
+        this.init(to.path);
+      }
     }
   },
   computed: {
-    commits_data() {
-      if (this.is_commits) {
-        return this.$store.getters.commits;
-      } else {
-        return [];
-      }
+    need_get_data() {
+      return this.$store.getters.need_get_data;
     },
     page_count() {
       return this.$store.getters.count_data.page_count;
@@ -211,7 +206,10 @@ export default {
     }
   },
   mounted() {
-    this.init(GetUrl());
+    console.log("this.need_get_data -- ", this.need_get_data);
+    if (this.need_get_data) {
+      this.init(GetUrl());
+    }
   },
   data() {
     return {
@@ -220,7 +218,6 @@ export default {
       },
       is_own_page: false,
       is_twitter: false,
-      is_commits: false,
       prevs: {
         previous: null,
         next: null
@@ -235,11 +232,8 @@ export default {
     init(url) {
       console.log("this.page -", this.p);
       this.is_twitter = IsTwitter(url);
-      this.is_commits = IsCommits(url);
       if (this.is_twitter) {
         this.$store.dispatch("GistInit");
-      } else if (this.is_commits) {
-        this.$store.dispatch("GetCommitsData", { page: 1, per_page: 30 });
       } else {
         this.FormatPrev();
       }

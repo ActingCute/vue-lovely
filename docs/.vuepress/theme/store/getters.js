@@ -14,5 +14,6 @@ const getters = {
   is_mb: state => state.web.is_mb,
   commits: state => state.commits.data,
   has_commits: state => state.commits.has_data,
+  need_get_data: state =>  state.web.need_get_data,
 }
 export default getters

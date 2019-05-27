@@ -54,7 +54,7 @@
         lovelyPortraitBox: "0",
         show: true,
         oldScrollTop: 0,
-        ScrollUp: false
+        ScrollUp: true
       };
     },
     mounted() {

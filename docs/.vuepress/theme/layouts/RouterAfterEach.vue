@@ -11,24 +11,34 @@ export default {
   name: "router_after_each",
   watch: {
     $route(to, from) {
-      this.init();
-      this.SetUrl(to.path);
-      this.CheckLogin();
-      //阅读更更多
-      GoAnchor("actingcute_anchor");
+      this.$store.dispatch("NeedUpdate", to.path);
+      this.InitData();
+    },
+    need_get_data(new_val, old_val) {
+      this.InitData();
     }
   },
   computed: {
     url() {
       return this.$store.getters.web_data.url;
+    },
+    need_get_data() {
+      return this.$store.getters.need_get_data;
     }
   },
-  mounted: function() {
-    this.init();
-    this.SetUrl();
-    this.CheckLogin();
+  mounted() {
+    this.$store.dispatch("NeedUpdate", GetUrl());
   },
   methods: {
+    InitData() {
+      if (this.need_get_data) {
+        this.init();
+        this.SetUrl(GetUrl());
+        this.CheckLogin();
+        //阅读更更多
+        GoAnchor("actingcute_anchor");
+      }
+    },
     CheckLogin() {
       let user_md5 = this.Storage.getItem("lovely_user");
       if (user_md5) {

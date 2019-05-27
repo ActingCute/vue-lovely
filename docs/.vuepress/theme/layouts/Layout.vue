@@ -36,7 +36,8 @@ import Sidebar from "@theme/components/Sidebar.vue";
 import Foot from "@theme/components/Foot.vue";
 import RouterAfterEach from "./RouterAfterEach.vue";
 
-import { resolveSidebarItems, addScript } from "../util";
+import { resolveSidebarItems, addScript ,GetUrl} from "../util";
+
 
 export default {
   components: { Home, Page, Sidebar, Navbar, Foot, RouterAfterEach },
@@ -96,15 +97,15 @@ export default {
       ];
     }
   },
-  created(){
-        addScript([
+  created() {
+    addScript([
       "https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.js"
     ]);
   },
   mounted() {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false;
-    });
+    });    
   },
 
   methods: {
