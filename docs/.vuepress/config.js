@@ -11,8 +11,11 @@ const me = [
     }
 ]
 
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const productionGzipExtensions = ['js', 'css'];
+
 module.exports = {
-    dest:"dist/html",
+    dest: "dist/html",
     port: 1314,
     title: 'ActingCute',
     description: '别在来不及的时候后悔!',
@@ -57,5 +60,15 @@ module.exports = {
         ],
         me: me
     },
-    me: me
+    me: me,
+    configureWebpack: (config, isServer) => {
+        if (!isServer) {
+            config.plugins.push(new CompressionWebpackPlugin({
+                algorithm: 'gzip',
+                test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+                threshold: 1024,
+                minRatio: 0.8
+            }))
+        }
+    }
 }

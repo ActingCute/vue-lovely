@@ -2,6 +2,7 @@
   "devDependencies": {
     "@vuepress/plugin-blog": "^1.0.0-alpha.47",
     "babel-plugin-component": "^1.1.1",
+    "compression-webpack-plugin": "^1.1.11",
     "vuepress": "^1.0.0-alpha.47"
   },
   "name": "vue-lovely",
