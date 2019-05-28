@@ -66,16 +66,6 @@ meta:
 
 正在搞，看看下面的效果：哇诸葛亮好厉害啊~
 
-<div id="dplayer"></div>
-<script>
-  new DPlayer({
-      container: document.getElementById("dplayer"),
-      screenshot: true,
-      video: {
-        url: "http://blog.deskmate.cc/666a.mp4"
-      },
-      subtitle: {
-        url: "webvtt.vtt"
-      }
-    });
-</script>
+<dplayer url="http://blog.deskmate.cc/666a.mp4"/>
+
+    

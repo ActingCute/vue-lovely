@@ -511,12 +511,12 @@ export function GetConfig() {
 }
 
 export function addScript(urls) {
-  let head = document.head || document.getElementsByTagName('head')[0];
-  urls.forEach(url => {
-    let newScript = document.createElement("script");
-    newScript.src = url;
-    head.appendChild(newScript);
-  })
+  // let head = document.head || document.getElementsByTagName('head')[0];
+  // urls.forEach(url => {
+  //   let newScript = document.createElement("script");
+  //   newScript.src = url;
+  //   head.appendChild(newScript);
+  // })
 }
 
 //获取url参数
