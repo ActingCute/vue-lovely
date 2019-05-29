@@ -10,6 +10,9 @@
       <div class="lovely-foot-content">
         <span class="lovely_wev_count">
           总浏览量：<span class="web_count" v-text="web_count.count" />
+          <p>
+            	粤ICP备15047722号-1 
+          </p>
         </span>
       </div>
     </div>

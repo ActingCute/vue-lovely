@@ -111,6 +111,7 @@ export default {
   props: ["sidebarItems"],
   watch: {
     $route(to, from) {
+      this.is_twitter = IsTwitter(to.path);
       this.prevs = {
         previous: null,
         next: null
