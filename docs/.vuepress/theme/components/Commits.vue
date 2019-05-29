@@ -16,7 +16,7 @@
         </main>
       </article>
     </transition-group>
-    <div class="post-button text-center">
+    <div v-show="commits_data.length > 0" class="post-button text-center">
       <a v-if="has_commit" class="btn" @click="More()">我要看多多啦 »</a>
       <a v-else class="btn">没有啦~</a>
     </div>

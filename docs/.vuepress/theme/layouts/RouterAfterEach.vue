@@ -28,6 +28,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("NeedUpdate", GetUrl());
+    this.InitData();
   },
   methods: {
     InitData() {
