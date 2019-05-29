@@ -26,12 +26,12 @@ export default {
         {
           text: "GitHub",
           link: "https://github.com/ActingCute",
-          class: "iconfont lovelyweibo-copy"
+          class: "iconfont lovelygithub"
         },
         {
           text: "WeiBo",
           link: "https://weibo.com/97787360",
-          class: "iconfont lovelygithub"
+          class: "iconfont lovelyweibo-copy"
         }
       ]
     };
