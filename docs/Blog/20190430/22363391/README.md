@@ -40,7 +40,7 @@ meta:
 * [vuepress](https://vuepress.vuejs.org/ "要不要跳转去看看呢?")
 * [vue](https://cn.vuejs.org/ "要不要跳转去看看呢?")
 * [ElementUI](https://element.eleme.cn "要不要跳转去看看呢?")
-* [mavonEditor](https://github.com/hinesboy/mavonEditor "要不要跳转去看看呢?")
+<!-- * [mavonEditor](https://github.com/hinesboy/mavonEditor "要不要跳转去看看呢?") -->
 * [gist](https://gist.github.com/ "要不要跳转去看看呢?")
 
 <font color=gray size=2>em~ 先这样，明天鸭坐车，期待我更新吧！</font>

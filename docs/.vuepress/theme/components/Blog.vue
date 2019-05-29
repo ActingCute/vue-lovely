@@ -47,12 +47,6 @@
           </div>
         </div>
       </article>
-
-
-    <div v-show="datas.length < 1">
-      <img width="100px" src="../static/img/leimu6.jpg">
-      <span>蕾姆说。。。啥都没有，要不去发表东东？</span>
-    </div>
   </div>
 </template>
 

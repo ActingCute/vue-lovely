@@ -5,16 +5,10 @@
 </template>
 
 <script>
-import "dplayer/dist/DPlayer.min.css";
-import NoSsr from "vue-no-ssr";
-
 export default {
   name: "dplayer",
   props: {
     url: String
-  },
-  components: {
-    NoSsr
   },
   mounted() {
     import("dplayer").then(module => {
@@ -35,3 +29,8 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+  @import 'https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.css'
+</style>
+

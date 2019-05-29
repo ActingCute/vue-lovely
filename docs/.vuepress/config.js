@@ -66,7 +66,7 @@ module.exports = {
             config.plugins.push(new CompressionWebpackPlugin({
                 algorithm: 'gzip',
                 test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-                threshold: 1024,
+                threshold: 10240,
                 minRatio: 0.8
             }))
         }

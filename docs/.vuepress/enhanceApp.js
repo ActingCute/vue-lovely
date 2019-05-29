@@ -2,10 +2,9 @@
 import Vue from 'vue'
 
 import { Input,Form,FormItem,Button,Loading,Tag,Card } from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css'
 
-import mavonEditor from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
+//import mavonEditor from 'mavon-editor';
+//import 'mavon-editor/dist/css/index.css';
 
 import './theme/static/lovely_ico/iconfont.css'
 
@@ -34,5 +33,5 @@ export default ({
     Vue.use(Loading);
     Vue.use(Tag);
     Vue.use(Card);
-    Vue.use(mavonEditor);
+    //Vue.use(mavonEditor);
 }
