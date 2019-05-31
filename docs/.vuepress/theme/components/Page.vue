@@ -64,7 +64,7 @@
           </main>
         </article>
 
-        <Commits />
+        <Commits/>
 
         <comment></comment>
       </div>
@@ -116,9 +116,7 @@ export default {
         previous: null,
         next: null
       };
-      if (this.need_get_data) {
-        this.init(to.path);
-      }
+      this.init(to.path);
     }
   },
   computed: {
@@ -233,11 +231,7 @@ export default {
     init(url) {
       console.log("this.page -", this.p);
       this.is_twitter = IsTwitter(url);
-      if (this.is_twitter) {
-        this.$store.dispatch("GistInit");
-      } else {
-        this.FormatPrev();
-      }
+      this.FormatPrev();
       if (document.getElementById("Sidebar")) {
         if (document.getElementById("lovely_blog")) {
           window.addEventListener("scroll", SetSidebarPostion, false);
@@ -245,6 +239,10 @@ export default {
       }
     },
     FormatPrev() {
+      if (this.is_twitter && this.need_get_data) {
+        this.$store.dispatch("GistInit");
+        return;
+      }
       //过滤不需要页面
       let post_arr = this.pages;
 

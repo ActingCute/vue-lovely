@@ -7,8 +7,12 @@ let blog = {
 
     mutations: {
         SET_BLOG_DATA: (state, blog_data) => {
-            console.log("设置blog data ", blog_data)
-            state.blog_data = blog_data
+            let new_blog_data = []
+            for (let i = blog_data.length - 1; i > -1; i--) {
+                new_blog_data.push(blog_data[i])
+            }
+            console.log("设置blog data ", new_blog_data)
+            state.blog_data = new_blog_data
         },
         SET_BLOG_TAG_DATA: (state, blog_tag_data) => {
             console.log("设置blog tag data ", blog_tag_data)
