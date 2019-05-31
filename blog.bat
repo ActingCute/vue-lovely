@@ -9,49 +9,29 @@ for %%i in (%*) do (
 set title=!title! %%i
 )
 
-
 if title=="" (
     set title="起个好名字好不"
 )
 
-
-rem win10和win7系统时间格式不一致，若果出错，打开下面两句
-rem reg add "HKEY_CURRENT_USER\Control Panel\International" /v sShortDate /t REG_SZ /d yyyyMMdd /f
-rem reg add "HKEY_CURRENT_USER\Control Panel\International" /v sDate  /t  REG_SZ  /d / /f
 set str=%date%
-
+ 
 set str_a=!str!
 set str_b=!str!
-for /l %%a in (0,1,9) do set str_a=!str_a:%%a=!
-call:calc !str_a!
-set nt=!str_b!
-goto creat
-exit
- 
-:calc
-set n=0
-set "s=%~1"
-:loop
-set "t=!s:~%n%,1!"
-if "%t%"=="" (
-    set "str_b=!str_b:"=!"
-    goto :eof
-)
-set "str_b=!str_b:%t%=!"
-set /a n+=1
-goto loop
 
-:creat
+echo %str%
+
 rem 创建目录
-echo %~dp0docs\Blog\%nt%
-exit
+echo %~dp0docs\Blog\%str%
 
-set folder=%~dp0docs\Blog\%nt%
+set folder=%~dp0docs\Blog\%str%
 set folder=%folder:/=%
 set folder=%folder: =%
 set now=%time::=%
 set now=%now:.=%
 set blogfolder=%folder%\%now%
+set blogfolder=%blogfolder: =%
+
+echo %blogfolder%
 
 if not exist %folder% (
     md %folder%

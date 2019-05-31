@@ -21,3 +21,7 @@
 ### Push(自己修改为你的地址)
 
     .\push.abt
+
+### 预览
+
+    Ctrl+shift+v

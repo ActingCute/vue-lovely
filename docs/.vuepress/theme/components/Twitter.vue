@@ -58,7 +58,9 @@
 
 <script>
 import { GetPostTime, IsTwitter, GetUrl, GetDate, GetNowDate } from "../util";
-import { GistModify } from "../api/gist";
+import { GistModify} from "../api/gist";
+import Gist from "../util/config"
+import {Getmd5} from "../util/md5"
 
 export default {
   name: "twitter",
@@ -106,6 +108,7 @@ export default {
       if (this.form.name == Gist.name && this.form.pass == Gist.password) {
         let love_md5 = Getmd5(Gist.name, Gist.password);
         this.Storage.setItem("lovely_user", love_md5);
+        this.$store.dispatch("SetLoginData",true);
       }
     },
     IsOwnPage() {
