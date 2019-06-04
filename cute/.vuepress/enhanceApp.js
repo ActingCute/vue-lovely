@@ -7,5 +7,9 @@ export default ({
     router, // 当前应用的路由实例
     siteData // 站点元数据
 }) => {
+    //选出blog data
+    let webData = ["/Commits/","/Harem/","/History/","/Message/","/Twitter/"]
+    //let blogData=siteData.pages.filter(sD=>sD.indexOf)
+    Vue.prototype.siteData = siteData
     Vue.use(Element)
 }
