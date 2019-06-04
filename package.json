@@ -5,7 +5,10 @@
   "scripts": {
     "test": "npm run lint && jest",
     "lint": "disable",
-    "dev": "vuepress dev ActingCute",
-    "build": "vuepress build ActingCute"
+    "dev": "vuepress dev cute",
+    "build": "vuepress build cute"
+  },
+  "dependencies": {
+    "element-ui": "^2.9.1"
   }
 }
