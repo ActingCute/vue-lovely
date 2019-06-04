@@ -331,26 +331,30 @@ export function GetPostDate(d) {
 }
 
 export function GetDate(d) {
-  d = d.replace(new RegExp(/-/gm), "/");
-  var date = new Date(d);
-  var seperator1 = "-";
-  var seperator2 = ":";
-  var month = getNewDate(date.getMonth() + 1);
-  var day = getNewDate(date.getDate());
-  var hours = getNewDate(date.getHours());
-  var minutes = getNewDate(date.getMinutes());
-  var seconds = getNewDate(date.getSeconds());
-  //统一格式为两位数
-  function getNewDate(date) {
-    if (date <= 9) {
-      date = "0" + date;
+  if (d) {
+    console.log("d --- ",d)
+    d = d.replace(new RegExp(/-/gm), "/");
+    var date = new Date(d);
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = getNewDate(date.getMonth() + 1);
+    var day = getNewDate(date.getDate());
+    var hours = getNewDate(date.getHours());
+    var minutes = getNewDate(date.getMinutes());
+    var seconds = getNewDate(date.getSeconds());
+    //统一格式为两位数
+    function getNewDate(date) {
+      if (date <= 9) {
+        date = "0" + date;
+      }
+      return date;
     }
-    return date;
+    var currentDate = date.getFullYear() + seperator1 + month + seperator1 + day +
+      " " + hours + seperator2 + minutes + seperator2 + seconds;
+    return currentDate;
+  } else {
+    return "忘了时间"
   }
-
-  var currentDate = date.getFullYear() + seperator1 + month + seperator1 + day +
-    " " + hours + seperator2 + minutes + seperator2 + seconds;
-  return currentDate;
 }
 
 export function SetSidebarPostion() {

@@ -129,7 +129,7 @@ export default {
       });
       let new_data = {
         user: "ActingCute酱",
-        time: GetNowDate(),
+        time: new Date(),
         content: this.twitter_form.content
       };
       new_datas.push(new_data);

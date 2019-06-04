@@ -1,18 +1,21 @@
 ---
-title: 青春末班车
+title: 高数
 lang: en-US
 meta:
-  - name: 年少轻狂
-    content: 她跟我说的最后一句话是 年少轻狂
+  - name: 笔记
+    content: ActingCute酱 笔记
 ---
 ###
 
-一把年纪了，心理年龄还是很幼稚
+来来来，一起学高数
 
-还记得很久很久之前
-
-一个妹子对我说`年少轻狂`
+很多都忘了，从头再来
 
 <!-- more -->
 
 <div ref="actingcute_anchor" id="actingcute_anchor"></div>
+
+# 函数
+
+## 函数定义域
+
