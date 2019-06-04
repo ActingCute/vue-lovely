@@ -1,13 +1,11 @@
 {
-  "name": "vue-lovely",
-  "version": "1.0.0",
-  "description": "'# Hello VuePress'",
-  "main": "index.js",
+  "name": "ActingCute",
+  "description": "ActingCute blog",
+  "author": "ActingCute酱<rem486@qq.com>",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "test": "npm run lint && jest",
+    "lint": "disable",
+    "dev": "vuepress dev ActingCute",
+    "build": "vuepress build ActingCute"
+  }
 }
