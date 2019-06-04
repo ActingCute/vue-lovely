@@ -9,7 +9,12 @@
     "build": "vuepress build cute"
   },
   "dependencies": {
+    "compression-webpack-plugin": "^1.1.11",
     "dplayer": "^1.25.0",
-    "element-ui": "^2.9.1"
+    "element-ui": "^2.9.1",
+    "stylehacks": "^4.0.3",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vuex": "^3.1.1"
   }
 }
