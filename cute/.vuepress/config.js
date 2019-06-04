@@ -17,6 +17,10 @@ module.exports = {
         [
             'link',
             { rel: "stylesheet", type: "text/css", href: 'https://libs.cdnjs.net/animate.css/3.7.0/animate.min.css' }
+        ],
+        [
+            'script',
+            { type: "text/javascript", href: 'https://libs.cdnjs.net/dplayer/1.25.0/DPlayer.min.js' }
         ]
     ],
     configureWebpack: (config, isServer) => {

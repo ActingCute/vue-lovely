@@ -11,10 +11,7 @@ export default {
     url: String
   },
   mounted() {
-    import("dplayer").then(module => {
-      let DPlayer = module.default
-      // use code
-      if (this.url) {
+    if (this.url) {
       } else {
         return;
       }
@@ -25,12 +22,7 @@ export default {
           url: this.url
         }
       });
-    });
   }
 };
 </script>
-
-<style lang="stylus" scoped>
-  @import 'https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.25.0/DPlayer.min.css'
-</style>
 
