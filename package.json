@@ -9,6 +9,7 @@
     "build": "vuepress build cute"
   },
   "dependencies": {
+    "dplayer": "^1.25.0",
     "element-ui": "^2.9.1"
   }
 }
