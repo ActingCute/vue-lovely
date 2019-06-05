@@ -1,1 +1,1 @@
-cd docs & npm run build
+npm run build

@@ -25,3 +25,12 @@
 ### 预览
 
     Ctrl+shift+v
+
+### 可能遇到问题
+
+    Cannot find module 'webpack/lib/ModuleFilenameHelpers'
+
+## 解决办法：
+####  由于使用的是全局的 webpack，找不到某些目录，将全局的指向自己当前的项目即可。    
+
+     npm link webpack
