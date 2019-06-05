@@ -1,0 +1,1 @@
+npm link webpack && npm run dev

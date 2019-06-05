@@ -30,7 +30,11 @@ module.exports = {
                 test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
                 threshold: 10240,
                 minRatio: 0.8
-            }))
+            }));
+            config.externals =  {
+                // 'element-ui': 'ElEMENT',
+                'DPlayer': 'DPlayer',
+              }
         }
     }
 }
