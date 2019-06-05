@@ -203,6 +203,7 @@ export default {
 }
 
 .navbar {
+  z-index: 9999;
   top: 0;
   position: fixed;
   width: 100%;

@@ -77,6 +77,7 @@ export default {
     }
   },
   mounted: function() {
+    console.log("ssssssss -- ",ELEMENT)
     //test Storage
     this.Storage.setItem("key", "lovely");
     console.log(this.Storage.getItem("key"));

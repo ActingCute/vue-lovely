@@ -1,6 +1,3 @@
-import Vue from "vue";
-import Element from 'element-ui'
-
 import storage from './theme/storage'
 import { Code } from './theme/api'
 import {
@@ -16,6 +13,9 @@ import {
 import store from './theme/store'
 
 import './theme/styles/index.styl'
+
+import Element from 'element-ui'
+
 
 
 export default ({
