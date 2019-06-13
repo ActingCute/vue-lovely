@@ -3,7 +3,7 @@
     <div id="lovely_blog" class="post_box">
       <article class="blog post-type-normal">
         <main class="page">
-          <slot name="top"/>
+          <slot name="top" />
           <div class="post-date">
             <span v-html="GetPostTime(lastUpdated)"></span>
           </div>
@@ -29,132 +29,137 @@
 
             <div class="page_count page_tag">
               <span>阅读量:</span>
-              <span v-text="page_count.count"/>
+              <span v-text="page_count.count" />
             </div>
           </div>
 
-          <Content/>
+          <Content />
+
+          {{page_nav}}
+
         </main>
       </article>
-      <Comment/>
+      <Comment />
     </div>
   </div>
 </template>
 
 <script>
-import Comment from "@theme/components/Comment.vue";
+  import Comment from "@theme/components/Comment.vue";
 
-export default {
-  name: "blog",
-  components:{
+  export default {
+    name: "blog",
+    components: {
       Comment
-  },
-  computed: {
-    page_count() {
-      return this.$store.getters.count_data.page_count;
     },
-    lastUpdated() {
-      return this.$page.lastUpdated;
-    },
-    title() {
-      return this.$page.title;
-    },
-    meta() {
-      return this.$page.frontmatter.meta;
-    },
-    lastUpdatedText() {
-      if (typeof this.$themeLocaleConfig.lastUpdated === "string") {
-        return this.$themeLocaleConfig.lastUpdated;
+    computed: {
+      page_nav() {
+        return this.$page.headers
+      },
+      page_count() {
+        return this.$store.getters.count_data.page_count;
+      },
+      lastUpdated() {
+        return this.$page.lastUpdated;
+      },
+      title() {
+        return this.$page.title;
+      },
+      meta() {
+        return this.$page.frontmatter.meta;
+      },
+      lastUpdatedText() {
+        if (typeof this.$themeLocaleConfig.lastUpdated === "string") {
+          return this.$themeLocaleConfig.lastUpdated;
+        }
+        if (typeof this.$site.themeConfig.lastUpdated === "string") {
+          return this.$site.themeConfig.lastUpdated;
+        }
+        return "Last Updated";
       }
-      if (typeof this.$site.themeConfig.lastUpdated === "string") {
-        return this.$site.themeConfig.lastUpdated;
-      }
-      return "Last Updated";
+    },
+    data() {
+      return {};
+    },
+    mounted() {
+      console.log(this.$page)
     }
-  },
-  data() {
-    return {};
-  },
-  mounted() {}
-};
+  };
 </script>
 
 <style lang="stylus">
-
-.page {
-  padding-bottom: 2rem;
-  display: block;
-}
-
+  .page {
+    padding-bottom: 2rem;
+    display: block;
+  }
 
 
+  @media (max-width: 360) {
+    .page-edit {
+      .edit-link {
+        margin-bottom: 0.5rem;
+      }
 
-
-@media (max-width: 360) {
-  .page-edit {
-    .edit-link {
-      margin-bottom: 0.5rem;
-    }
-    .last-updated {
-      font-size: 0.8em;
-      float: none;
-      text-align: left;
+      .last-updated {
+        font-size: 0.8em;
+        float: none;
+        text-align: left;
+      }
     }
   }
-}
 
-.blog-box {
-  position: relative;
-  min-height: 500px;
-}
-
-// 上一页下一页
-.page-nav {
-  .previous {
-    float: left;
-  }
-
-  .next {
-    float: right;
-  }
-
-  a {
+  .blog-box {
     position: relative;
-    font-size: 14px;
-    color: #555;
-    border-bottom: none;
-  }
-}
-
-.page_tag_box {
-  width: 100%;
-  text-align: center;
-
-  .page_tag {
-    display: inline-block;
-  }
-}
-
-.twitter {
-  .twitter_time {
-    font-size: 15px;
-    float: right;
-    color: #999999;
+    min-height: 500px;
   }
 
-  .twitter_content {
-    color: #000;
-    margin: 10px;
-    padding-left: 30px;
-  }
-}
+  // 上一页下一页
+  .page-nav {
+    .previous {
+      float: left;
+    }
 
-.twitter_form {
-  margin: 0 auto;
-  max-width: 620px;
+    .next {
+      float: right;
+    }
 
-  .bnt {
-    float: right;
+    a {
+      position: relative;
+      font-size: 14px;
+      color: #555;
+      border-bottom: none;
+    }
   }
-}
+
+  .page_tag_box {
+    width: 100%;
+    text-align: center;
+
+    .page_tag {
+      display: inline-block;
+    }
+  }
+
+  .twitter {
+    .twitter_time {
+      font-size: 15px;
+      float: right;
+      color: #999999;
+    }
+
+    .twitter_content {
+      color: #000;
+      margin: 10px;
+      padding-left: 30px;
+    }
+  }
+
+  .twitter_form {
+    margin: 0 auto;
+    max-width: 620px;
+
+    .bnt {
+      float: right;
+    }
+  }
 </style>
