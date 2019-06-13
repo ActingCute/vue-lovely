@@ -1,24 +1,25 @@
 # 简陋菜菜的说明
 
 ### 目录结构
-├─cute 不解释
-│  ├─.vuepress 不解释
-│  │  ├─components 公共组件,该目录下的组件是给md用的
-│  │  └─theme   不解释  
-│  │      ├─api 存放网络请求的函数
-│  │      ├─components 公共组件,vue用
-│  │      ├─storage 一些缓存的函数
-│  │      ├─store   不解释
-│  │      │  └─modules
-│  │      ├─styles  样式
-│  │      └─util    公共函数
-│  ├─Blog     博客文件
-│  ├─Commits  代码提交历程
-│  ├─Harem    友情链接
-│  ├─History  归档
-│  ├─Message  留言板
-│  └─Twitter  心情
-└─Template    博客模板
+
+    ├─cute 不解释
+    │  ├─.vuepress 不解释
+    │  │  ├─components 公共组件,该目录下的组件是给md用的
+    │  │  └─theme   不解释  
+    │  │      ├─api 存放网络请求的函数
+    │  │      ├─components 公共组件,vue用
+    │  │      ├─storage 一些缓存的函数
+    │  │      ├─store   不解释
+    │  │      │  └─modules
+    │  │      ├─styles  样式
+    │  │      └─util    公共函数
+    │  ├─Blog     博客文件
+    │  ├─Commits  代码提交历程
+    │  ├─Harem    友情链接
+    │  ├─History  归档
+    │  ├─Message  留言板
+    │  └─Twitter  心情
+    └─Template    博客模板
 
 [传送门](http://www.haibarai.com "要不要跳转去看看呢?")
 
