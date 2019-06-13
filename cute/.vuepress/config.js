@@ -22,10 +22,14 @@ module.exports = {
             'script',
             { type: "text/javascript", src: 'https://libs.cdnjs.net/dplayer/1.25.0/DPlayer.min.js' }
         ],
-        // [
-        //     'script',
-        //     { type: "text/javascript", src: 'https://cdn.bootcss.com/element-ui/2.3.3/index.js' }
-        // ],
+        [
+            'script',
+            { type: "text/javascript", src: 'https://libs.cdnjs.net/vue/2.6.10/vue.min.js' }
+        ],       
+        [
+            'script',
+            { type: "text/javascript", src: 'https://libs.cdnjs.net/element-ui/2.8.2/index.js' }
+        ],
     ],
     configureWebpack: (config, isServer) => {
         if (!isServer) {
@@ -35,6 +39,10 @@ module.exports = {
                 threshold: 10240,
                 minRatio: 0.8
             }));
+            config.externals = {
+                'vue': 'Vue',
+                'element-ui':'ELEMENT'
+            }
         }
     }
 }
