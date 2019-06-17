@@ -1,56 +1,66 @@
 <template>
   <div class="blog-box">
-    <div id="lovely_blog" class="post_box">
-      <article class="blog post-type-normal">
-        <main class="page">
-          <slot name="top" />
-          <div class="post-date">
-            <span v-html="GetPostTime(lastUpdated)"></span>
-          </div>
-          <div class="post-badge">
-            <span>
-              <a href="#">
-                <span v-text="GetPostTag(meta)"></span>
-              </a>
-            </span>
-          </div>
-          <h1 class="lovely-title">{{title}}</h1>
 
-          <div class="page_tag_box">
-            <div class="last-updated page_tag" v-if="lastUpdated">
-              <span class="post-time">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-o"></i>
+    <el-row :gutter="20">
+
+      <el-col :xs="24" :sm="16" :md="16" :lg="16" :xl="16">
+        <div id="lovely_blog" class="post_box">
+          <article class="blog post-type-normal">
+            <main class="page">
+              <slot name="top" />
+              <div class="post-date">
+                <span v-html="GetPostTime(lastUpdated)"></span>
+              </div>
+              <div class="post-badge">
+                <span>
+                  <a href="#">
+                    <span v-text="GetPostTag(meta)"></span>
+                  </a>
                 </span>
-                <span class="post-meta-item-text">{{lastUpdatedText}}</span>
-                <span v-text="GetPostDate(lastUpdated)"></span>
-              </span>
-            </div>
+              </div>
+              <h1 class="lovely-title">{{title}}</h1>
 
-            <div class="page_count page_tag">
-              <span>阅读量:</span>
-              <span v-text="page_count.count" />
-            </div>
-          </div>
+              <div class="page_tag_box">
+                <div class="last-updated page_tag" v-if="lastUpdated">
+                  <span class="post-time">
+                    <span class="post-meta-item-icon">
+                      <i class="fa fa-calendar-o"></i>
+                    </span>
+                    <span class="post-meta-item-text">{{lastUpdatedText}}</span>
+                    <span v-text="GetPostDate(lastUpdated)"></span>
+                  </span>
+                </div>
 
-          <Content />
+                <div class="page_count page_tag">
+                  <span>阅读量:</span>
+                  <span v-text="page_count.count" />
+                </div>
+              </div>
+              <Content />
+            </main>
+          </article>
+          <Comment />
+        </div>
+      </el-col>
 
-          {{page_nav}}
+      <el-col class="sidebar-box" :xs="0" :sm="7" :md="7" :lg="7" :xl="7">
+        <Sidebar class="sidebar" :page_nav="page_nav" />
+      </el-col>
 
-        </main>
-      </article>
-      <Comment />
-    </div>
+    </el-row>
+    
   </div>
 </template>
 
 <script>
   import Comment from "@theme/components/Comment.vue";
+  import Sidebar from "@theme/components/Sidebar.vue"
 
   export default {
     name: "blog",
     components: {
-      Comment
+      Comment,
+      Sidebar
     },
     computed: {
       page_nav() {
@@ -140,26 +150,4 @@
     }
   }
 
-  .twitter {
-    .twitter_time {
-      font-size: 15px;
-      float: right;
-      color: #999999;
-    }
-
-    .twitter_content {
-      color: #000;
-      margin: 10px;
-      padding-left: 30px;
-    }
-  }
-
-  .twitter_form {
-    margin: 0 auto;
-    max-width: 620px;
-
-    .bnt {
-      float: right;
-    }
-  }
 </style>

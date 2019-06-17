@@ -248,6 +248,12 @@ function resolveItem(item, pages, base, groupDepth = 1) {
 }
 
 //博客
+
+//提取数字
+export function getNumber(str) {
+  return Number(str.replace(/[^0-9]/ig, ""))
+}
+
 //查看更多 有点垃圾
 export function GoAnchor(selector) {
   if (location.href.indexOf('#') != -1) {
@@ -328,7 +334,7 @@ export function GetPostDate(d) {
 
 export function GetDate(d) {
   if (d) {
-    console.log("d --- ",d)
+    console.log("d --- ", d)
     d = d.replace(new RegExp(/-/gm), "/");
     var date = new Date(d);
     var seperator1 = "-";
@@ -354,8 +360,7 @@ export function GetDate(d) {
 }
 
 export function SetSidebarPostion() {
-  if (document.getElementById('lovely_blog')) {
-  } else {
+  if (document.getElementById('lovely_blog')) {} else {
     return
   }
   let w = Number(document.documentElement.clientWidth)
@@ -453,7 +458,7 @@ export function Msg(msg, t) {
 //获取用户头像
 export function GetLeiMu(id) {
   //console.log("id -- ", id)
-  if (id) { } else {
+  if (id) {} else {
     return 'http://blog.deskmate.cc/leimu0.jpg'
   }
   if (id < 10) {
