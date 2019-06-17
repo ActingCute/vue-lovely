@@ -29,7 +29,7 @@ module.exports = {
                 type: "text/css",
                 href: 'https://libs.cdnjs.net/animate.css/3.7.0/animate.min.css'
             }
-        ],
+        ],     
         [
             'script',
             {
