@@ -56,6 +56,11 @@ export default {
   // components:{
   //   NoSsr
   // },
+  watch: {
+    $route(to, from) {
+      this.Init();
+    }
+  },
   data() {
     return {
       new_url: false,
@@ -109,6 +114,7 @@ export default {
       }
       //this.new_comment =
       //  "## 很认真的想了想\n### 可是不知道说啥\n# 走开走开：很太\n![comment.png](http://blog.deskmate.cc/FtNH-0VgU8lNaIq7WzaWQzmxadCM)";
+      this.$store.dispatch("SetCommentData", this.GetUrl());
     },
     //获取当前页评论
     GetLeiMu(id) {
@@ -124,7 +130,7 @@ export default {
     },
     CommentAdd() {
       //let content = this.$refs.lovely_markdown.d_render;
-      let content = this.new_comment
+      let content = this.new_comment;
       if (content.length < 1) {
         this.ShowMsg();
         return;
@@ -175,7 +181,7 @@ export default {
           return;
         }
       });
-    },
+    }
     // QiniuUploadImagesForBase64(pos, $file) {
     //   console.log(this.$store);
     //   //获取上传的key
@@ -307,6 +313,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
   padding: 22px 25px;
   position: relative;
+  max-width :100%
 }
 
 .comments article.comment .content:after, .comments article.comment .content:before {

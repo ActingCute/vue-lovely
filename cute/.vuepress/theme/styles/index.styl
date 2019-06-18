@@ -27,6 +27,28 @@ body
   .post-date 
     display none
   
+@media (max-width: 768px) 
+  .navbar
+    display: none;
+  .header-box
+    margin-top: 3rem;
+  .blog-box
+    padding-top: 10px  
+  .nav-el-collapse
+      display: block        
+
+@media (min-width: 769px) 
+  .blog-box
+      padding-top: 6rem
+  .nav-el-collapse
+      display: none  
+  .Sidebar        
+      margin-left: 15px
+
+.nav-el-collapse
+  position fixed
+  top 0
+  width 100%
 
 
 @media (min-width: 541px) 
@@ -70,7 +92,6 @@ body
 
 
 .blog-box 
-  padding-top: 6rem
   margin: 0 auto
   max-width 1200px
 
@@ -283,3 +304,18 @@ body
 .post_box {
   max-width :800px
 }
+
+.hide{
+  display: none
+}
+
+.show{
+  display: block
+}
+
+.mb-nav{
+    width 100%
+}
+
+img
+  max-width 100%

@@ -3,7 +3,7 @@ const productionGzipExtensions = ['js', 'css'];
 module.exports = {
     title: 'Hello ActingCute',
     port: 1314,
-    description: '你可爱的亚子很喜欢',
+    description: '今天也要打起精神来',
     dest: "dist/html",
     head: [
         [
