@@ -8,7 +8,7 @@ let qiniu = {
   
     mutations: {
       SET_QINIU_DATA: (state, qiniu_data) => {
-        console.log("设置qiniu data ", qiniu_data)
+        //console.log("设置qiniu data ", qiniu_data)
         state.qiniu_data = qiniu_data
       }
     },

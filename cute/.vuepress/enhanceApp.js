@@ -8,7 +8,8 @@ import {
     GetPostDate,
     SetSidebarPostion,
     IsBlog,
-    GetUrl
+    GetUrl,
+    GetRandomItem
 } from './theme/util'
 import store from './theme/store'
 
@@ -18,7 +19,6 @@ import Element from 'element-ui'
 
 
 //ico
-import './theme/ico/lovely_ico/iconfont.js'
 import './theme/ico/lovely_ico/iconfont.css'
 
 export default ({
@@ -48,6 +48,42 @@ export default ({
     Vue.prototype.SetSidebarPostion = SetSidebarPostion
     Vue.prototype.IsBlog = IsBlog
     Vue.prototype.GetUrl = GetUrl
+    Vue.prototype.GetRandomItem = GetRandomItem
+
+    Vue.prototype.Config = siteData.themeConfig
 
     Vue.use(Element)
+
+    Vue.component("anchored-heading", {
+        render: function(createElement) {
+          let title = this.title;
+          let slug = this.slug;
+          return createElement("h" + this.level, [
+            createElement(
+              "a",
+              {
+                attrs: {
+                  href: "#" + slug
+                }
+              },
+              title
+            )
+          ]);
+        },
+        props: {
+          level: {
+            type: Number,
+            required: true
+          },
+          slug: {
+            type: String,
+            required: true
+          },
+          title: {
+            type: String,
+            required: true
+          }
+        }
+      });
+
 }

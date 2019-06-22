@@ -7,13 +7,18 @@ const getters = {
   blog_history_data: state => state.blog.history_data,
   web_data: state => state.web.web_data,
   comment_data: state => state.comment.comment_data,
+  comment_loading: state => state.comment.loading,
   count_data: state => state.count.count_data,
   gist_token_data: state => state.gist.gist_data.token,
   gist_twitter_data: state => state.gist.gist_data.twitter,
   is_twitter: state => state.web.is_twitter,
   is_mb: state => state.web.is_mb,
   commits: state => state.commits.data,
+  commits_loading: state => state.commits.loading,
   has_commits: state => state.commits.has_data,
   need_get_data: state =>  state.web.need_get_data,
+  admin_data: state => state.admin.data,
+  twitter_data: state => state.twitter.data,
+  twitter_loading: state => state.twitter.loading,
 }
 export default getters

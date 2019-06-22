@@ -1,5 +1,6 @@
 <template>
-  <div class="header-box" v-bind:style="{ minHeight: headerHeight + 'px' }">
+  <div class="header-box" v-bind:style="{ minHeight: headerHeight + 'px','background': 'url('+Config.head_cover+')'}">
+
     <transition name="slide-fade">
       <header class="navbar" v-if="ScrollUp">
         <CuteNav />
@@ -8,17 +9,11 @@
     <div class="lovely-portrait-box" v-bind:style="{ top: lovelyPortraitBox + 'px'}">
       <div class="lovely-portrait" v-bind:style="{ height: lovelyPortraitBox/2.5 + 'px'}">
         <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="shake shake-opacity"
-          src="http://blog.deskmate.cc/aimi.jpg">
+          :src="Config.own.portrait">
 
-        <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="left animated infinite bounce slow delay-1s"
-          src="http://blog.deskmate.cc/mbg1.png">
-        <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="right animated infinite bounce slow delay-3s"
-          src="http://blog.deskmate.cc/mbg3.png">
+        <img :key="'moving_graph'+index" v-for="(item,index) in Config.moving_graph"
+          v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" :class="item.class" :src="item.src">
 
-        <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="left animated infinite bounce slow delay-2s"
-          src="http://blog.deskmate.cc/mbg1.png">
-        <img v-bind:style="{ height: lovelyPortraitBox/4 + 'px'}" class="right animated infinite bounce slow delay-4s"
-          src="http://blog.deskmate.cc/mbg3.png">
         <p class="lovely-description loading">{{ description }}</p>
       </div>
     </div>
@@ -141,7 +136,6 @@
   }
 
   .header-box {
-    background-image: url('http://blog.deskmate.cc/head.jpg?imageView2/0/format/jpg/interlace/1/q/75|watermark/2/text/QEFjdGluZ0N1dGXphbE=/font/5a6L5L2T/fontsize/500/fill/I0VGRUZFRg==/dissolve/60/gravity/SouthEast/dx/10/dy/10|imageslim');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -203,7 +197,7 @@
   }
 
   .navbar {
-    z-index: 9999;
+    z-index: 100;
     top: 0;
     position: fixed;
     width: 100%;

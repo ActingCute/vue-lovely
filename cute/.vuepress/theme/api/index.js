@@ -33,4 +33,14 @@ export const Service = {
 
     //TODO commits
     CommitsGet: 'https://api.github.com/repos/ActingCute/vue-lovely/commits',
+
+    //TODO admin
+    AdminCheckLogin: '/v1/admin/check_login', //get
+    AdminLogin: '/v1/admin/login', //post
+
+    //TODO twitter
+    TwitterGet: '/v1/twitter/get', //post
+    TwitterAdd: '/v1/twitter/add', //post
+    TwitterDelete: '/v1/twitter/delete', //post
+
 }

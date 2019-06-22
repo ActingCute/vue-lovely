@@ -310,7 +310,7 @@ export function GetPostTime(d) {
         "</div>";
       return ymdhtml;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return "<div>忘了时间</div>";
     }
   } else {
@@ -334,7 +334,6 @@ export function GetPostDate(d) {
 
 export function GetDate(d) {
   if (d) {
-    console.log("d --- ", d)
     d = d.replace(new RegExp(/-/gm), "/");
     var date = new Date(d);
     var seperator1 = "-";
@@ -433,7 +432,6 @@ export function GetUrl() {
       pn = pns[0]
     }
   }
-  console.log("pn --- ", pn)
   return pn
 }
 
@@ -492,9 +490,8 @@ export function GetNowDate() {
 
 //获取当前配置
 export function GetConfig() {
-  console.log("GetConfig : ", process.env.NODE_ENV)
   let config = {
-    base_url: "http://127.0.0.1:9527"
+    base_url: "http://127.0.0.1:2331"
   }
   let is_dev = true
   if (process.env.NODE_ENV) {
@@ -509,9 +506,6 @@ export function GetConfig() {
       base_url: "https://www.haibarai.com"
     }
   }
-
-  console.log("GetConfig : ", config)
-
   return config
 }
 
@@ -534,4 +528,10 @@ export function GetParam(paramName) {
     while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
   }
   return paramValue == "" && (paramValue = null), paramValue
+}
+
+//随机元素
+
+export function GetRandomItem(items) {
+  return items[Math.random() * items.length | 0];
 }

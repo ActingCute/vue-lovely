@@ -12,7 +12,7 @@
       </el-tab-pane>
       <el-tab-pane label="来跟我玩" name="own">
         <div>
-          <img style="width:100%" src="http://blog.deskmate.cc/me.png">
+          <img style="width:100%" :src="Config.own.cover">
         </div>
         <div class="iconfont_box">
           <a _blank href="https://github.com/ActingCute" class="iconfont lovelygithub"/>
@@ -48,49 +48,17 @@ export default {
     }
   },
   mounted() {
-    console.log("is_mb --- ", this.is_mb);
+    //console.log("is_mb --- ", this.is_mb);
     if (this.page_nav.length > 0) {
       this.activeName = "page_nav";
     }
   },
   methods: {
     handleClick() {
-      console.log(this.activeName);
+      //console.log(this.activeName);
     }
   }
 };
-
-Vue.component("anchored-heading", {
-  render: function(createElement) {
-    let title = this.title;
-    let slug = this.slug;
-    return createElement("h" + this.level, [
-      createElement(
-        "a",
-        {
-          attrs: {
-            href: "#" + slug
-          }
-        },
-        title
-      )
-    ]);
-  },
-  props: {
-    level: {
-      type: Number,
-      required: true
-    },
-    slug: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    }
-  }
-});
 </script>
 
 <style lang="stylus" scoped>

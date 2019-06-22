@@ -15,12 +15,12 @@ let gist = {
     mutations: {
         SET_GIST_TWITTER_DATA: (state, gist_twitter_data) => {
             GistGetData().then(r => {
-                console.log(r)
+                //console.log(r)
                 if (r.files) {
                     if (r.files["lovely.json"]) {
                         let data = r.files["lovely.json"].content
                         state.gist_data.twitter = JSON.parse(data).twitter
-                        console.log("设置gist twitter data ", JSON.parse(data).twitter)
+                        //console.log("设置gist twitter data ", JSON.parse(data).twitter)
                     }
                 }
             })
@@ -30,7 +30,7 @@ let gist = {
             state.gist_data.twitter = gist_twitter_data
         },
         SET_GIST_TOKEN_DATA: (state, gist_token_data) => {
-            console.log("设置gist token data ", gist_token_data)
+            //console.log("设置gist token data ", gist_token_data)
             state.gist_data.token = gist_token_data
         }
     },

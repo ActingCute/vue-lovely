@@ -24,7 +24,7 @@ let count = {
 
     mutations: {
         SET_COUNT_DATA: (state, count_data) => {
-            console.log("设置count data ", count_data)
+            //console.log("设置count data ", count_data)
             state.count_data = null
             state.count_data = count_data
         }

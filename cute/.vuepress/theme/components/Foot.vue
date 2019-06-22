@@ -3,7 +3,7 @@
     <div class="lovely-foot">
       <transition name="bounce">
         <img v-if="show" v-bind:style="{marginTop:(lovelyPortraitBox)/9+ 'px', height: lovelyPortraitBox + 'px'}"
-          class="lovely-foot-img" src="http://blog.deskmate.cc/foot.png">
+          class="lovely-foot-img" :src="Config.foot_cover">
       </transition>
     </div>
     <div class="lovely-foot-content-box">
@@ -11,7 +11,7 @@
         <span class="lovely_wev_count">
           总浏览量：<span class="web_count" v-text="web_count.count" />
           <p>
-            	粤ICP备15047722号-1 
+            {{Config.record_number}}
           </p>
         </span>
       </div>
@@ -27,14 +27,21 @@
         return this.$store.getters.count_data.web_count;
       }
     },
+    watch: {
+      $route(to, from) {
+        this.Init();
+      }
+    },
     data() {
       return {
         lovelyPortraitBox: "0",
         headerHeight: 0,
-        show: true
+        show: true,
+        old_url: ""
       };
     },
     mounted: function () {
+      this.Init()
       var _this = this;
       _this.headerHeight = Number(document.documentElement.clientWidth) / 3;
       _this.lovelyPortraitBox = _this.headerHeight / 1.4;
@@ -47,13 +54,25 @@
           _this.show = true;
         }
       };
-    }
+    },
+    methods: {
+      Init() {
+        let now_url = this.GetUrl()
+        if (now_url != this.old_url) {
+          this.old_url = now_url
+          this.$store.dispatch("SetCountData", now_url);
+          this.$store.dispatch("CheckAdmin");
+        }
+      }
+    },
+
   };
 </script>
 
 <style lang="stylus">
   .lovely-foot-box {
-    text-align :center;
+    text-align: center;
+
     .lovely-foot {
       width: 100%;
       position: relative;
@@ -66,6 +85,8 @@
     }
 
     .lovely-foot-content-box {
+      text-align: center;
+
       .lovely-foot-content {
         width: 100%;
         height: 10rem;
@@ -76,6 +97,21 @@
         font-size: 12px;
         line-height: 1.5;
         margin-top: 15rem;
+        position: relative;
+
+        .lovely_wev_count {
+          padding: 5px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          color: #eee;
+
+          .web_count {
+            color: #ffffff
+          }
+        }
+
       }
     }
   }
@@ -86,16 +122,6 @@
 
   .bounce-leave-active {
     animation: bounce-in 0.5s reverse;
-  }
-
-  .lovely_wev_count {
-    padding: 5px;
-    position: fixed;
-    bottom: 0px;
-    color :#eee
-    .web_count {
-      color: #ffffff
-    }
   }
 
   @keyframes bounce-in {

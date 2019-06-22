@@ -9,7 +9,8 @@ import comment from './modules/comment'
 import count from './modules/count'
 import gist from './modules/gist'
 import commits from './modules/commits'
-
+import twitter from './modules/twitter'
+import admin from './modules/admin'
 
 import getters from './getters'
 
@@ -24,7 +25,9 @@ const store = new Vuex.Store({
     comment,
     count,
     gist,
-    commits
+    commits,
+    twitter,
+    admin
   },
   getters
 })

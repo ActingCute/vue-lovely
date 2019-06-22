@@ -1,6 +1,14 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
-import { GetConfig } from "./index"
+import {
+  Message
+} from 'element-ui'
+import {
+  GetConfig
+} from "./index"
+
+import {
+  getToken
+} from './auto'
 
 const c = GetConfig()
 
@@ -11,6 +19,10 @@ const service = axios.create({
 
 service.interceptors.request.use(config => {
   config.headers['Content-Type'] = 'application/json'
+  let token = getToken()
+  if (token) {
+    config.headers['Authorization'] = token
+  }
   return config
 }, error => {
   console.log(error)
@@ -18,8 +30,8 @@ service.interceptors.request.use(config => {
 })
 
 service.interceptors.response.use(response => {
-  return response.data
-},
+    return response.data
+  },
   error => {
     console.error('err' + error) // for debug
     Message({
