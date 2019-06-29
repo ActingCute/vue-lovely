@@ -18,6 +18,7 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
+    "@vuepress/plugin-search": "^1.0.0-rc.1",
     "webpack-chain": "^6.0.0"
   }
 }

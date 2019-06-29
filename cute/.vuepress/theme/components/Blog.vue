@@ -98,7 +98,7 @@ export default {
   },
   mounted() {
     this.w = document.documentElement.clientWidth;
-    //console.log(this.$page);
+    console.log(this.$page);
   },
   methods: {
     handleToggleDrawer() {

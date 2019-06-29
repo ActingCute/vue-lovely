@@ -334,7 +334,9 @@ export function GetPostDate(d) {
 
 export function GetDate(d) {
   if (d) {
-    d = d.replace(new RegExp(/-/gm), "/");
+    if (isNaN(d)){
+      d = d.replace(new RegExp(/-/gm), "/");
+    }
     var date = new Date(d);
     var seperator1 = "-";
     var seperator2 = ":";

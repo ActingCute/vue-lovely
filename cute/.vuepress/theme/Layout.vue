@@ -11,6 +11,7 @@
 import CuteHead from "./components/Head";
 import Blog from "./components/Blog";
 import CuteFoot from "./components/Foot";
+import SearchBox from '@SearchBox'
 
 export default {
   name: "cute",

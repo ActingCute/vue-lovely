@@ -6,7 +6,16 @@ module.exports = {
     port: 1314,
     description: '今天也要打起精神来',
     dest: "dist/html",
+    plugins: [
+        ['@vuepress/search', {
+            searchMaxSuggestions: 10
+        }]
+    ],
     themeConfig: {
+        //搜索
+        search: true,
+        searchMaxSuggestions: 10,
+        lastUpdated: '最后投喂',
         own: {
             name: "ActingCute酱",
             portrait: QiniuDomain + "aimi.jpg",
@@ -32,8 +41,8 @@ module.exports = {
         ],
         foot_cover: QiniuDomain + "foot.png",
         record_number: "粤ICP备15047722号-1 ",
-        none_text:"啥都没有呢！有点失望了~",
-        random_text:[
+        none_text: "啥都没有呢！有点失望了~",
+        random_text: [
             "真正重要的东西，自己用心对待，没人......能够夺走的.",
             "懂得努力的人早就努力了，不愿意努力的人，一百句口号也没用。而且这世界上最后占据中央舞台的，是超级努力的天才，或者一般努力的超天才，智能平庸者，再怎么努力，也是做人的附庸.",
             "一个从心底就不相信奇迹的人，就算奇迹来到他面前他也不会珍惜的",
