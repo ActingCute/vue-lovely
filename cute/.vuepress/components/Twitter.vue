@@ -1,20 +1,29 @@
 <template>
 
     <div class="twitter_box">
-        <admin />
         {{GetRandomItem(Config.random_text)}}
         <div class="none" v-if="twitter_data.length < 1">
             <span v-text="Config.none_text" />
         </div>
 
+        <admin />
+
+        <div v-if="admin_data.user_name">
+            <Wangeditor :catchData="catchFuncData" />
+            <div class="tw-submit">
+                <el-button @click="TwitterAdd">发送</el-button>
+            </div>
+        </div>
+
         <el-timeline class="twitter" v-else>
 
             <transition-group name="fade" enter-active-class="animated pulse" leave-active-class="animated pulse">
-                <el-timeline-item :timestamp="FormatGoTime(d.twitter.twitterter.date)" placement="top"
+                {{twitter_data}}
+                <el-timeline-item :timestamp="FormatGoTime(d.update_time)" placement="top"
                     class="blog post-type-normal twitter twitter_content_box" :key="'twitter_'+index"
                     v-for="(d,index) in twitter_data">
                     <el-card>
-                        <a :href="d.html_url" class="twitter_content" v-html="d.twitter.message" />
+                        <div v-text="d.content"/>
                     </el-card>
                 </el-timeline-item>
             </transition-group>
@@ -26,9 +35,7 @@
                 <div v-else>
                     <a class="btn">不可以动喔，正在加载呢~</a>
                 </div>
-
             </div>
-
         </el-timeline>
 
     </div>
@@ -37,6 +44,11 @@
 
 <script>
     import Admin from '../theme/components/Admin'
+    import Wangeditor from '../theme/components/Wangeditor'
+    import {
+        TwitterAdd,
+        TwitterGet
+    } from "../theme/api/twitter"
     import {
         GetPostTime,
         GetDate,
@@ -47,8 +59,9 @@
 
     export default {
         name: "twitter",
-        components:{
-            Admin
+        components: {
+            Admin,
+            Wangeditor
         },
         watch: {
             $route(to, from) {
@@ -57,10 +70,15 @@
         },
         data() {
             return {
-                p: 0
+                p: 0,
+                catchFuncData: this.catchData,
+                new_twitter_data: ""
             };
         },
         computed: {
+            admin_data() {
+                return this.$store.getters.admin_data
+            },
             comments_loading() {
                 return this.$store.getters.twitter_loading
             },
@@ -75,6 +93,9 @@
             this.More();
         },
         methods: {
+            catchData(c) {
+                this.new_twitter_data = c
+            },
             GetPostTime(d) {
                 return GetPostTime(d);
             },
@@ -90,6 +111,13 @@
                     cur: this.p,
                     per: 30
                 });
+            },
+            TwitterAdd() {
+                TwitterAdd({
+                    content: this.new_twitter_data
+                }).then(response => {
+                    console.log(response)
+                })
             }
         }
     };
@@ -103,5 +131,12 @@
         .el-card {
             margin-bottom: 1rem;
         }
+
+    }
+
+    .tw-submit {
+        width: 100%;
+        margin-top 10px;
+        text-align right
     }
 </style>

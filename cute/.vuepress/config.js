@@ -6,15 +6,7 @@ module.exports = {
     port: 1314,
     description: '今天也要打起精神来',
     dest: "dist/html",
-    plugins: [
-        ['@vuepress/search', {
-            searchMaxSuggestions: 10
-        }]
-    ],
     themeConfig: {
-        //搜索
-        search: true,
-        searchMaxSuggestions: 10,
         lastUpdated: '最后投喂',
         own: {
             name: "ActingCute酱",
@@ -110,6 +102,13 @@ module.exports = {
                 src: 'https://libs.cdnjs.net/element-ui/2.8.2/index.js'
             }
         ],
+        // [
+        //     'script',
+        //     {
+        //         type: "text/javascript",
+        //         src: 'https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js'
+        //     }
+        // ],
     ],
     configureWebpack: (config, isServer) => {
         if (!isServer) {
