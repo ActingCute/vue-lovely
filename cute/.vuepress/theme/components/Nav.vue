@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
   export default {
     name: "cute-nav",
     data() {

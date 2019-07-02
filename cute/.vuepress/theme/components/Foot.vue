@@ -78,6 +78,7 @@
       position: relative;
 
       .lovely-foot-img {
+        z-index :100;
         position: absolute;
         right: 0;
         top: -22rem;

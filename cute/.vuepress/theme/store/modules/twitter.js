@@ -32,11 +32,15 @@ let twitter = {
         }, data) {
             commit('SET_TWITTER_LOADING', true)
             TwitterGet(data).then(response => {
+                console.log(response)
                 commit('SET_TWITTER_LOADING', false)
                 if (response) {
-                    if (response.length > 0) {
-                        commit('SET_TWITTER_DATA', response)
+                    if (response.Result == 10000){
+                        if (response.Data.list.length > 0) {
+                            commit('SET_TWITTER_DATA', response.Data.list)
+                        }
                     }
+                    
                 } else {
                     console.info("获取不到心情呢~")
                 }
