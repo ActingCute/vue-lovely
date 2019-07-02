@@ -15,11 +15,14 @@
             </div>
         </div>
 
-        <el-timeline class="twitter" v-else>
+        
+
+        <el-timeline class="twitter" v-if="twitter_data.length > 0">
 
             <transition-group name="fade" enter-active-class="animated pulse" leave-active-class="animated pulse">
-                {{twitter_data}}
-                <el-timeline-item :timestamp="FormatGoTime(d.update_time)" placement="top"
+                
+        
+            <el-timeline-item :timestamp="FormatGoTime(d.update_time)" placement="top"
                     class="blog post-type-normal twitter twitter_content_box" :key="'twitter_'+index"
                     v-for="(d,index) in twitter_data">
                     <el-card>

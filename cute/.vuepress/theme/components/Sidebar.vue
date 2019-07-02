@@ -2,13 +2,17 @@
   <el-card id="Sidebar" class="Sidebar">
     <el-tabs style="text-algin:center" v-model="activeName" @tab-click="handleClick">
       <el-tab-pane v-if="is_mb" label="想去哪里呀" name="nav">
-        <router-link class="mb-nav" to="/"><p>Home</p></router-link>
+        <router-link class="mb-nav" to="/">
+          <p>Home</p>
+        </router-link>
         <router-link
-          class="mb-nav"  
+          class="mb-nav"
           :key="'nav__'+index"
           v-for="(nav,index) in navData"
           :to="nav.path"
-        ><p>{{nav.title}}</p></router-link>
+        >
+          <p>{{nav.title}}</p>
+        </router-link>
       </el-tab-pane>
       <el-tab-pane label="来跟我玩" name="own">
         <div>
@@ -63,10 +67,33 @@ export default {
 
 <style lang="stylus" scoped>
 .slug {
-  font-size: 19px;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
   border-bottom: 0;
+}
+
+h1.slug {
+  font-size: 24px;
+}
+
+h2.slug {
+  font-size: 22px;
+}
+
+h3.slug {
+  font-size: 20px;
+}
+
+h4.slug {
+  font-size: 18px;
+}
+
+h5.slug {
+  font-size: 16px;
+}
+
+h6.slug {
+  font-size: 14px;
 }
 
 .iconfont {

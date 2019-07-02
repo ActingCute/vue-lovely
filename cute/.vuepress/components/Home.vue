@@ -32,7 +32,7 @@
           <div class="lovely-content-box" v-if="data.excerpt">
             <div class="lovely-content" v-html="data.excerpt"></div>
             <div class="post-button text-center">
-              <router-link class="btn" :to="data.path">我要看全部啦 »</router-link>
+              <router-link class="btn" :to="data.path+'#actingcute_anchor'">我要看全部啦 »</router-link>
             </div>
           </div>
         </article>

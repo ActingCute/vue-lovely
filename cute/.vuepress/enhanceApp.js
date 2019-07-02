@@ -31,6 +31,11 @@ export default ({
     let blogData = siteData.pages.filter(sD => webData.indexOf(sD.path) == -1 && sD.path != "/")
     let navData = siteData.pages.filter(sD => webData.indexOf(sD.path) != -1 && sD.path != "/")
 
+    //对文章进行排序
+    blogData.sort((a, b) => {
+      return b.lastUpdated-a.lastUpdated;
+     })
+    
     Vue.prototype.siteData = siteData
     Vue.prototype.blogData = blogData
     Vue.prototype.navData = navData

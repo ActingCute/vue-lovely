@@ -118,7 +118,7 @@
         }
     }
 </script>
-<style lang="scss" rel="stylesheet/scss">
+<style lang="stylus" scoped>
     #wangeditor {
         width: 100%;
     }

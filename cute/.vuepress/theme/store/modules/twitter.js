@@ -13,7 +13,7 @@ let twitter = {
 
     mutations: {
         SET_TWITTER_DATA: (state, twitter_data) => {
-            //console.log("设置commits data ", commits_data)
+            console.log("设置commits data ", twitter_data)
             if (twitter_data.length < 30) {
                 state.has_data = false
             }

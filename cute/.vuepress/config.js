@@ -101,14 +101,7 @@ module.exports = {
                 type: "text/javascript",
                 src: 'https://libs.cdnjs.net/element-ui/2.8.2/index.js'
             }
-        ],
-        // [
-        //     'script',
-        //     {
-        //         type: "text/javascript",
-        //         src: 'https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js'
-        //     }
-        // ],
+        ]
     ],
     configureWebpack: (config, isServer) => {
         if (!isServer) {
