@@ -21,9 +21,9 @@ set str_b=!str!
 echo %str%
 
 rem 创建目录
-echo %~dp0docs\Blog\%str%
+echo %~dp0\cute\Blog\%str%
 
-set folder=%~dp0docs\Blog\%str%
+set folder=%~dp0\cute\Blog\%str%
 set folder=%folder:/=%
 set folder=%folder: =%
 set now=%time::=%
