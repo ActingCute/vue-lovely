@@ -12,16 +12,16 @@ export default {
   },
   mounted() {
     if (this.url) {
-      } else {
-        return;
+    } else {
+      return;
+    }
+    new DPlayer({
+      container: this.$refs["dplayer"],
+      screenshot: true,
+      video: {
+        url: this.url
       }
-      new DPlayer({
-        container: this.$refs["dplayer"],
-        screenshot: true,
-        video: {
-          url: this.url
-        }
-      });
+    });
   }
 };
 </script>

@@ -27,17 +27,23 @@
           :key="'twitter_'+index"
           v-for="(d,index) in twitter_data"
         >
-          <el-card>
-            <div
-              class="tw_img"
-              :key="'img_'+index"
-              v-for="(item,index) in GetImg(d.content)"
-              @click="clickImg(item)"
-              v-bind:style="{ 'background': 'url('+item+')'}"
-            />
-
+          <article class="article">
             <div class="tw_content" v-text="GetContent(d.content)"/>
-          </el-card>
+
+            <div v-if="GetImg(d.content).length > 0">
+              <div
+                class="tw_img"
+                :key="'img_'+index"
+                v-for="(item,index) in GetImg(d.content)"
+                @click="clickImg(item)"
+                v-bind:style="{ 'background': 'url('+item+')','height':SetImgWidth(this)}"
+              />
+            </div>
+
+            <div v-else-if="GetVod(d.content).length > 0">
+              <dplayer class="dplayer" :url="GetVod(d.content)"/>
+            </div>
+          </article>
         </el-timeline-item>
       </transition-group>
       <div v-show="twitter_data.length > 0" class="post-button text-center">
@@ -92,7 +98,8 @@ export default {
       showImg: false,
       imgSrc: "",
       img_arr: [],
-      vdo: ""
+      vdo: "",
+      img_height: "150px"
     };
   },
   computed: {
@@ -110,7 +117,9 @@ export default {
     }
   },
   mounted() {
-    this.More();
+    if (this.twitter_data.length < 1) {
+      this.More();
+    }
   },
   methods: {
     GetContent(d) {
@@ -191,6 +200,16 @@ export default {
     },
     viewImg() {
       this.showImg = false;
+    },
+    SetImgWidth() {
+      let ti = document.getElementsByClassName("tw_img");
+      if (ti[0]) {
+        if (ti[0].offsetWidth) {
+          this.img_height = ti[0].offsetWidth + "px";
+          return this.img_height;
+        }
+      }
+      return "150px";
     }
   }
 };
@@ -199,10 +218,30 @@ export default {
 <style lang="stylus" scoped>
 .twitter {
   max-width: 780px;
-  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
 
-  .el-card {
+  .article {
     margin-bottom: 1rem;
+    width: 90%;
+    height: 100%;
+    margin-top: 0.5rem;
+
+    .tw_img {
+      background-repeat: no-repeat !important;
+      background-position: center center !important;
+      background-size: cover !important;
+      width: 20%;
+      cursor: pointer;
+      display: inline-block;
+      margin: 2%;
+    }
+
+    .tw_content {
+      color: #666;
+      font-size: 1rem;
+      padding: 1rem;
+    }
   }
 }
 
@@ -216,17 +255,11 @@ export default {
   margin-bottom: 200px;
 }
 
-.tw_img {
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: cover !important;
-  width: 150px;
-  height: 150px;
+.dplayer {
+  max-width: 90%;
 }
 
-.tw_content {
-  color: #333;
-  font-size: 1rem;
-  
+.adminBox {
+  margin-top: 3rem;
 }
 </style>

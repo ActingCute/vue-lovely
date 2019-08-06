@@ -22,17 +22,6 @@ export default {
 };
 </script>
 <style scoped>
-/*动画*/
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.2s linear;
-  transform: translate3D(0, 0, 0);
-}
-
-.fade-enter,
-.fade-leave-active {
-  transform: translate3D(100%, 0, 0);
-}
 
 /* bigimg */
 
@@ -40,14 +29,16 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 /*遮罩层样式*/
 .img-view .img-layer {
   position: fixed;
-  z-index: 999;
+  z-index: 9999;
   top: 0;
   left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
@@ -57,11 +48,13 @@ export default {
 /*不限制图片大小，实现居中*/
 .img-view .img img {
   max-width: 100%;
+  max-height: 100%;
   display: block;
-  position: absolute;
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   margin: auto;
-  z-index: 1000;
+  z-index: 9999;
 }
 </style>
