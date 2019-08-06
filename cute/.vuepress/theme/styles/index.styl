@@ -3,7 +3,7 @@
 $accentColor = #3eaf7c
 $textColor = #2c3e50
 $borderColor = #eaecef
-$codeBgColor = #282c34    
+$codeBgColor = #282c34
 
 html, body
   padding 0
@@ -23,27 +23,32 @@ body
 .text-center
   text-align: center
 
-@media (max-width: 540px) 
-  .post-date 
+@media (max-width: 540px)
+  .post-date
     display none
-  
-@media (max-width: 768px) 
+
+@media (max-width: 768px)
   .navbar
     display: none;
+
   .header-box
     margin-top: 3rem;
-  .blog-box
-    padding-top: 10px  
-  .nav-el-collapse
-      display: block        
 
-@media (min-width: 769px) 
   .blog-box
-      padding-top: 6rem
+    padding-top: 10px
+
   .nav-el-collapse
-      display: none  
-  .Sidebar        
-      margin-left: 15px
+    display: block
+
+@media (min-width: 769px)
+  .blog-box
+    padding-top: 6rem
+
+  .nav-el-collapse
+    display: none
+
+  .Sidebar
+    margin-left: 15px
 
 .nav-el-collapse
   position fixed
@@ -51,11 +56,11 @@ body
   width 100%
 
 
-@media (min-width: 541px) 
-  .post-date 
+@media (min-width: 541px)
+  .post-date
     display block
 
-.btn 
+.btn
   cursor: pointer
   background: #97dffd
   color: #fff
@@ -72,7 +77,7 @@ body
   padding 0.4rem
 
 
-.post-badge 
+.post-badge
   position: absolute
   left: -16px
   top: 105px
@@ -86,31 +91,31 @@ body
   padding: 7px 11px 7px 32px
   line-height: 1
 
-  a 
+  a
     color: #ffffff
-  
 
 
-.blog-box 
+.blog-box
   margin: 0 auto
   max-width 1200px
 
-  article 
+  article
     position: relative
     padding: 0.5rem
     background: #fff
     margin-bottom: 40px
     border-radius: 5px
-    .lovely-title 
+
+    .lovely-title
       color: #444
       font-size: 25px
       font-weight: 700
       text-align: center
 
-    .lovely-content 
+    .lovely-content
       margin-top: 6rem
 
-  .post-date 
+  .post-date
     background-color: #97dffd
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
     position: absolute
@@ -123,61 +128,61 @@ body
     color: #fff
     text-align: center
     line-height: 1.1
-  
-  .post-time 
+
+  .post-time
     color #00a7e0
 
   .last-updated
     text-align: center
 
 .lovely-sidebar
-  display: inline-block    
-  float: right 
+  display: inline-block
+  float: right
 
 .post
-  display: inline-block    
+  display: inline-block
 
 .post-type-normal
   max-width 1200px
 
 //图标
 .links-of-author-item .iconfont {
-    font-size: 16px;
-    display: inline-block;
-    width: 42px;
-    height: 42px;
-    line-height: 42px;
-    border-radius: 42px;
-    color: rgba(0,0,0,.5);
-    background-color: rgba(0,0,0,.1);
-    transition: all .3s ease-in-out;
-    font-style: normal;
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-}  
+  font-size: 16px;
+  display: inline-block;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 42px;
+  color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .1);
+  transition: all .3s ease-in-out;
+  font-style: normal;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+}
 
-.links-of-author-item .iconfont:hover{
+.links-of-author-item .iconfont:hover {
   background-color: blue;
-  }
-
-.links-of-author-item a {
-    display: block;
-    text-decoration: none;
-    overflow: visible;
 }
 
 .links-of-author-item a {
-    max-width: 216px;
-    box-sizing: border-box;
-    display: inline-block;
-    margin-right: 0;
-    margin-bottom: 0;
-    padding: 0 5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  display: block;
+  text-decoration: none;
+  overflow: visible;
+}
+
+.links-of-author-item a {
+  max-width: 216px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
@@ -252,16 +257,17 @@ body
   }
 }
 
-@media (max-width:768) {
+@media (max-width: 768) {
   .blog-box {
     padding-top: 1rem;
   }
-    
+
   .sidebar {
     position: fixed;
-    left :0px;
+    left: 0px;
     z-index: 2500;
     height 100%;
+
     .nav-links {
       display: block;
 
@@ -284,45 +290,45 @@ body
   border-bottom: 1px #eee solid;
 }
 
-.blog_tag{
-    cursor :pointer;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    display: inline-block;
-    margin-top: 20px;
-}  
+.blog_tag {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  margin-top: 20px;
+}
 
 .content {
-    margin: 0 auto
+  margin: 0 auto
 }
 
 .sidebar {
-  width :100%
+  width: 100%
 }
 
 
 .post_box {
-  max-width :800px
+  max-width: 800px
 }
 
-.hide{
+.hide {
   display: none
 }
 
-.show{
+.show {
   display: block
 }
 
-.mb-nav{
-    width 100%
+.mb-nav {
+  width 100%
 }
 
 img
   max-width 100%
 
-.none 
+.none
   margin 0 auto
-  color red  
+  color red
 
 main
   padding: 10px  

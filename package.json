@@ -15,10 +15,12 @@
     "stylehacks": "^4.0.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "wangeditor": "^3.1.1"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^1.0.0-rc.1",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
     "webpack-chain": "^6.0.0"
   }
 }

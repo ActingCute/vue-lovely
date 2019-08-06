@@ -43,4 +43,6 @@ export const Service = {
     TwitterAdd: '/v1/twitter/add', //post
     TwitterDelete: '/v1/twitter/delete', //post
 
+    //TODO app
+    GetRunTime: '/api/getruntime',
 }

@@ -19,7 +19,7 @@
       </div>
     </article>
 
-    <h1>开始你的表演吧</h1>
+    <h3>开始你的表演吧</h3>
 
     <!-- <no-ssr>
       <mavon-editor ref="lovely_markdown" @imgAdd="QiniuUploadImagesForBase64" v-model="new_comment" />
