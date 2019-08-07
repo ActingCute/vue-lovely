@@ -9,7 +9,7 @@
               <div class="post-date">
                 <span v-html="GetPostTime(lastUpdated)"></span>
               </div>
-              <div class="post-badge" v-if="!is_mb">
+              <div class="post-badge">
                 <span>
                   <a href="#">
                     <span v-text="GetPostTag(meta)"></span>

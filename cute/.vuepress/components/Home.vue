@@ -1,6 +1,6 @@
 <template>
   <div class="blog-box">
-    <el-row :gutter="20">
+    <el-row>
       <el-col :xs="24" :sm="16" :md="16" :lg="16" :xl="16">
         <article
           v-show="datas.length > 0"
