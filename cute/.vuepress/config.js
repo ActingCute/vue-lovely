@@ -1,6 +1,6 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
-const QiniuDomain = "http://lovely.haibarai.com/"
+const QiniuDomain = "https://lovely.haibarai.com/"
 module.exports = {
     title: 'Hello ActingCute',
     port: 1314,
