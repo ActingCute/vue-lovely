@@ -20,7 +20,7 @@
             </span>
           </div>
           <h1 class="lovely-title">{{data.title}}</h1>
-          <div class="last-updated" v-if="data.lastUpdated">
+          <div class="last-updated home-last-updated" v-if="data.lastUpdated">
             <span class="post-time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>

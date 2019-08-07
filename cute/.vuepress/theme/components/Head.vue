@@ -2,7 +2,7 @@
   <div class="header-box" v-bind:style="{ minHeight: headerHeight + 'px','background': 'url('+Config.head_cover+')'}">
 
     <transition name="slide-fade">
-      <header class="navbar" v-if="ScrollUp">
+      <header class="navbar" v-show="ScrollUp">
         <CuteNav />
       </header>
     </transition>

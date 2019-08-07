@@ -30,6 +30,8 @@ body
     display none
   .last-updated
     margin-top: 2.5rem  
+  .home-last-updated  
+    padding-top: 1.5rem
 
 @media (max-width: 768px)
   .navbar
@@ -44,6 +46,9 @@ body
   .nav-el-collapse
     display: block
 
+  .mb_nav_list
+    display: block    
+
 @media (min-width: 769px)
   .blog-box
     padding-top: 6rem
@@ -53,6 +58,9 @@ body
 
   .Sidebar
     margin-left: 15px
+
+  .mb_nav_list
+    display: none 
 
 .nav-el-collapse
   position fixed
@@ -345,3 +353,16 @@ main
 
 .post-button
   margin-top: 2rem 
+
+.nav-el-collapse 
+  z-index: 9999;
+  background: rgba(40,42,44,.6);
+  .el-collapse-item__header
+    padding-left: 0.5rem;
+  .el-collapse-item__content
+    padding-bottom: 0;  
+  .el-collapse-item div
+      background: rgba(40,42,44,.6);
+      color: #fff;
+
+

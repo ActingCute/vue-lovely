@@ -1,7 +1,7 @@
 <template>
   <div class="adminBox" v-show="is_login">
-    <div v-if="admin_data.user_name">Hello {{admin_data.user_name}} !</div>
-    <el-form v-else :inline="true" :model="formInline" class="demo-form-inline">
+    <div v-show="admin_data.user_name">Hello {{admin_data.user_name}} !</div>
+    <el-form v-show="!admin_data.user_name" :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="账号">
         <el-input v-model="formInline.user_name"></el-input>
       </el-form-item>

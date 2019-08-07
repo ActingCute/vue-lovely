@@ -1,6 +1,7 @@
 <template>
   <div class="twitter_box">
-    {{GetRandomItem(Config.random_text)}}
+    <div class="random_text">{{GetRandomItem(Config.random_text)}}</div>
+
     <div class="none" v-if="twitter_data.length < 1">
       <span v-text="Config.none_text"/>
     </div>
@@ -47,11 +48,11 @@
         </el-timeline-item>
       </transition-group>
       <div v-show="twitter_data.length > 0" class="post-button text-center">
-        <div v-if="!comments_loading">
-          <a v-if="has_twitter" class="btn" @click="More()">我要看多多啦 »</a>
-          <a v-else class="btn">没有啦~</a>
+        <div v-show="!comments_loading">
+          <a v-show="has_twitter" class="btn" @click="More()">我要看多多啦 »</a>
+          <a v-show="!has_twitter" class="btn">没有啦~</a>
         </div>
-        <div v-else>
+        <div v-show="comments_loading">
           <a class="btn">不可以动喔，正在加载呢~</a>
         </div>
       </div>
@@ -261,5 +262,9 @@ export default {
 
 .adminBox {
   margin-top: 3rem;
+}
+
+.random_text {
+  margin-bottom: 5rem;
 }
 </style>

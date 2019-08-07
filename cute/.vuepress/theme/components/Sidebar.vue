@@ -1,18 +1,20 @@
 <template>
   <el-card id="Sidebar" class="Sidebar">
     <el-tabs style="text-algin:center" v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane v-if="is_mb" label="想去哪里呀" name="nav">
-        <router-link class="mb-nav" to="/">
-          <p>Home</p>
+      <el-tab-pane :label="is_mb?'想去哪里呀':''" name="nav">
+        <router-link  class="mb-nav" to="/">
+          <p v-show="is_mb">Home</p>
         </router-link>
         <router-link
+          v-show="is_mb"
           class="mb-nav"
           :key="'nav__'+index"
-          v-for="(nav,index) in navData"
+          v-for="(nav,index) in new_navData"
           :to="nav.path"
         >
           <p>{{nav.title}}</p>
         </router-link>
+        <p v-show="!is_mb">嘿嘿嘿,其实这是个bug来的,但我假装这是个彩蛋~</p>
       </el-tab-pane>
       <el-tab-pane label="来跟我玩" name="own">
         <div>
@@ -49,6 +51,9 @@ export default {
   computed: {
     is_mb() {
       return this.$store.getters.is_mb;
+    },
+    new_navData() {
+      return this.navData || [{ path: "", title: "" }];
     }
   },
   mounted() {

@@ -1,11 +1,11 @@
 <template>
   <div class="commits_box">
     {{GetRandomItem(Config.random_text)}}
-    <div class="none" v-if="commits_data.length < 1">
+    <div class="none" v-show="commits_data.length < 1">
       <span v-text="Config.none_text"/>
     </div>
 
-    <el-timeline class="commits" v-else>
+    <el-timeline class="commits" v-show="commits_data.length > 0">
       <transition-group
         name="fade"
         enter-active-class="animated pulse"
@@ -24,11 +24,11 @@
         </el-timeline-item>
       </transition-group>
       <div v-show="commits_data.length > 0" class="post-button text-center">
-        <div v-if="!comments_loading">
-          <a v-if="has_commit" class="btn" @click="More()">我要看多多啦 »</a>
-          <a v-else class="btn">没有啦~</a>
+        <div v-show="!comments_loading">
+          <a v-show="has_commit" class="btn" @click="More()">我要看多多啦 »</a>
+          <a v-show="!has_commit" class="btn">没有啦~</a>
         </div>
-        <div v-else>
+        <div v-show="comments_loading">
           <a class="btn">不可以动喔，正在加载呢~</a>
         </div>
       </div>

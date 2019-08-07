@@ -3,7 +3,7 @@
     <div class="lovely-foot">
       <transition name="bounce">
         <img
-          v-if="show"
+          v-show="admin_data.user_name"="show"
           v-bind:style="{marginTop:(lovelyPortraitBox)/9+ 'px', height: lovelyPortraitBox + 'px'}"
           class="lovely-foot-img"
           :src="Config.foot_cover"
