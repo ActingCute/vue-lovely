@@ -71,7 +71,7 @@
     data() {
       return {
         old_url: "",
-        QiniuUploadPath: "http://up-z0.qiniup.com",
+        QiniuUploadPath: "https://up-z0.qiniup.com",
         new_comment: "",
         in_submit: false,
         ruleForm: {

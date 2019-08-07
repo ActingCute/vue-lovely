@@ -1,5 +1,5 @@
 import storage from './theme/storage'
-import {Code} from './theme/api'
+import { Code } from './theme/api'
 import {
     FormatGoTime,
     GetPostDate,
@@ -20,11 +20,11 @@ import Element from 'element-ui'
 import './theme/ico/lovely_ico/iconfont.css'
 
 export default ({
-                    Vue, // VuePress 正在使用的 Vue 构造函数
-                    options, // 附加到根实例的一些选项
-                    router, // 当前应用的路由实例
-                    siteData // 站点元数据
-                }) => {
+    Vue, // VuePress 正在使用的 Vue 构造函数
+    options, // 附加到根实例的一些选项
+    router, // 当前应用的路由实例
+    siteData // 站点元数据
+}) => {
     //选出blog data
     let webData = ["/Commits/", "/Harem/", "/History/", "/Message/", "/Twitter/"]
     let blogData = siteData.pages.filter(sD => webData.indexOf(sD.path) == -1 && sD.path != "/")
@@ -32,8 +32,9 @@ export default ({
 
     //对文章进行排序
     blogData.sort((a, b) => {
-        return a.lastUpdated - b.lastUpdated;
+        return a.lastUpdated > b.lastUpdated;
     })
+
 
     Vue.prototype.siteData = siteData
     Vue.prototype.blogData = blogData

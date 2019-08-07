@@ -16,7 +16,7 @@
       :limit="9"
       multiple
       class="uploader"
-      action="http://up-z0.qiniup.com"
+      action="https://up-z0.qiniup.com"
       :data="qiniu"
       :show-file-list="true"
       :file-list="img_arr"
@@ -28,7 +28,7 @@
     </el-upload>
     <el-upload
       class="uploader"
-      action="http://up-z0.qiniup.com"
+      action="https://up-z0.qiniup.com"
       :data="qiniu"
       :show-file-list="true"
       :on-success="handleVdoSuccess"
