@@ -4,7 +4,7 @@ import {
 } from './index'
 
 export function QiniuGetToken(file_name) {
-    console.log(file_name)
+    //console.log(file_name)
     return request({
         url: Service.QiniuGetToken,
         method: 'GET',

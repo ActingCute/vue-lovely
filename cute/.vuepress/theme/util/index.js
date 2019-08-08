@@ -256,7 +256,6 @@ export function getNumber(str) {
 
 //查看更多 有点垃圾
 export function GoAnchor(selector) {
-  console.log("222222222")
   if (location.href.indexOf('#') != -1) {
     //若是点了标签，不要再执行了
     return

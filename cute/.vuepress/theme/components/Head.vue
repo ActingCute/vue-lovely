@@ -55,7 +55,7 @@
       window.onresize = function () {
         _this.headerHeight = Number(document.documentElement.clientWidth) / 3; //窗口宽度
         _this.lovelyPortraitBox = _this.headerHeight / 1.4;
-        console.log(_this.screenWidth);
+        //console.log(_this.screenWidth);
       };
 
       //自适应

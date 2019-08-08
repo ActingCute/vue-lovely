@@ -13,7 +13,7 @@ let twitter = {
 
     mutations: {
         SET_TWITTER_DATA: (state, twitter_data) => {
-            console.log("设置commits data ", twitter_data)
+            //console.log("设置commits data ", twitter_data)
             if (twitter_data.length < 30) {
                 state.has_data = false
             }
@@ -32,7 +32,7 @@ let twitter = {
         }, data) {
             commit('SET_TWITTER_LOADING', true)
             TwitterGet(data).then(response => {
-                console.log(response)
+                //console.log(response)
                 commit('SET_TWITTER_LOADING', false)
                 if (response) {
                     if (response.Result == 10000){

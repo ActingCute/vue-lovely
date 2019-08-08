@@ -101,7 +101,6 @@
     },
     mounted() {
       this.w = document.documentElement.clientWidth;
-      console.log(this.$page);
     },
     methods: {
       handleToggleDrawer() {

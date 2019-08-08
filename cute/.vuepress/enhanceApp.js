@@ -35,7 +35,6 @@ export default ({
         return a.lastUpdated > b.lastUpdated;
     })
 
-
     Vue.prototype.siteData = siteData
     Vue.prototype.blogData = blogData
     Vue.prototype.navData = navData
@@ -55,6 +54,7 @@ export default ({
     Vue.prototype.GetRandomItem = GetRandomItem
 
     Vue.prototype.Config = siteData.themeConfig
+    Vue.prototype.Harem = siteData.themeConfig.harem
 
     Vue.use(Element)
 

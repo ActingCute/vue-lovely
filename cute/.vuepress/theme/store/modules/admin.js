@@ -15,7 +15,7 @@ let admin = {
 
     mutations: {
         SET_ADMIN_DATA: (state, admin_data) => {
-            console.log("设置ADMIN data ", admin_data)
+            //console.log("设置ADMIN data ", admin_data)
             state.data = admin_data
 
         },
@@ -30,7 +30,7 @@ let admin = {
         }, data) {
             commit('SET_ADMIN_LOADING', true)
             AdminLogin(data).then(response => {
-                console.log("response --- ",response)
+                //console.log("response --- ",response)
                 commit('SET_ADMIN_LOADING', false)
                 if (response) {
                     if (response.Result != 10000){
@@ -56,7 +56,7 @@ let admin = {
             commit
         }) {
             AdminCheckLogin().then(response => {
-                console.log(response)
+                //console.log(response)
                 if (response) {
                     if (response.Data) {
                         if (response.Data.token){

@@ -58,8 +58,8 @@ export default {
       editor: null,
       editorContent: "",
       qiniu: {
-        action: "http://up-z2.qiniup.com",
-        domain: "http://lovely.haibarai.com/",
+        action: "https://up-z2.qiniup.com",
+        domain: "https://lovely.haibarai.com/",
         token: "",
         key: ""
       },
@@ -92,19 +92,19 @@ export default {
       this.showImg = false;
     },
     beforeImgUpload(file) {
-      console.log(file.type);
+      //console.log(file.type);
       const isJPG = file.type === "image/jpeg";
       const isPNG = file.type === "image/png";
       if (!isJPG && !isPNG) {
         this.Msg("上传图片只能是 JPG/ PNG 格式!", 2);
         return;
       }
-      console.log(file.name);
+      //console.log(file.name);
       const _self = this;
       return new Promise((resolve, reject) => {
         QiniuGetToken()
           .then(response => {
-            console.log("upload -- ", response);
+            //console.log("upload -- ", response);
             let code = response.Result;
             switch (code) {
               case 10000:
@@ -117,30 +117,30 @@ export default {
             resolve(true);
           })
           .catch(err => {
-            console.log(err);
+            console.error(err);
             reject(false);
           });
       });
     },
     handleImgSuccess(response, file, fileList) {
-      let src = "http://" + this.qiniu.domain + "/" + response.key;
+      let src = "https://" + this.qiniu.domain + "/" + response.key;
       this.resource += '<li class="twitter_img"><img src="' + src + '"/></li>';
-      console.log(this.resource);
+      //console.log(this.resource);
       this.img_arr.push(src);
     },
     beforeVdoUpload(file) {
-      console.log(file.type);
+      //console.log(file.type);
       const isMP4 = file.type === "video/mp4";
       if (!isMP4) {
         this.Msg("上传视频只能是 MP4 格式!", 2);
         return;
       }
-      console.log(file.name);
+      //console.log(file.name);
       const _self = this;
       return new Promise((resolve, reject) => {
         QiniuGetToken()
           .then(response => {
-            console.log("upload -- ", response);
+            //console.log("upload -- ", response);
             let code = response.Result;
             switch (code) {
               case 10000:
@@ -153,13 +153,13 @@ export default {
             resolve(true);
           })
           .catch(err => {
-            console.log(err);
+            console.error(err);
             reject(false);
           });
       });
     },
     handleVdoSuccess(response, file, fileList) {
-      this.vdo = "http://" + this.qiniu.domain + "/" + response.key;
+      this.vdo = "https://" + this.qiniu.domain + "/" + response.key;
     },
     handleError(err, file, fileList) {
       console.error(err);

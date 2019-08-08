@@ -81,7 +81,7 @@ export default {
     },
     GetRunTime() {
       GetRunTime().then(response => {
-        console.log(response);
+        //console.log(response);
         if (response.Data) {
           this.difference = response.Data;
           this.timer = setInterval(this.SetDifferenceTime, 1000);

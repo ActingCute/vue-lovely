@@ -40,7 +40,19 @@ module.exports = {
             "一个从心底就不相信奇迹的人，就算奇迹来到他面前他也不会珍惜的",
             "每当不经意闻到那一缕学生时代的橡皮香味，总会让人有一刹那的恍惚，回想起学生时代那一块怎么也舍不得擦的漂亮橡皮。",
             "上天入地、摘星揽月并非什么奇迹，真正的奇迹是：沧海桑田之后，那个说要爱你一生一世的人，仍然等在原地，期望得到你一个拥抱......"
-        ]
+        ],
+        harem: {
+            config: {
+                default_img: QiniuDomain + "mbg1.png",
+                default_describe: "这是个沙雕啥都没说"
+            },
+            data: [{
+                name: "Chen",
+                describe: "",
+                url: "http://chenhaichao.cn/",
+                pic: "http://chenhaichao.cn/static/media/myhead.35a7d0f5.jpeg"
+            }]
+        }
     },
     head: [
         [

@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     GetContent(d) {
-      console.log(d);
+      //console.log(d);
       try {
         let dj = JSON.parse(d);
         return dj.content;
@@ -152,7 +152,7 @@ export default {
       }
     },
     catchData(c, img, vdo) {
-      console.log(img, vdo);
+      //console.log(img, vdo);
       this.vdo = vdo;
       this.img_arr = img;
       this.new_twitter_data = c;
@@ -188,7 +188,7 @@ export default {
         TwitterAdd({
           content: c
         }).then(response => {
-          console.log(response);
+          //console.log(response);
         });
       } else {
         this.Msg("主人，什么都没有喔i~", 2);
