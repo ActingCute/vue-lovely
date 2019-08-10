@@ -88,6 +88,14 @@ module.exports = {
             }
         ],
         [
+            'link',
+            {
+                rel: "stylesheet",
+                type: "text/css",
+                href: 'https://lovely.haibarai.com/mavon-editor.css'
+            }
+        ],
+        [
             'script',
             {
                 type: "text/javascript",
@@ -128,6 +136,13 @@ module.exports = {
                 type: "text/javascript",
                 src: 'https://lovely.haibarai.com/v-viewer.min.js'
             }
+        ],
+        [
+            'script',
+            {
+                type: "text/javascript",
+                src: 'https://lovely.haibarai.com/mavon-editor.js'
+            }
         ]
     ],
     configureWebpack: (config, isServer) => {
@@ -145,7 +160,8 @@ module.exports = {
                 'element-ui': 'ELEMENT',
                 'vuex': 'Vuex',
                 'axios': 'axios',
-                'Viewer':'v-viewer'
+                'Viewer':'v-viewer',
+                'mavonEditor':'mavon-editor'
             }
         }
     }

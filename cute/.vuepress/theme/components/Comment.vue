@@ -1,9 +1,10 @@
 <template>
   <section class="comments" v-if="need_comment">
-    <h3 class="comment_data_length_box">
+
+    <!-- <h3 class="comment_data_length_box">
       已经有
       <span class="comment_data_length" v-text="comment_data.length" />层啦!
-    </h3>
+    </h3> -->
     <article class="comment" v-for="(item,index) in comment_data">
       <div class="meta">
         <img :src="GetLeiMu(item.user.uid)" class="avatar">
@@ -19,12 +20,12 @@
       </div>
     </article>
 
-    <h3>开始你的表演吧</h3>
+    <no-ssr>
+      <mavon-editor placeholder="快点回复人家~等你喔" codeStyle="tomorrow-night" :toolbars="toolbars" :subfield="false"
+        ref="lovely_markdown" @imgAdd="QiniuUploadImagesForBase64" v-model="new_comment" />
 
-    <!-- <no-ssr>
-      <mavon-editor ref="lovely_markdown" @imgAdd="QiniuUploadImagesForBase64" v-model="new_comment" />
-    </no-ssr>-->
-    <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="new_comment"></el-input>
+    </no-ssr>
+
     <div>
       <p>嗨呀咕~</p>
       <el-form :inline="true" :model="ruleForm" :rules="rules" ref="ruleForm">
@@ -45,7 +46,7 @@
 
 <script>
   import Axios from "axios";
-  //import NoSsr from 'vue-no-ssr'
+  import NoSsr from 'vue-no-ssr'
 
   import {
     GetLeiMu
@@ -60,9 +61,9 @@
 
   export default {
     name: "comment",
-    // components:{
-    //   NoSsr
-    // },
+    components: {
+      NoSsr
+    },
     watch: {
       $route(to, from) {
         this.Init();
@@ -93,7 +94,42 @@
           "你再这样人家就要生气了哼!",
           "走开走开不理你了~"
         ],
-        submit_num: 0
+        submit_num: 0,
+        toolbars: {
+          bold: true, // 粗体
+          italic: true, // 斜体
+          // header: true, // 标题
+          underline: true, // 下划线
+          strikethrough: true, // 中划线
+          mark: true, // 标记
+          // superscript: true, // 上角标
+          // subscript: true, // 下角标
+          //quote: true, // 引用
+          // ol: true, // 有序列表
+          // ul: true, // 无序列表
+          // link: true, // 链接
+          imagelink: true, // 图片链接
+          // code: true, // code
+          // table: true, // 表格
+          // fullscreen: true, // 全屏编辑
+          // readmodel: true, // 沉浸式阅读
+          // htmlcode: true, // 展示html源码
+          // help: true, // 帮助
+          // /* 1.3.5 */
+          // undo: true, // 上一步
+          // redo: true, // 下一步
+          trash: true, // 清空
+          // save: true, // 保存（触发events中的save事件）
+          // /* 1.4.2 */
+          // navigation: true, // 导航目录
+          // /* 2.1.8 */
+          alignleft: true, // 左对齐
+          aligncenter: true, // 居中
+          alignright: true, // 右对齐
+          // /* 2.2.1 */
+          subfield: false, // 单双栏模式
+          preview: true, // 预览
+        }
       };
     },
     computed: {
@@ -125,8 +161,8 @@
             this.$store.dispatch("SetUserData", user_data);
             this.ruleForm = user_data;
           }
-          //this.new_comment =
-          //  "## 很认真的想了想\n### 可是不知道说啥\n# 走开走开：很太\n![comment.png](http://blog.deskmate.cc/FtNH-0VgU8lNaIq7WzaWQzmxadCM)";
+          this.new_comment =
+            "## 很认真的想了想\n### 可是不知道说啥\n# 走开走开：很太\n![comment.png](http://blog.deskmate.cc/FtNH-0VgU8lNaIq7WzaWQzmxadCM)";
           this.$store.dispatch("SetCommentData", now_url);
         }
       },
@@ -143,8 +179,7 @@
           this.submit_num;
       },
       CommentAdd() {
-        //let content = this.$refs.lovely_markdown.d_render;
-        let content = this.new_comment;
+        let content = this.$refs.lovely_markdown.d_render;
         if (content.length < 1) {
           this.ShowMsg();
           return;
@@ -195,75 +230,75 @@
             return;
           }
         });
+      },
+      QiniuUploadImagesForBase64(pos, $file) {
+        console.log(this.$store);
+        //获取上传的key
+        let _this = this;
+        QiniuGetToken($file.name)
+          .then(response => {
+            let code = response.Result;
+            switch (code) {
+              case this.Code.SUCCESS:
+                //保存七牛domain
+                response.Data.in_upload = true;
+                this.$store.dispatch("SetQiNiuData", null);
+                this.$store.dispatch("SetQiNiuData", response.Data);
+                //上传成功后更新预览用到
+                //转化为七牛合法的base
+                let imageData = $file.miniurl;
+                imageData = imageData.replace("data:image/webp;base64,", "");
+                imageData = imageData.replace("data:image/jpeg;base64,", "");
+                imageData = imageData.replace("data:image/png;base64,", "");
+                //let newPic =
+                //"http://" + response.Data.domain + "/" + response.Data.key; //先保存好当前的七牛路径，若上传成功则使用它  自定义名字突然用不了...
+                let url =
+                  this.QiniuUploadPath + "/putb64/" + this.fileSize(imageData);
+                //将图片上传七牛
+                Axios({
+                    url,
+                    method: "POST",
+                    data: imageData,
+                    headers: {
+                      "Content-Type": "application/octet-stream",
+                      Authorization: "UpToken " + response.Data.token
+                    }
+                  })
+                  .then(res => {
+                    // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+                    // $vm.$img2Url 详情见本页末尾
+                    let newPic =
+                      "http://" + response.Data.domain + "/" + res.data.key;
+                    console.log("res --- ", res, newPic);
+                    _this.$refs.lovely_markdown.$img2Url(pos, newPic);
+                    response.Data.in_upload = false;
+                    _this.$store.dispatch("SetQiNiuData", null);
+                    _this.$store.dispatch("SetQiNiuData", response.Data);
+                  })
+                  .catch(error => {
+                    _this.Msg(code + "上传失败", 1);
+                    console.error(error);
+                  });
+                return;
+              default:
+                _this.Msg(code + ":获取上传信息失败，不能上传图片", 2);
+                return;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            _this.Msg("获取上传信息失败，不能上传图片", 2);
+          });
+      },
+      fileSize(str) {
+        let fileSize;
+        if (str.indexOf("=") > 0) {
+          let indexOf = str.indexOf("=");
+          str = str.substring(0, indexOf); //把末尾的=号去掉
+        }
+        fileSize = parseInt(str.length - (str.length / 8) * 2);
+        return fileSize;
       }
-      // QiniuUploadImagesForBase64(pos, $file) {
-      //   console.log(this.$store);
-      //   //获取上传的key
-      //   let _this = this;
-      //   QiniuGetToken($file.name)
-      //     .then(response => {
-      //       let code = response.Result;
-      //       switch (code) {
-      //         case this.Code.SUCCESS:
-      //           //保存七牛domain
-      //           response.Data.in_upload = true;
-      //           this.$store.dispatch("SetQiNiuData", null);
-      //           this.$store.dispatch("SetQiNiuData", response.Data);
-      //           //上传成功后更新预览用到
-      //           //转化为七牛合法的base
-      //           let imageData = $file.miniurl;
-      //           imageData = imageData.replace("data:image/webp;base64,", "");
-      //           imageData = imageData.replace("data:image/jpeg;base64,", "");
-      //           imageData = imageData.replace("data:image/png;base64,", "");
-      //           //let newPic =
-      //           //"http://" + response.Data.domain + "/" + response.Data.key; //先保存好当前的七牛路径，若上传成功则使用它  自定义名字突然用不了...
-      //           let url =
-      //             this.QiniuUploadPath + "/putb64/" + this.fileSize(imageData);
-      //           //将图片上传七牛
-      //           Axios({
-      //             url,
-      //             method: "POST",
-      //             data: imageData,
-      //             headers: {
-      //               "Content-Type": "application/octet-stream",
-      //               Authorization: "UpToken " + response.Data.token
-      //             }
-      //           })
-      //             .then(res => {
-      //               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-      //               // $vm.$img2Url 详情见本页末尾
-      //               let newPic =
-      //                 "http://" + response.Data.domain + "/" + res.data.key;
-      //               console.log("res --- ", res, newPic);
-      //               _this.$refs.lovely_markdown.$img2Url(pos, newPic);
-      //               response.Data.in_upload = false;
-      //               _this.$store.dispatch("SetQiNiuData", null);
-      //               _this.$store.dispatch("SetQiNiuData", response.Data);
-      //             })
-      //             .catch(error => {
-      //               _this.Msg(code + "上传失败", 1);
-      //               console.error(error);
-      //             });
-      //           return;
-      //         default:
-      //           _this.Msg(code + ":获取上传信息失败，不能上传图片", 2);
-      //           return;
-      //       }
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //       _this.Msg("获取上传信息失败，不能上传图片", 2);
-      //     });
-      // },
-      // fileSize(str) {
-      //   let fileSize;
-      //   if (str.indexOf("=") > 0) {
-      //     let indexOf = str.indexOf("=");
-      //     str = str.substring(0, indexOf); //把末尾的=号去掉
-      //   }
-      //   fileSize = parseInt(str.length - (str.length / 8) * 2);
-      //   return fileSize;
-      // }
     }
   };
 </script>
@@ -381,5 +416,10 @@
         max-width: 200px;
       }
     }
+  }
+
+
+  .markdown-body>.shadow {
+    display none
   }
 </style>

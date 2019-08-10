@@ -23,6 +23,9 @@ import './theme/ico/lovely_ico/iconfont.css'
 
 import Viewer from 'v-viewer'
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 export default ({
     Vue, // VuePress 正在使用的 Vue 构造函数
     options, // 附加到根实例的一些选项
@@ -61,6 +64,8 @@ export default ({
     Vue.prototype.Harem = siteData.themeConfig.harem
 
     Vue.use(Element)
+
+    Vue.use(mavonEditor)
 
     Vue.use(Viewer, {
         defaultOptions: {
