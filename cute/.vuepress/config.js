@@ -80,6 +80,14 @@ module.exports = {
             }
         ],
         [
+            'link',
+            {
+                rel: "stylesheet",
+                type: "text/css",
+                href: 'https://libs.cdnjs.net/viewerjs/1.3.6/viewer.min.css'
+            }
+        ],
+        [
             'script',
             {
                 type: "text/javascript",
@@ -113,6 +121,13 @@ module.exports = {
                 type: "text/javascript",
                 src: 'https://libs.cdnjs.net/element-ui/2.8.2/index.js'
             }
+        ],
+        [
+            'script',
+            {
+                type: "text/javascript",
+                src: 'https://lovely.haibarai.com/v-viewer.min.js'
+            }
         ]
     ],
     configureWebpack: (config, isServer) => {
@@ -129,7 +144,8 @@ module.exports = {
                 'vue': 'Vue',
                 'element-ui': 'ELEMENT',
                 'vuex': 'Vuex',
-                'axios': 'axios'
+                'axios': 'axios',
+                'Viewer':'v-viewer'
             }
         }
     }

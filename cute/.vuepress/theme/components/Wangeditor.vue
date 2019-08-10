@@ -5,10 +5,7 @@
       :src="item"
       :key="'img_'+index"
       v-for="(item,index) in img_arr"
-      @click="clickImg(item)"
     >
-    <Images v-if="showImg" @clickit="viewImg" :imgSrc="imgSrc"/>
-
     <div>
       <el-input type="textarea" :rows="2" placeholder="说点什么好呢" v-model="editorContent"></el-input>
     </div>
@@ -41,13 +38,9 @@
 </template>
 <script>
 import { QiniuGetToken } from "../api/qiniu";
-import Images from "./Images";
 
 export default {
   name: "Wangeditor",
-  components: {
-    Images
-  },
   computed: {
     is_mb() {
       return this.$store.getters.is_mb;
@@ -66,7 +59,6 @@ export default {
       resource: "",
       img_arr: [],
       vdo: "",
-      showImg: false,
       imgSrc: ""
     };
   },

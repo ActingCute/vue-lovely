@@ -1,5 +1,7 @@
 import storage from './theme/storage'
-import { Code } from './theme/api'
+import {
+    Code
+} from './theme/api'
 import {
     FormatGoTime,
     GetPostDate,
@@ -18,6 +20,8 @@ import './theme/styles/index.styl'
 import Element from 'element-ui'
 //ico
 import './theme/ico/lovely_ico/iconfont.css'
+
+import Viewer from 'v-viewer'
 
 export default ({
     Vue, // VuePress 正在使用的 Vue 构造函数
@@ -58,14 +62,19 @@ export default ({
 
     Vue.use(Element)
 
+    Vue.use(Viewer, {
+        defaultOptions: {
+            zIndex: 9999
+        }
+    })
+
     Vue.component("anchored-heading", {
         render: function (createElement) {
             let title = this.title;
             let slug = this.slug;
             return createElement("h" + this.level, [
                 createElement(
-                    "a",
-                    {
+                    "a", {
                         attrs: {
                             href: "#" + slug
                         }
