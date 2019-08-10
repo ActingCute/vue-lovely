@@ -30,7 +30,8 @@
                 v-bind:style="{ 'background': 'url('+src+')','height':SetImgWidth(this),'width':SetImgWidth(this)}" />
 
               <viewer v-show="false" :images="GetImg(d.content)">
-                <img :id="'images_'+index+'_'+v_index" :src="src" :key="src" v-for="(src,v_index) in GetImg(d.content)" />
+                <img :id="'images_'+index+'_'+v_index" :src="src" :key="src"
+                  v-for="(src,v_index) in GetImg(d.content)" />
               </viewer>
 
             </div>
@@ -200,18 +201,21 @@
         let ti = document.getElementsByClassName("tw_img");
         if (ti[0]) {
           if (ti[0].offsetWidth) {
-            this.img_height = ti[0].offsetWidth/20 + "rem";
+            this.img_height = ti[0].offsetWidth / 20 + "rem";
             return this.img_height;
           }
         }
-        return "150px";
+        return "15rem";
       },
       show(index, v_index) {
-
-        console.log(index, v_index)
+        
         const viewer = this.$el.querySelector('#images_' + index + '_' + v_index)
-        viewer.click()
-        console.log(viewer)
+        if (viewer) {
+          viewer.click()
+        } else {
+          console.error("人家找不到图片啦")
+        }
+
       }
     }
   };

@@ -1,9 +1,8 @@
 <template>
   <div class="lovely-foot-box">
-    <div class="lovely-foot">
+    <div class="lovely-foot">      
       <transition name="bounce">
         <img
-          v-show="admin_data.user_name"="show"
           v-bind:style="{marginTop:(lovelyPortraitBox)/9+ 'px', height: lovelyPortraitBox + 'px'}"
           class="lovely-foot-img"
           :src="Config.foot_cover"
@@ -144,7 +143,7 @@ export default {
       color: #888;
       font-size: 12px;
       line-height: 1.5;
-      margin-top: 15rem;
+      margin-top: 5rem;
       position: relative;
 
       .lovely_wev_count {

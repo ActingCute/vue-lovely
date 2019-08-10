@@ -1,5 +1,5 @@
 <template>
-  <section class="comments">
+  <section class="comments" v-if="need_comment">
     <h3 class="comment_data_length_box">
       已经有
       <span class="comment_data_length" v-text="comment_data.length" />层啦!
@@ -70,6 +70,7 @@
     },
     data() {
       return {
+        need_comment: false,
         old_url: "",
         QiniuUploadPath: "https://up-z0.qiniup.com",
         new_comment: "",
@@ -113,7 +114,11 @@
       //初始化
       Init() {
         let now_url = this.GetUrl()
-        if (now_url != this.old_url) {
+        this.need_comment = this.IsBlog(now_url)
+        if (now_url.indexOf("Message") != -1) {
+          this.need_comment = true
+        }
+        if (now_url != this.old_url && this.need_comment) {
           this.old_url = now_url
           let user_data = this.Storage.getItem("user_data");
           if (user_data) {
