@@ -18,6 +18,8 @@ set str=%date%
 set str_a=!str!
 set str_b=!str!
 
+set str=%str:-=%
+
 echo %str%
 
 rem 创建目录

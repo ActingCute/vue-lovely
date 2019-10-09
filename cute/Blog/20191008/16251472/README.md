@@ -5,7 +5,10 @@ meta:
   - name:  高级语言程序设计
     content: 高级语言程序设计
 ---
+
 ### 高级语言程序设计(C程序设计第四版)
+
+>加油加油喔~
 
 <!-- more -->
 <div ref="actingcute_anchor" id="actingcute_anchor"></div>
