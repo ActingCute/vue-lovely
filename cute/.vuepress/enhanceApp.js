@@ -39,7 +39,7 @@ export default ({
 
     //对文章进行排序
     blogData.sort((a, b) => {
-        return a.lastUpdated > b.lastUpdated;
+        return b.lastUpdated-a.lastUpdated;
     })
 
     Vue.prototype.siteData = siteData
